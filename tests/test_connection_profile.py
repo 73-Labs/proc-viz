@@ -77,7 +77,7 @@ class TestConnectionProfile:
         assert profile.username == "admin"
         assert profile.save_password is True
 
-    def test_connection_string_windows_auth(self):
+    def test_connection_kwargs_windows_auth(self):
         profile = ConnectionProfile(
             name="Test",
             server="localhost",
@@ -85,15 +85,16 @@ class TestConnectionProfile:
             database="TestDB",
             authentication_mode=AuthenticationMode.WINDOWS,
         )
-        conn_str = profile.get_connection_string()
+        kwargs = profile.get_connection_kwargs()
 
-        assert "Driver={ODBC Driver 17 for SQL Server}" in conn_str
-        assert "Server=localhost,1433" in conn_str
-        assert "Database=TestDB" in conn_str
-        assert "Trusted_Connection=yes" in conn_str
-        assert "Encrypt=yes" in conn_str
+        assert kwargs["host"] == "localhost"
+        assert kwargs["port"] == 1433
+        assert kwargs["database"] == "TestDB"
+        assert "user" not in kwargs
+        assert "password" not in kwargs
+        assert kwargs["encryption"] == "require"
 
-    def test_connection_string_sql_server_auth(self):
+    def test_connection_kwargs_sql_server_auth(self):
         profile = ConnectionProfile(
             name="Test",
             server="localhost",
@@ -101,13 +102,14 @@ class TestConnectionProfile:
             authentication_mode=AuthenticationMode.SQL_SERVER,
             username="admin",
         )
-        conn_str = profile.get_connection_string(password="secret")
+        kwargs = profile.get_connection_kwargs(password="secret")
 
-        assert "UID=admin" in conn_str
-        assert "PWD=secret" in conn_str
-        assert "Trusted_Connection" not in conn_str
+        assert kwargs["user"] == "admin"
+        assert kwargs["password"] == "secret"
+        assert kwargs["host"] == "localhost"
+        assert kwargs["database"] == "TestDB"
 
-    def test_connection_string_with_certificate_options(self):
+    def test_connection_kwargs_with_certificate_options(self):
         profile = ConnectionProfile(
             name="Test",
             server="localhost",
@@ -115,12 +117,12 @@ class TestConnectionProfile:
             encrypt=True,
             trust_certificate=True,
         )
-        conn_str = profile.get_connection_string()
+        kwargs = profile.get_connection_kwargs()
 
-        assert "Encrypt=yes" in conn_str
-        assert "TrustServerCertificate=yes" in conn_str
+        assert kwargs["encryption"] == "require"
+        assert kwargs["cafile"] is None
 
-    def test_connection_string_without_encrypt(self):
+    def test_connection_kwargs_without_encrypt(self):
         profile = ConnectionProfile(
             name="Test",
             server="localhost",
@@ -128,7 +130,7 @@ class TestConnectionProfile:
             encrypt=False,
             trust_certificate=False,
         )
-        conn_str = profile.get_connection_string()
+        kwargs = profile.get_connection_kwargs()
 
-        assert "Encrypt=yes" not in conn_str
-        assert "TrustServerCertificate=yes" not in conn_str
+        assert "encryption" not in kwargs or kwargs.get("encryption") != "require"
+        assert "cafile" not in kwargs

@@ -1,6 +1,5 @@
-"""ODBC driver management."""
+"""Database driver initialization."""
 
-from app.drivers.odbc_manager import OdbcDriverManager
-from app.drivers.initialization import check_odbc_drivers
+from app.drivers.initialization import check_pymssql_available
 
-__all__ = ["OdbcDriverManager", "check_odbc_drivers"]
+__all__ = ["check_pymssql_available"]

@@ -7,7 +7,7 @@ from app.storage import ProfileManager
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Process Visualizer")
+        self.setWindowTitle("Procedures Visualizer")
         self.setGeometry(100, 100, 800, 600)
         self.profile_manager = ProfileManager()
 

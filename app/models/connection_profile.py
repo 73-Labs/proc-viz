@@ -18,7 +18,6 @@ class ConnectionProfile:
     database: str = ""
     authentication_mode: AuthenticationMode = AuthenticationMode.WINDOWS
     username: Optional[str] = None
-    driver: str = "ODBC Driver 17 for SQL Server"
     encrypt: bool = True
     trust_certificate: bool = False
     save_password: bool = False
@@ -32,7 +31,6 @@ class ConnectionProfile:
             "database": self.database,
             "authentication_mode": self.authentication_mode.value,
             "username": self.username,
-            "driver": self.driver,
             "encrypt": self.encrypt,
             "trust_certificate": self.trust_certificate,
             "save_password": self.save_password,
@@ -49,30 +47,27 @@ class ConnectionProfile:
             database=data.get("database", ""),
             authentication_mode=auth_mode,
             username=data.get("username"),
-            driver=data.get("driver", "ODBC Driver 17 for SQL Server"),
             encrypt=data.get("encrypt", True),
             trust_certificate=data.get("trust_certificate", False),
             save_password=data.get("save_password", False),
         )
 
-    def get_connection_string(self, password: Optional[str] = None) -> str:
-        """Generate ODBC connection string."""
-        conn_str = (
-            f"Driver={{{self.driver}}};"
-            f"Server={self.server},{self.port};"
-            f"Database={self.database};"
-        )
+    def get_connection_kwargs(self, password: Optional[str] = None) -> dict:
+        """Generate pymssql connection parameters."""
+        kwargs = {
+            "host": self.server,
+            "port": self.port,
+            "database": self.database,
+        }
 
-        if self.authentication_mode == AuthenticationMode.WINDOWS:
-            conn_str += "Trusted_Connection=yes;"
-        else:
-            conn_str += f"UID={self.username};"
+        if self.authentication_mode == AuthenticationMode.SQL_SERVER:
+            kwargs["user"] = self.username
             if password:
-                conn_str += f"PWD={password};"
+                kwargs["password"] = password
 
         if self.encrypt:
-            conn_str += "Encrypt=yes;"
+            kwargs["encryption"] = "require"
         if self.trust_certificate:
-            conn_str += "TrustServerCertificate=yes;"
+            kwargs["cafile"] = None
 
-        return conn_str
+        return kwargs

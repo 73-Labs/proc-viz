@@ -12,19 +12,12 @@ from PySide6.QtWidgets import (
     QGroupBox,
 )
 from PySide6.QtCore import Qt
-import pyodbc
+import pymssql
 from app.models import ConnectionProfile, AuthenticationMode
-from app.drivers import OdbcDriverManager
 
 
 class ConnectionDialog(QDialog):
     """Dialog for creating/editing database connection profiles."""
-
-    DRIVERS = [
-        "ODBC Driver 17 for SQL Server",
-        "ODBC Driver 18 for SQL Server",
-        "SQL Server Native Client 11.0",
-    ]
 
     def __init__(self, profile: ConnectionProfile = None, parent=None):
         super().__init__(parent)
@@ -78,15 +71,6 @@ class ConnectionDialog(QDialog):
         self.database_input.setPlaceholderText("database name")
         database_layout.addWidget(self.database_input)
         layout.addLayout(database_layout)
-
-        # Driver
-        driver_layout = QHBoxLayout()
-        driver_layout.addWidget(QLabel("Driver:"))
-        self.driver_combo = QComboBox()
-        self.driver_combo.addItems(self.DRIVERS)
-        self.driver_combo.setCurrentText(self.profile.driver)
-        driver_layout.addWidget(self.driver_combo)
-        layout.addLayout(driver_layout)
 
         # Authentication Mode
         auth_layout = QHBoxLayout()
@@ -179,7 +163,6 @@ class ConnectionDialog(QDialog):
             database=self.database_input.text(),
             authentication_mode=self.auth_combo.currentData(),
             username=self.username_input.text() or None,
-            driver=self.driver_combo.currentText(),
             encrypt=self.encrypt_check.isChecked(),
             trust_certificate=self.trust_cert_check.isChecked(),
             save_password=self.save_password_check.isChecked(),
@@ -189,53 +172,6 @@ class ConnectionDialog(QDialog):
     def get_password(self) -> str:
         """Get entered password."""
         return self.password_input.text()
-
-    def ensure_driver_installed(self) -> bool:
-        """
-        Ensure ODBC driver is installed. Downloads and installs silently if missing.
-        Shows progress dialog during installation.
-        Returns True if driver available or installed successfully, False otherwise.
-        """
-        if OdbcDriverManager.has_sql_server_driver():
-            return True
-
-        # Show progress dialog
-        progress_dialog = QMessageBox(
-            QMessageBox.Information,
-            "Setting Up ODBC Driver",
-            "Downloading and installing ODBC Driver 18 for SQL Server...\n\n"
-            "This may take a few minutes. Please wait.",
-            QMessageBox.NoButton,
-        )
-        progress_dialog.show()
-        self.window().repaint()
-
-        try:
-            success = OdbcDriverManager.install_odbc_driver()
-        except Exception as e:
-            progress_dialog.close()
-            QMessageBox.critical(
-                self,
-                "Installation Error",
-                f"Error during driver installation:\n\n{str(e)}",
-            )
-            return False
-
-        progress_dialog.close()
-
-        if success:
-            return True
-        else:
-            QMessageBox.critical(
-                self,
-                "Installation Failed",
-                "Failed to install ODBC Driver automatically.\n\n"
-                "This application requires Administrator privileges to install drivers.\n\n"
-                "Please run the application as Administrator and try again.\n\n"
-                "Manual installation:\n"
-                "https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server",
-            )
-            return False
 
     def test_connection(self):
         """Test database connection."""
@@ -251,19 +187,16 @@ class ConnectionDialog(QDialog):
             QMessageBox.warning(self, "Validation Error", "Password is required for SQL Server authentication.")
             return
 
-        # Ensure ODBC driver is installed (downloads/installs silently if missing)
-        if not self.ensure_driver_installed():
-            return
-
         try:
-            conn_str = profile.get_connection_string(password)
-            pyodbc.connect(conn_str, timeout=5)
+            kwargs = profile.get_connection_kwargs(password)
+            conn = pymssql.connect(**kwargs, timeout=5)
+            conn.close()
             QMessageBox.information(
                 self,
                 "Connection Successful",
                 f"Successfully connected to {profile.server}",
             )
-        except pyodbc.Error as e:
+        except pymssql.DatabaseError as e:
             error_msg = str(e)
             QMessageBox.critical(
                 self,

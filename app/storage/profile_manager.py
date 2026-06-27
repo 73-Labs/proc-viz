@@ -9,8 +9,8 @@ from app.models.connection_profile import ConnectionProfile
 class ProfileManager:
     """Manages connection profiles with local storage and keyring integration."""
 
-    KEYRING_SERVICE = "proc-viz"
-    PROFILES_FILE = Path.home() / ".proc-viz" / "profiles.json"
+    KEYRING_SERVICE = "procedures-visualizer"
+    PROFILES_FILE = Path.home() / ".procedures-visualizer" / "profiles.json"
 
     def __init__(self):
         """Initialize profile manager and ensure directory exists."""

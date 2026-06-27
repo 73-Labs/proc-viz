@@ -139,22 +139,17 @@ class TestConnectionDialog:
         assert profile.encrypt is False
         assert profile.trust_certificate is True
 
-    def test_driver_selector(self, qapp, empty_profile):
-        dialog = ConnectionDialog(empty_profile)
-        assert dialog.driver_combo.count() == 3
-        assert "ODBC Driver 17 for SQL Server" in dialog.driver_combo.currentText()
-
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.has_sql_server_driver")
-    @patch("pyodbc.connect")
-    def test_test_connection_success(self, mock_connect, mock_has_driver, qapp, windows_profile):
+    @patch("app.dialogs.connection_dialog.pymssql.connect")
+    def test_test_connection_success(self, mock_connect, qapp, windows_profile):
         """Test successful connection."""
-        mock_connect.return_value = MagicMock()
-        mock_has_driver.return_value = True
+        mock_conn = MagicMock()
+        mock_connect.return_value = mock_conn
         dialog = ConnectionDialog(windows_profile)
 
-        with patch.object(dialog, "test_connection", wraps=dialog.test_connection):
+        with patch("app.dialogs.connection_dialog.QMessageBox.information"):
             dialog.test_connection()
             mock_connect.assert_called_once()
+            mock_conn.close.assert_called_once()
 
     def test_test_connection_missing_server(self, qapp, empty_profile):
         """Test connection validation for missing server."""
@@ -167,25 +162,21 @@ class TestConnectionDialog:
     def test_test_connection_missing_password(self, qapp, sql_profile):
         """Test connection validation for missing password."""
         dialog = ConnectionDialog(sql_profile)
-        # SQL auth requires password
         with patch("app.dialogs.connection_dialog.QMessageBox.warning") as mock_warning:
             dialog.test_connection()
             mock_warning.assert_called_once()
             assert "Password is required" in str(mock_warning.call_args)
 
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.has_sql_server_driver")
-    @patch("pyodbc.connect")
-    def test_test_connection_failure(self, mock_connect, mock_has_driver, qapp, windows_profile):
+    @patch("app.dialogs.connection_dialog.pymssql.connect")
+    def test_test_connection_failure(self, mock_connect, qapp, windows_profile):
         """Test connection error handling."""
-        import pyodbc
-        mock_connect.side_effect = pyodbc.Error("Connection refused")
-        mock_has_driver.return_value = True
+        mock_connect.side_effect = Exception("Connection refused")
         dialog = ConnectionDialog(windows_profile)
 
         with patch("app.dialogs.connection_dialog.QMessageBox.critical") as mock_critical:
             dialog.test_connection()
             mock_critical.assert_called_once()
-            assert "Connection Failed" in str(mock_critical.call_args)
+            assert "error occurred" in str(mock_critical.call_args).lower()
 
     def test_accept_missing_name(self, qapp, windows_profile):
         """Test accept validation for missing name."""
@@ -247,67 +238,3 @@ class TestConnectionDialog:
             mock_accept.assert_called_once()
             assert dialog.password == "MyPassword123"
 
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.has_sql_server_driver")
-    def test_ensure_driver_installed_found(self, mock_has_driver, qapp, windows_profile):
-        """Test ensure_driver_installed when driver exists."""
-        mock_has_driver.return_value = True
-        dialog = ConnectionDialog(windows_profile)
-
-        result = dialog.ensure_driver_installed(windows_profile)
-
-        assert result is True
-
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.get_installation_instructions")
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.has_sql_server_driver")
-    def test_ensure_driver_installed_user_declines(
-        self, mock_has_driver, mock_instructions, qapp, windows_profile
-    ):
-        """Test ensure_driver_installed when user declines installation."""
-        mock_has_driver.return_value = False
-        mock_instructions.return_value = "Install instructions"
-        dialog = ConnectionDialog(windows_profile)
-
-        with patch("app.dialogs.connection_dialog.QMessageBox.question") as mock_question:
-            with patch("app.dialogs.connection_dialog.QMessageBox.information"):
-                mock_question.return_value = QMessageBox.No
-
-                result = dialog.ensure_driver_installed(windows_profile)
-
-                assert result is False
-
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.install_odbc_driver")
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.has_sql_server_driver")
-    def test_ensure_driver_installed_user_accepts_success(
-        self, mock_has_driver, mock_install, qapp, windows_profile
-    ):
-        """Test ensure_driver_installed when user accepts and install succeeds."""
-        mock_has_driver.return_value = False
-        mock_install.return_value = True
-        dialog = ConnectionDialog(windows_profile)
-
-        with patch("app.dialogs.connection_dialog.QMessageBox.question") as mock_question:
-            with patch("app.dialogs.connection_dialog.QMessageBox.information"):
-                mock_question.return_value = QMessageBox.Yes
-
-                result = dialog.ensure_driver_installed(windows_profile)
-
-                assert result is True
-                mock_install.assert_called_once()
-
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.install_odbc_driver")
-    @patch("app.dialogs.connection_dialog.OdbcDriverManager.has_sql_server_driver")
-    def test_ensure_driver_installed_user_accepts_failure(
-        self, mock_has_driver, mock_install, qapp, windows_profile
-    ):
-        """Test ensure_driver_installed when user accepts but install fails."""
-        mock_has_driver.return_value = False
-        mock_install.return_value = False
-        dialog = ConnectionDialog(windows_profile)
-
-        with patch("app.dialogs.connection_dialog.QMessageBox.question") as mock_question:
-            with patch("app.dialogs.connection_dialog.QMessageBox.critical"):
-                mock_question.return_value = QMessageBox.Yes
-
-                result = dialog.ensure_driver_installed(windows_profile)
-
-                assert result is False

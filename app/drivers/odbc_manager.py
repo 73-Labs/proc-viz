@@ -5,9 +5,13 @@ import logging
 import tempfile
 import time
 import urllib.request
-import winreg
 from typing import List, Optional
 from pathlib import Path
+
+try:
+    import winreg
+except ImportError:
+    winreg = None
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(

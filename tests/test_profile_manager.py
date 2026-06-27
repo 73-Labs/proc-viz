@@ -52,7 +52,7 @@ class TestProfileManager:
 
         profile_manager.save_profile(profile, password="secret123")
 
-        mock_keyring.assert_called_once_with("proc-viz", "Test", "secret123")
+        mock_keyring.assert_called_once_with("procedures-visualizer", "Test", "secret123")
 
     @patch("keyring.delete_password")
     def test_save_profile_delete_password(self, mock_keyring, profile_manager):
@@ -65,7 +65,7 @@ class TestProfileManager:
 
         profile_manager.save_profile(profile, password="secret123")
 
-        mock_keyring.assert_called_once_with("proc-viz", "Test")
+        mock_keyring.assert_called_once_with("procedures-visualizer", "Test")
 
     def test_load_profile(self, profile_manager):
         profile_data = {
@@ -164,7 +164,7 @@ class TestProfileManager:
         with open(profile_manager.PROFILES_FILE) as f:
             data = json.load(f)
         assert "ToDelete" not in data
-        mock_keyring.assert_called_once_with("proc-viz", "ToDelete")
+        mock_keyring.assert_called_once_with("procedures-visualizer", "ToDelete")
 
     @patch("keyring.get_password")
     def test_get_password(self, mock_keyring, profile_manager):
@@ -173,7 +173,7 @@ class TestProfileManager:
         password = profile_manager.get_password("Test")
 
         assert password == "stored_password"
-        mock_keyring.assert_called_once_with("proc-viz", "Test")
+        mock_keyring.assert_called_once_with("procedures-visualizer", "Test")
 
     @patch("keyring.get_password")
     def test_get_password_not_found(self, mock_keyring, profile_manager):
@@ -187,7 +187,7 @@ class TestProfileManager:
     def test_clear_password(self, mock_keyring, profile_manager):
         profile_manager.clear_password("Test")
 
-        mock_keyring.assert_called_once_with("proc-viz", "Test")
+        mock_keyring.assert_called_once_with("procedures-visualizer", "Test")
 
     def test_profile_exists(self, profile_manager):
         profiles_data = {"Existing": {"name": "Existing", "server": "localhost"}}

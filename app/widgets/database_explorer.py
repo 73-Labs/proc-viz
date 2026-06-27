@@ -11,6 +11,17 @@ import pymssql
 from app.db_accessor import DatabaseAccessor
 
 
+ICON_MAP = {
+    'OBJECT_OR_COLUMN': '📦',
+    'OBJECT_OR_TYPE': '📦',
+    'TYPE': '📋',
+    'SCHEMA': '📂',
+    'TABLE': '📊',
+    'PROCEDURE': '🔧',
+    'FUNCTION': '𝑓',
+}
+
+
 class DatabaseExplorer(QWidget):
     """Database explorer matching reference layout."""
 
@@ -96,9 +107,10 @@ class DatabaseExplorer(QWidget):
         self.parameters_text.setReadOnly(True)
         self.tabs.addTab(self.parameters_text, "Parameters")
 
-        self.dependencies_text = QTextEdit()
-        self.dependencies_text.setReadOnly(True)
-        self.tabs.addTab(self.dependencies_text, "Dependencies")
+        self.dependencies_tree = QTreeWidget()
+        self.dependencies_tree.setHeaderLabels(["Object"])
+        self.dependencies_tree.itemClicked.connect(self.on_dependency_item_clicked)
+        self.tabs.addTab(self.dependencies_tree, "Dependencies")
 
         self.details_text = QTextEdit()
         self.details_text.setReadOnly(True)
@@ -201,7 +213,7 @@ class DatabaseExplorer(QWidget):
             self.source_text.setText(source or f"No source found for {procedure}")
 
             self.parameters_text.setText(f"Parameters for {schema}.{procedure}\n\n(To be implemented)")
-            self.dependencies_text.setText(f"Dependencies for {schema}.{procedure}\n\n(To be implemented)")
+            self.load_dependencies_tree(database, schema, procedure)
             self.details_text.setText(f"Schema: {schema}\nType: Stored Procedure\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -218,7 +230,7 @@ class DatabaseExplorer(QWidget):
             self.source_text.setText(source or f"No source found for {function}")
 
             self.parameters_text.setText(f"Parameters for {schema}.{function}\n\n(To be implemented)")
-            self.dependencies_text.setText(f"Dependencies for {schema}.{function}\n\n(To be implemented)")
+            self.load_dependencies_tree(database, schema, function)
             self.details_text.setText(f"Schema: {schema}\nType: Function\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -231,7 +243,7 @@ class DatabaseExplorer(QWidget):
         self.procedure_label.setText("")
         self.source_text.clear()
         self.parameters_text.clear()
-        self.dependencies_text.clear()
+        self.dependencies_tree.clear()
         self.details_text.clear()
 
     def on_close_details(self):
@@ -242,3 +254,38 @@ class DatabaseExplorer(QWidget):
     def get_procedure_count(self) -> int:
         """Get total procedure count."""
         return self.procedure_count
+
+    def load_dependencies_tree(self, database: str, schema: str, name: str):
+        """Load dependencies tree for procedure/function."""
+        try:
+            self.dependencies_tree.clear()
+            deps = self.accessor.get_dependencies(database, schema, name)
+
+            for dep in deps:
+                item = QTreeWidgetItem(self.dependencies_tree)
+                icon = ICON_MAP.get(dep['type'], '📦')
+                item.setText(0, f"{icon} {dep['schema']}.{dep['name']}")
+                item.setData(0, Qt.UserRole, (dep['schema'], dep['name'], database))
+                item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+
+        except Exception as e:
+            item = QTreeWidgetItem(self.dependencies_tree)
+            item.setText(0, f"Error: {str(e)}")
+
+    def on_dependency_item_clicked(self, item: QTreeWidgetItem, column: int):
+        """Handle dependency item click — lazy load children."""
+        data = item.data(0, Qt.UserRole)
+        if not data or item.childCount() > 0:
+            return
+
+        schema, name, database = data
+        try:
+            deps = self.accessor.get_dependencies(database, schema, name)
+            for dep in deps:
+                child = QTreeWidgetItem(item)
+                icon = ICON_MAP.get(dep['type'], '📦')
+                child.setText(0, f"{icon} {dep['schema']}.{dep['name']}")
+                child.setData(0, Qt.UserRole, (dep['schema'], dep['name'], database))
+                child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+        except:
+            pass

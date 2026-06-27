@@ -145,3 +145,27 @@ class DatabaseAccessor:
             return result[0] if result else None
         finally:
             cursor.close()
+
+    def get_dependencies(self, database: str, schema: str, name: str) -> List[Dict[str, str]]:
+        """Get objects that this procedure/function calls."""
+        cursor = self.conn.cursor()
+        try:
+            cursor.execute(f"""
+                SELECT DISTINCT
+                    referenced_schema_name,
+                    referenced_entity_name,
+                    referenced_class_desc
+                FROM [{database}].sys.sql_expression_dependencies
+                WHERE referencing_id = OBJECT_ID(N'[{database}].[{schema}].[{name}]')
+                ORDER BY referenced_schema_name, referenced_entity_name
+            """)
+            deps = []
+            for row in cursor.fetchall():
+                deps.append({
+                    'schema': row[0],
+                    'name': row[1],
+                    'type': row[2]
+                })
+            return deps
+        finally:
+            cursor.close()

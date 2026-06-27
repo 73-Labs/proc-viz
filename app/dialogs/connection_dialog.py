@@ -14,6 +14,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt
 import pymssql
 from app.models import ConnectionProfile, AuthenticationMode
+from app.storage import ProfileManager
 
 
 class ConnectionDialog(QDialog):
@@ -28,8 +29,10 @@ class ConnectionDialog(QDialog):
         self.profile = profile or ConnectionProfile(
             name="", server="", database=""
         )
+        self.profile_manager = ProfileManager()
 
         self.init_ui()
+        self.load_saved_password()
 
     def init_ui(self):
         """Initialize UI components."""
@@ -209,6 +212,13 @@ class ConnectionDialog(QDialog):
                 "Error",
                 f"An unexpected error occurred:\n\n{str(e)}",
             )
+
+    def load_saved_password(self):
+        """Load saved password from keyring if profile exists."""
+        if self.profile.name:
+            password = self.profile_manager.get_password(self.profile.name)
+            if password:
+                self.password_input.setText(password)
 
     def accept(self):
         """Validate and accept dialog."""

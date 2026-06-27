@@ -1,141 +1,172 @@
-"""Tree view widget for database explorer."""
+"""Database explorer with proper UI layout matching reference."""
 
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QTreeWidget,
-    QTreeWidgetItem, QTextEdit, QSplitter, QLabel
+    QTreeWidgetItem, QLineEdit, QTabWidget, QTextEdit,
+    QSplitter, QPushButton, QLabel
 )
 from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QFont
 import pymssql
-from app.db_accessor import DatabaseAccessor, Procedure, Function
+from app.db_accessor import DatabaseAccessor
 
 
 class DatabaseExplorer(QWidget):
-    """Database explorer with tree view and source display."""
+    """Database explorer matching reference layout."""
 
     def __init__(self, connection: pymssql.Connection, profile):
         super().__init__()
         self.connection = connection
         self.profile = profile
         self.accessor = DatabaseAccessor(connection)
+        self.current_database = profile.database
+        self.procedure_count = 0
         self.init_ui()
-        QTimer.singleShot(0, self.load_databases)
+        QTimer.singleShot(0, self.load_procedures)
 
     def init_ui(self):
         """Initialize UI components."""
-        layout = QVBoxLayout()
+        main_layout = QVBoxLayout(self)
+        main_layout.setContentsMargins(0, 0, 0, 0)
 
-        # Header
+        splitter = QSplitter(Qt.Horizontal)
+
+        left_panel = self.create_left_panel()
+        splitter.addWidget(left_panel)
+
+        self.details_panel = self.create_right_panel()
+        splitter.addWidget(self.details_panel)
+
+        splitter.setStretchFactor(0, 1)
+        splitter.setStretchFactor(1, 2)
+        main_layout.addWidget(splitter)
+
+        self.setLayout(main_layout)
+
+    def create_left_panel(self) -> QWidget:
+        """Create left panel with procedures tree."""
+        panel = QWidget()
+        layout = QVBoxLayout(panel)
+
         header_layout = QHBoxLayout()
-        header_layout.addWidget(QLabel(f"Database: {self.profile.server}/{self.profile.database}"))
+        header_label = QLabel("Procedures")
+        header_label.setStyleSheet("font-weight: bold; font-size: 11pt;")
+        header_layout.addWidget(header_label)
         header_layout.addStretch()
         layout.addLayout(header_layout)
 
-        # Splitter: tree + source
-        splitter = QSplitter(Qt.Horizontal)
+        self.filter_input = QLineEdit()
+        self.filter_input.setPlaceholderText("Filter procedures (Ctrl+K)")
+        self.filter_input.textChanged.connect(self.on_filter_changed)
+        layout.addWidget(self.filter_input)
 
         self.tree = QTreeWidget()
-        self.tree.setHeaderLabel("Objects")
+        self.tree.setHeaderLabels([""])
+        self.tree.header().setStretchLastSection(True)
         self.tree.itemClicked.connect(self.on_item_selected)
-        splitter.addWidget(self.tree)
+        self.tree.itemDoubleClicked.connect(self.on_item_double_clicked)
+        layout.addWidget(self.tree)
+
+        return panel
+
+    def create_right_panel(self) -> QWidget:
+        """Create right panel with tabbed details."""
+        panel = QWidget()
+        layout = QVBoxLayout(panel)
+
+        header_layout = QHBoxLayout()
+        self.procedure_label = QLabel()
+        self.procedure_label.setStyleSheet("font-weight: bold; font-size: 12pt;")
+        header_layout.addWidget(self.procedure_label)
+        header_layout.addStretch()
+        close_btn = QPushButton("×")
+        close_btn.setMaximumWidth(30)
+        close_btn.clicked.connect(self.on_close_details)
+        header_layout.addWidget(close_btn)
+        layout.addLayout(header_layout)
+
+        self.tabs = QTabWidget()
 
         self.source_text = QTextEdit()
         self.source_text.setReadOnly(True)
-        splitter.addWidget(self.source_text)
+        self.source_text.setFont(self.get_monospace_font())
+        self.tabs.addTab(self.source_text, "Source")
 
-        splitter.setStretchFactor(0, 1)
-        splitter.setStretchFactor(1, 1)
-        layout.addWidget(splitter)
+        self.parameters_text = QTextEdit()
+        self.parameters_text.setReadOnly(True)
+        self.tabs.addTab(self.parameters_text, "Parameters")
 
-        self.setLayout(layout)
+        self.dependencies_text = QTextEdit()
+        self.dependencies_text.setReadOnly(True)
+        self.tabs.addTab(self.dependencies_text, "Dependencies")
 
-    def load_databases(self):
-        """Load databases and populate tree."""
+        self.details_text = QTextEdit()
+        self.details_text.setReadOnly(True)
+        self.tabs.addTab(self.details_text, "Details")
+
+        layout.addWidget(self.tabs)
+        return panel
+
+    def get_monospace_font(self) -> QFont:
+        """Get monospace font for code."""
+        font = QFont("Courier")
+        font.setPointSize(9)
+        return font
+
+    def load_procedures(self):
+        """Load procedures into tree."""
         try:
-            databases = self.accessor.get_databases()
-            for db in databases:
-                db_item = QTreeWidgetItem(self.tree)
-                db_item.setText(0, f"📁 {db.name}")
-                db_item.setData(0, Qt.UserRole, ("database", db.name))
+            self.tree.clear()
+            self.procedure_count = 0
 
-                # Lazy load schemas
-                self.load_schemas(db_item, db.name)
+            schemas = self.accessor.get_schemas(self.current_database)
 
-        except Exception as e:
-            self.source_text.setText(f"Error loading databases:\n{str(e)}")
-
-    def load_schemas(self, db_item: QTreeWidgetItem, database: str):
-        """Load schemas for database."""
-        try:
-            schemas = self.accessor.get_schemas(database)
             for schema in schemas:
-                schema_item = QTreeWidgetItem(db_item)
+                schema_item = QTreeWidgetItem(self.tree)
                 schema_item.setText(0, f"📋 {schema.name}")
-                schema_item.setData(0, Qt.UserRole, ("schema", database, schema.name))
+                schema_item.setData(0, Qt.UserRole, ("schema", schema.database, schema.name))
 
-                # Procedures
-                self.load_procedures(schema_item, database, schema.name)
+                procedures = self.accessor.get_procedures(self.current_database, schema.name)
+                if procedures:
+                    for proc in procedures:
+                        proc_item = QTreeWidgetItem(schema_item)
+                        proc_item.setText(0, f"🔧 {proc.name}")
+                        proc_item.setData(0, Qt.UserRole, ("procedure", self.current_database, schema.name, proc.name))
+                        self.procedure_count += 1
 
-                # Functions
-                self.load_functions(schema_item, database, schema.name)
+                functions = self.accessor.get_functions(self.current_database, schema.name)
+                if functions:
+                    for func in functions:
+                        func_item = QTreeWidgetItem(schema_item)
+                        func_item.setText(0, f"𝑓 {func.name}")
+                        func_item.setData(0, Qt.UserRole, ("function", self.current_database, schema.name, func.name))
+                        self.procedure_count += 1
 
-                # Tables
-                self.load_tables(schema_item, database, schema.name)
+            self.tree.expandAll()
 
         except Exception as e:
-            error_item = QTreeWidgetItem(db_item)
-            error_item.setText(0, f"Error: {str(e)}")
+            self.source_text.setText(f"Error loading procedures:\n{str(e)}")
 
-    def load_procedures(self, schema_item: QTreeWidgetItem, database: str, schema: str):
-        """Load procedures for schema."""
-        try:
-            procedures = self.accessor.get_procedures(database, schema)
-            if procedures:
-                procs_item = QTreeWidgetItem(schema_item)
-                procs_item.setText(0, f"⚙️  Procedures")
-                procs_item.setData(0, Qt.UserRole, ("procedures_folder", database, schema))
+    def on_filter_changed(self, text: str):
+        """Filter tree items based on search text."""
+        for i in range(self.tree.topLevelItemCount()):
+            schema_item = self.tree.topLevelItem(i)
+            self.filter_tree_item(schema_item, text.lower())
 
-                for proc in procedures:
-                    proc_item = QTreeWidgetItem(procs_item)
-                    proc_item.setText(0, f"🔧 {proc.name}")
-                    proc_item.setData(0, Qt.UserRole, ("procedure", database, schema, proc.name))
-        except Exception as e:
-            error_item = QTreeWidgetItem(schema_item)
-            error_item.setText(0, f"Error loading procedures: {str(e)}")
+    def filter_tree_item(self, item: QTreeWidgetItem, text: str) -> bool:
+        """Recursively filter tree items."""
+        visible = False
 
-    def load_functions(self, schema_item: QTreeWidgetItem, database: str, schema: str):
-        """Load functions for schema."""
-        try:
-            functions = self.accessor.get_functions(database, schema)
-            if functions:
-                funcs_item = QTreeWidgetItem(schema_item)
-                funcs_item.setText(0, f"📐 Functions")
-                funcs_item.setData(0, Qt.UserRole, ("functions_folder", database, schema))
+        for i in range(item.childCount()):
+            child = item.child(i)
+            if self.filter_tree_item(child, text):
+                visible = True
 
-                for func in functions:
-                    func_item = QTreeWidgetItem(funcs_item)
-                    func_item.setText(0, f"𝑓 {func.name}")
-                    func_item.setData(0, Qt.UserRole, ("function", database, schema, func.name))
-        except Exception as e:
-            error_item = QTreeWidgetItem(schema_item)
-            error_item.setText(0, f"Error loading functions: {str(e)}")
+        if not text or text in item.text(0).lower():
+            visible = True
 
-    def load_tables(self, schema_item: QTreeWidgetItem, database: str, schema: str):
-        """Load tables for schema."""
-        try:
-            tables = self.accessor.get_tables(database, schema)
-            if tables:
-                tables_item = QTreeWidgetItem(schema_item)
-                tables_item.setText(0, f"📊 Tables")
-                tables_item.setData(0, Qt.UserRole, ("tables_folder", database, schema))
-
-                for table in tables:
-                    table_item = QTreeWidgetItem(tables_item)
-                    table_item.setText(0, f"📑 {table.name}")
-                    table_item.setData(0, Qt.UserRole, ("table", database, schema, table.name))
-        except Exception as e:
-            error_item = QTreeWidgetItem(schema_item)
-            error_item.setText(0, f"Error loading tables: {str(e)}")
+        item.setHidden(not visible)
+        return visible
 
     def on_item_selected(self, item: QTreeWidgetItem, column: int):
         """Handle tree item selection."""
@@ -147,25 +178,67 @@ class DatabaseExplorer(QWidget):
 
         if item_type == "procedure":
             _, database, schema, procedure = data
-            try:
-                source = self.accessor.get_procedure_source(database, schema, procedure)
-                if source:
-                    self.source_text.setText(source)
-                else:
-                    self.source_text.setText(f"No source found for {procedure}")
-            except Exception as e:
-                self.source_text.setText(f"Error loading source:\n{str(e)}")
+            self.load_procedure_details(database, schema, procedure)
 
         elif item_type == "function":
             _, database, schema, function = data
-            try:
-                source = self.accessor.get_function_source(database, schema, function)
-                if source:
-                    self.source_text.setText(source)
-                else:
-                    self.source_text.setText(f"No source found for {function}")
-            except Exception as e:
-                self.source_text.setText(f"Error loading source:\n{str(e)}")
+            self.load_function_details(database, schema, function)
 
         else:
-            self.source_text.clear()
+            self.clear_details()
+
+    def on_item_double_clicked(self, item: QTreeWidgetItem, column: int):
+        """Expand/collapse on double click."""
+        if item.childCount() > 0:
+            item.setExpanded(not item.isExpanded())
+
+    def load_procedure_details(self, database: str, schema: str, procedure: str):
+        """Load procedure details."""
+        try:
+            self.procedure_label.setText(f"{schema}.{procedure}")
+
+            source = self.accessor.get_procedure_source(database, schema, procedure)
+            self.source_text.setText(source or f"No source found for {procedure}")
+
+            self.parameters_text.setText(f"Parameters for {schema}.{procedure}\n\n(To be implemented)")
+            self.dependencies_text.setText(f"Dependencies for {schema}.{procedure}\n\n(To be implemented)")
+            self.details_text.setText(f"Schema: {schema}\nType: Stored Procedure\nDatabase: {database}")
+
+            self.tabs.setCurrentIndex(0)
+
+        except Exception as e:
+            self.source_text.setText(f"Error loading details:\n{str(e)}")
+
+    def load_function_details(self, database: str, schema: str, function: str):
+        """Load function details."""
+        try:
+            self.procedure_label.setText(f"{schema}.{function}")
+
+            source = self.accessor.get_function_source(database, schema, function)
+            self.source_text.setText(source or f"No source found for {function}")
+
+            self.parameters_text.setText(f"Parameters for {schema}.{function}\n\n(To be implemented)")
+            self.dependencies_text.setText(f"Dependencies for {schema}.{function}\n\n(To be implemented)")
+            self.details_text.setText(f"Schema: {schema}\nType: Function\nDatabase: {database}")
+
+            self.tabs.setCurrentIndex(0)
+
+        except Exception as e:
+            self.source_text.setText(f"Error loading details:\n{str(e)}")
+
+    def clear_details(self):
+        """Clear details panel."""
+        self.procedure_label.setText("")
+        self.source_text.clear()
+        self.parameters_text.clear()
+        self.dependencies_text.clear()
+        self.details_text.clear()
+
+    def on_close_details(self):
+        """Close details panel."""
+        self.clear_details()
+        self.tree.clearSelection()
+
+    def get_procedure_count(self) -> int:
+        """Get total procedure count."""
+        return self.procedure_count

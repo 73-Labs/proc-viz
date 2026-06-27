@@ -190,40 +190,21 @@ class ConnectionDialog(QDialog):
         """Get entered password."""
         return self.password_input.text()
 
-    def ensure_driver_installed(self, profile: ConnectionProfile) -> bool:
+    def ensure_driver_installed(self) -> bool:
         """
-        Ensure required ODBC driver is installed.
-        Prompts user to install if missing.
-        Returns True if driver available, False otherwise.
+        Ensure ODBC driver is installed. Downloads and installs silently if missing.
+        Shows progress dialog during installation.
+        Returns True if driver available or installed successfully, False otherwise.
         """
         if OdbcDriverManager.has_sql_server_driver():
             return True
 
-        reply = QMessageBox.question(
-            self,
-            "ODBC Driver Missing",
-            f"ODBC driver required for {profile.server} is not installed.\n\n"
-            "Would you like to attempt automatic installation?",
-            QMessageBox.Yes | QMessageBox.No,
-        )
-
-        if reply == QMessageBox.No:
-            QMessageBox.information(
-                self,
-                "Manual Installation",
-                OdbcDriverManager.get_installation_instructions(),
-            )
-            return False
-
-        return self.attempt_driver_installation()
-
-    def attempt_driver_installation(self) -> bool:
-        """Attempt to install ODBC driver."""
+        # Show progress dialog
         progress_dialog = QMessageBox(
             QMessageBox.Information,
-            "Installing ODBC Driver",
+            "Setting Up ODBC Driver",
             "Downloading and installing ODBC Driver 18 for SQL Server...\n\n"
-            "This may take a few minutes.",
+            "This may take a few minutes. Please wait.",
             QMessageBox.NoButton,
         )
         progress_dialog.show()
@@ -236,26 +217,22 @@ class ConnectionDialog(QDialog):
             QMessageBox.critical(
                 self,
                 "Installation Error",
-                f"Error during installation:\n\n{str(e)}",
+                f"Error during driver installation:\n\n{str(e)}",
             )
             return False
 
         progress_dialog.close()
 
         if success:
-            QMessageBox.information(
-                self,
-                "Installation Successful",
-                "ODBC Driver 18 for SQL Server has been installed.\n\n"
-                "Ready to test connection.",
-            )
             return True
         else:
             QMessageBox.critical(
                 self,
                 "Installation Failed",
-                "Automatic installation failed.\n\n"
-                "Please install manually:\n"
+                "Failed to install ODBC Driver automatically.\n\n"
+                "This application requires Administrator privileges to install drivers.\n\n"
+                "Please run the application as Administrator and try again.\n\n"
+                "Manual installation:\n"
                 "https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server",
             )
             return False
@@ -274,8 +251,8 @@ class ConnectionDialog(QDialog):
             QMessageBox.warning(self, "Validation Error", "Password is required for SQL Server authentication.")
             return
 
-        # Check for ODBC driver
-        if not self.ensure_driver_installed(profile):
+        # Ensure ODBC driver is installed (downloads/installs silently if missing)
+        if not self.ensure_driver_installed():
             return
 
         try:

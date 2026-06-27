@@ -2,6 +2,10 @@ import subprocess
 import os
 import platform
 import logging
+import tempfile
+import time
+import urllib.request
+import winreg
 from typing import List, Optional
 from pathlib import Path
 
@@ -15,11 +19,50 @@ logging.basicConfig(
 class OdbcDriverManager:
     """Detects and manages ODBC drivers for SQL Server."""
 
+    DRIVER_NAME = "ODBC Driver 18 for SQL Server"
     PREFERRED_DRIVERS = [
         "ODBC Driver 18 for SQL Server",
         "ODBC Driver 17 for SQL Server",
         "SQL Server Native Client 11.0",
     ]
+
+    DOWNLOAD_URLS = {
+        "AMD64": "https://go.microsoft.com/fwlink/?linkid=2249006",
+        "x86": "https://go.microsoft.com/fwlink/?linkid=2249005",
+        "ARM64": "https://go.microsoft.com/fwlink/?linkid=2249004",
+    }
+
+    @staticmethod
+    def _is_driver_in_registry() -> bool:
+        """Check Windows registry for ODBC driver installation."""
+        if platform.system() != "Windows":
+            return False
+
+        try:
+            key = winreg.OpenKey(
+                winreg.HKEY_LOCAL_MACHINE,
+                r"SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers",
+                0,
+                winreg.KEY_READ
+            )
+            index = 0
+            while True:
+                try:
+                    driver_name, _, _ = winreg.EnumValue(key, index)
+                    if OdbcDriverManager.DRIVER_NAME in driver_name:
+                        winreg.CloseKey(key)
+                        logger.info(f"Found driver in registry: {driver_name}")
+                        return True
+                    index += 1
+                except WindowsError:
+                    break
+            winreg.CloseKey(key)
+        except FileNotFoundError:
+            pass
+        except Exception as e:
+            logger.warning(f"Registry check error: {e}")
+
+        return False
 
     @staticmethod
     def get_installed_drivers() -> List[str]:
@@ -51,13 +94,19 @@ class OdbcDriverManager:
 
     @staticmethod
     def has_sql_server_driver() -> bool:
-        """Check if any SQL Server ODBC driver is installed."""
+        """Check if ODBC Driver 18 for SQL Server is installed. Returns True only if preferred drivers found."""
+        # Check registry first (faster)
+        if OdbcDriverManager._is_driver_in_registry():
+            return True
+
+        # Fallback to PowerShell check - only preferred drivers (not generic "SQL Server")
         installed = OdbcDriverManager.get_installed_drivers()
         for driver in OdbcDriverManager.PREFERRED_DRIVERS:
             if driver in installed:
                 logger.info(f"SQL Server driver found: {driver}")
                 return True
-        logger.warning("No SQL Server ODBC driver found")
+
+        logger.warning("ODBC Driver 18 not found, installation needed")
         return False
 
     @staticmethod
@@ -68,14 +117,21 @@ class OdbcDriverManager:
             if driver in installed:
                 logger.info(f"Using driver: {driver}")
                 return driver
+
+        # Return any driver with "SQL Server" in name
+        for driver in installed:
+            if "SQL Server" in driver:
+                logger.info(f"Using driver: {driver}")
+                return driver
+
         logger.warning("No preferred driver available")
         return None
 
     @staticmethod
     def install_odbc_driver() -> bool:
         """
-        Attempt to install ODBC Driver 18 for SQL Server.
-        Returns True if installation was successful or driver already exists.
+        Silent download and install ODBC Driver 18 for SQL Server.
+        Returns True if installation successful or driver already exists.
         """
         logger.info("=" * 60)
         logger.info("Starting ODBC Driver installation process")
@@ -89,111 +145,92 @@ class OdbcDriverManager:
             logger.warning("Not on Windows, installation not supported")
             return False
 
-        logger.info("Attempting installation via Chocolatey")
-        if OdbcDriverManager._install_via_choco():
-            logger.info("Installation successful via Chocolatey")
-            return True
+        # Determine system architecture
+        arch = platform.machine()
+        if arch not in OdbcDriverManager.DOWNLOAD_URLS:
+            logger.error(f"Unsupported architecture: {arch}")
+            return False
 
-        logger.info("Chocolatey failed, attempting MSI installation")
-        if OdbcDriverManager._install_via_msi():
-            logger.info("Installation successful via MSI")
-            return True
+        download_url = OdbcDriverManager.DOWNLOAD_URLS[arch]
+        logger.info(f"Detected architecture: {arch}")
 
-        logger.error("All installation methods failed")
-        return False
+        # Download and install
+        temp_dir = Path(tempfile.gettempdir())
+        msi_path = temp_dir / "msodbcsql18.msi"
+        log_path = temp_dir / "msodbcsql18_install.log"
 
-    @staticmethod
-    def _install_via_choco() -> bool:
-        """Try to install via Chocolatey."""
         try:
-            logger.info("Attempting Chocolatey installation: choco install msodbcsql18 -y")
-            result = subprocess.run(
-                ["choco", "install", "msodbcsql18", "-y"],
-                capture_output=True,
-                timeout=300,
-            )
-            if result.returncode == 0:
-                logger.info("Chocolatey installation successful")
-                return True
-            else:
-                logger.warning(f"Chocolatey installation failed: {result.stderr.decode('utf-8', errors='ignore')}")
-                return False
-        except FileNotFoundError:
-            logger.warning("Chocolatey not found on system")
-            return False
-        except subprocess.TimeoutExpired:
-            logger.error("Chocolatey installation timed out after 300 seconds")
-            return False
-        except Exception as e:
-            logger.error(f"Chocolatey installation error: {e}", exc_info=True)
-            return False
+            logger.info(f"Downloading driver from {download_url}")
+            urllib.request.urlretrieve(download_url, str(msi_path))
+            logger.info(f"Downloaded to {msi_path}, size: {msi_path.stat().st_size} bytes")
 
-    @staticmethod
-    def _install_via_msi() -> bool:
-        """
-        Download and install ODBC Driver 18 via MSI.
-        This downloads from Microsoft's official source.
-        """
-        try:
-            import urllib.request
-            import tempfile
-
-            msi_url = "https://go.microsoft.com/fwlink/?linkid=2249004"
-            temp_dir = Path(tempfile.gettempdir())
-            installer_path = temp_dir / "msodbcsql18.msi"
-
-            logger.info(f"MSI download URL: {msi_url}")
-            logger.info(f"Temp directory: {temp_dir}")
-            logger.info(f"Installer path: {installer_path}")
-
-            logger.info("Starting ODBC Driver 18 MSI download...")
-            try:
-                urllib.request.urlretrieve(msi_url, installer_path)
-                logger.info(f"Download complete. File size: {installer_path.stat().st_size} bytes")
-            except urllib.error.URLError as e:
-                logger.error(f"URL error during download: {e}", exc_info=True)
-                return False
-            except urllib.error.HTTPError as e:
-                logger.error(f"HTTP error during download: {e.code} {e.reason}", exc_info=True)
-                return False
-            except Exception as e:
-                logger.error(f"Download error: {e}", exc_info=True)
-                return False
-
-            if not installer_path.exists():
+            if not msi_path.exists():
                 logger.error("MSI file not found after download")
                 return False
 
-            logger.info("Starting MSI installation via msiexec")
+            logger.info("Starting MSI installation via msiexec with verbose logging")
             result = subprocess.run(
                 [
                     "msiexec",
                     "/i",
-                    str(installer_path),
-                    "/quiet",
-                    "/norestart",
+                    str(msi_path),
                     "IACCEPTMSODBCSQLLICENSETERMS=YES",
+                    "/qn",
+                    "/norestart",
+                    f"/l*v",
+                    str(log_path),
                 ],
                 capture_output=True,
-                timeout=300,
+                timeout=600,
             )
 
-            if result.returncode == 0:
-                logger.info("MSI installation successful")
+            # Read verbose log if available
+            if log_path.exists():
+                try:
+                    with open(log_path, 'r', errors='ignore') as f:
+                        log_content = f.read()
+                        logger.info(f"MSI Log:\n{log_content[-2000:]}")  # Last 2000 chars
+                except Exception as e:
+                    logger.warning(f"Could not read MSI log: {e}")
+
+            # msiexec return codes: 0 = success, 3010 = success + reboot needed, 1641 = reboot initiated
+            if result.returncode in (0, 3010, 1641):
+                logger.info(f"MSI installation completed with code {result.returncode}")
+                time.sleep(2)  # Wait for registry to update
+
+                if OdbcDriverManager.has_sql_server_driver():
+                    logger.info("Driver verified in registry")
+                    return True
+                else:
+                    logger.warning("Driver not found in registry after installation")
+                    return False
             else:
                 logger.error(f"MSI installation failed with code {result.returncode}")
                 logger.error(f"stdout: {result.stdout.decode('utf-8', errors='ignore')}")
                 logger.error(f"stderr: {result.stderr.decode('utf-8', errors='ignore')}")
+                return False
 
-            installer_path.unlink(missing_ok=True)
-            return result.returncode == 0
-
+        except urllib.error.URLError as e:
+            logger.error(f"URL error during download: {e}")
+            return False
+        except urllib.error.HTTPError as e:
+            logger.error(f"HTTP error during download: {e.code} {e.reason}")
+            return False
         except subprocess.TimeoutExpired:
-            logger.error("MSI installation timed out after 300 seconds")
+            logger.error("Installation timed out")
             return False
         except Exception as e:
-            logger.error(f"MSI installation error: {e}", exc_info=True)
+            logger.error(f"Installation error: {e}", exc_info=True)
             return False
+        finally:
+            # Cleanup temp files
+            for path in [msi_path, log_path]:
+                if path.exists():
+                    try:
+                        path.unlink()
+                        logger.info(f"Cleaned up {path.name}")
+                    except Exception as e:
+                        logger.warning(f"Could not delete {path.name}: {e}")
 
     @staticmethod
     def get_installation_instructions() -> str:
@@ -208,9 +245,6 @@ To install manually:
 2. Install "ODBC Driver 18 for SQL Server" or "ODBC Driver 17 for SQL Server"
 
 3. Restart the application
-
-Alternative (requires Chocolatey):
-   choco install msodbcsql18 -y
 
 After installation, restart the app.
         """.strip()

@@ -77,7 +77,8 @@ class MainWindow(QMainWindow):
         self.conn_dropdown.currentIndexChanged.connect(self.on_profile_selected)
         toolbar.addWidget(QLabel("Connection: "))
         toolbar.addWidget(self.conn_dropdown)
-        self.load_saved_profiles()
+        self.conn_dropdown.currentIndexChanged.connect(self.on_profile_selected)
+        self.load_profiles_dropdown()
 
         self.connect_btn = QPushButton("Connect")
         self.connect_btn.clicked.connect(self.open_connection_dialog)
@@ -133,6 +134,43 @@ class MainWindow(QMainWindow):
         self.search_box.setEnabled(False)
         self.search_box.clear()
 
+    def load_profiles_dropdown(self):
+        """Load saved profiles into dropdown."""
+        self.conn_dropdown.blockSignals(True)
+        self.conn_dropdown.clear()
+        self.conn_dropdown.addItem("Select a connection...")
+        profiles = self.profile_manager.load_all_profiles()
+        for profile in profiles:
+            self.conn_dropdown.addItem(profile.name, profile)
+        self.conn_dropdown.blockSignals(False)
+
+    def on_profile_selected(self):
+        """Handle profile selection from dropdown."""
+        profile = self.conn_dropdown.currentData()
+        if profile is None:
+            return
+
+        password = self.profile_manager.get_password(profile.name)
+        try:
+            kwargs = profile.get_connection_kwargs(password)
+            self.connection = pymssql.connect(**kwargs, timeout=10)
+            self.current_profile = profile
+            self.show_explorer(profile)
+        except pymssql.DatabaseError as e:
+            QMessageBox.critical(
+                self,
+                "Connection Failed",
+                f"Failed to connect:\n\n{str(e)}",
+            )
+            self.show_welcome()
+        except Exception as e:
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"Unexpected error:\n\n{str(e)}",
+            )
+            self.show_welcome()
+
     def open_connection_dialog(self):
         """Open connection dialog."""
         dialog = ConnectionDialog(parent=self)
@@ -140,7 +178,7 @@ class MainWindow(QMainWindow):
             profile = dialog.get_profile()
             password = dialog.get_password()
             self.profile_manager.save_profile(profile, password)
-            self.load_saved_profiles()
+            self.load_profiles_dropdown()
 
             try:
                 kwargs = profile.get_connection_kwargs(password)

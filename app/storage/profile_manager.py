@@ -1,4 +1,5 @@
 import json
+import platform
 import keyring
 import keyring.errors
 from pathlib import Path
@@ -6,15 +7,33 @@ from typing import List, Optional
 from app.models.connection_profile import ConnectionProfile
 
 
+def _get_config_dir() -> Path:
+    """Get platform-specific config directory."""
+    if platform.system() == "Windows":
+        return Path.home() / "AppData" / "Roaming" / "ProceduresVisualizer"
+    else:
+        return Path.home() / ".config" / "procedures-visualizer"
+
+
 class ProfileManager:
     """Manages connection profiles with local storage and keyring integration."""
 
     KEYRING_SERVICE = "procedures-visualizer"
-    PROFILES_FILE = Path.home() / ".procedures-visualizer" / "profiles.json"
 
     def __init__(self):
         """Initialize profile manager and ensure directory exists."""
-        self.PROFILES_FILE.parent.mkdir(parents=True, exist_ok=True)
+        self._profiles_file = _get_config_dir() / "profiles.json"
+        self._profiles_file.parent.mkdir(parents=True, exist_ok=True)
+
+    @property
+    def PROFILES_FILE(self) -> Path:
+        """Get profiles file path."""
+        return self._profiles_file
+
+    @PROFILES_FILE.setter
+    def PROFILES_FILE(self, value: Path) -> None:
+        """Set profiles file path (for testing)."""
+        self._profiles_file = value
 
     def save_profile(self, profile: ConnectionProfile, password: Optional[str] = None) -> None:
         """Save profile to local storage and optionally store password in keyring."""

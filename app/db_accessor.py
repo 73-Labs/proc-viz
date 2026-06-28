@@ -174,6 +174,7 @@ class DatabaseAccessor:
         """Get procedures/functions/views that this object calls (for dependency tree)."""
         cursor = self.conn.cursor()
         try:
+            # Use sys.sql_expression_dependencies for static references
             cursor.execute(f"""
                 SELECT DISTINCT
                     sed.referenced_schema_name,
@@ -190,27 +191,155 @@ class DatabaseAccessor:
                     ref_schema.schema_id = ref_obj.schema_id
                 INNER JOIN [{database}].sys.objects o ON
                     o.name = sed.referenced_entity_name
-                    AND o.schema_id = (
-                        SELECT schema_id FROM [{database}].sys.schemas
-                        WHERE name = sed.referenced_schema_name
-                    )
+                INNER JOIN [{database}].sys.schemas o_schema ON
+                    o_schema.schema_id = o.schema_id
+                    AND o_schema.name = sed.referenced_schema_name
                 WHERE ref_obj.name = %s
                 AND ref_schema.name = %s
                 AND o.type IN ('P', 'FN', 'IF', 'TF', 'V')
                 ORDER BY sed.referenced_schema_name, sed.referenced_entity_name
             """, (name, schema))
-            deps = []
+
+            deps = {}
             for row in cursor.fetchall():
-                schema_name = row[0]
-                obj_name = row[1]
-                obj_type = row[2]
+                schema_name = row[0].strip() if row[0] else None
+                obj_name = row[1].strip() if row[1] else None
+                obj_type = row[2].strip() if row[2] else None
 
                 if schema_name and obj_name and obj_type:
-                    deps.append({
+                    key = (schema_name, obj_name)
+                    deps[key] = {'schema': schema_name, 'name': obj_name, 'type': obj_type}
+
+            # Parse source for explicit EXEC calls (catches dynamic SQL)
+            source = self.get_procedure_source(database, schema, name)
+            print(f"Got procedure source: {source is not None} (len={len(source) if source else 0})")
+            if not source:
+                source = self.get_function_source(database, schema, name)
+                print(f"Got function source: {source is not None} (len={len(source) if source else 0})")
+
+            if source:
+                print(f"Parsing EXEC calls in {schema}.{name}")
+                exec_calls = self._parse_exec_calls(database, source)
+                print(f"Found {len(exec_calls)} EXEC calls via parsing")
+                for schema_name, obj_name, obj_type in exec_calls:
+                    key = (schema_name, obj_name)
+                    if key not in deps:
+                        deps[key] = {'schema': schema_name, 'name': obj_name, 'type': obj_type}
+            else:
+                print(f"No source found for {schema}.{name}")
+
+            return list(deps.values())
+        finally:
+            cursor.close()
+
+    def get_calling_procedures(self, database: str, schema: str, name: str) -> List[Dict[str, str]]:
+        """Get procedures/functions that call this object (reverse dependency)."""
+        cursor = self.conn.cursor()
+        try:
+            # Find referenced object ID first
+            cursor.execute(f"""
+                SELECT object_id FROM [{database}].sys.objects
+                WHERE name = %s
+                AND schema_id = (
+                    SELECT schema_id FROM [{database}].sys.schemas
+                    WHERE name = %s
+                )
+            """, (name, schema))
+            result = cursor.fetchone()
+            if not result:
+                return []
+
+            obj_id = result[0]
+
+            cursor.execute(f"""
+                SELECT DISTINCT
+                    ref_schema.name as referencing_schema,
+                    ref_obj.name as referencing_name,
+                    CASE
+                        WHEN ref_obj.type = 'P' THEN 'PROCEDURE'
+                        WHEN ref_obj.type IN ('FN', 'IF', 'TF') THEN 'FUNCTION'
+                        WHEN ref_obj.type = 'V' THEN 'VIEW'
+                    END as obj_type
+                FROM [{database}].sys.sql_expression_dependencies sed
+                INNER JOIN [{database}].sys.objects ref_obj ON
+                    ref_obj.object_id = sed.referencing_id
+                INNER JOIN [{database}].sys.schemas ref_schema ON
+                    ref_schema.schema_id = ref_obj.schema_id
+                WHERE sed.referenced_id = %s
+                AND ref_obj.type IN ('P', 'FN', 'IF', 'TF')
+                ORDER BY ref_schema.name, ref_obj.name
+            """, (obj_id,))
+
+            callers = []
+            for row in cursor.fetchall():
+                schema_name = row[0].strip() if row[0] else None
+                obj_name = row[1].strip() if row[1] else None
+                obj_type = row[2].strip() if row[2] else None
+
+                if schema_name and obj_name and obj_type:
+                    callers.append({
                         'schema': schema_name,
                         'name': obj_name,
                         'type': obj_type
                     })
-            return deps
+
+            return callers
         finally:
             cursor.close()
+
+    def _parse_exec_calls(self, database: str, source: str) -> List[Tuple[str, str, str]]:
+        """Parse procedure source for EXEC calls. Returns list of (schema, name, type)."""
+        import re
+        calls = []
+
+        if not source:
+            return calls
+
+        # Pattern: EXEC [schema.]procedure_name
+        # Capture only the procedure reference part, not parameters
+        pattern = r'\bEXEC(?:UTE)?\s+([^\s\(]+)'
+
+        cursor = self.conn.cursor()
+        try:
+            for match in re.finditer(pattern, source, re.IGNORECASE):
+                proc_ref = match.group(1).strip('[]')
+                print(f"  Found EXEC reference: {proc_ref}")
+
+                # Try to resolve full name with schema
+                if '.' in proc_ref:
+                    parts = proc_ref.split('.')
+                    proc_schema = parts[0].strip('[]')
+                    proc_name = parts[1].strip('[]')
+                else:
+                    proc_schema = 'dbo'  # Default schema
+                    proc_name = proc_ref
+
+                # Verify procedure exists in database
+                cursor.execute(f"""
+                    SELECT type FROM [{database}].sys.objects
+                    WHERE name = %s
+                    AND schema_id = (
+                        SELECT schema_id FROM [{database}].sys.schemas
+                        WHERE name = %s
+                    )
+                """, (proc_name, proc_schema))
+
+                result = cursor.fetchone()
+                if result:
+                    obj_type_code = result[0].strip() if result[0] else None
+                    if obj_type_code == 'P':
+                        obj_type = 'PROCEDURE'
+                    elif obj_type_code in ('FN', 'IF', 'TF'):
+                        obj_type = 'FUNCTION'
+                    else:
+                        print(f"    Skipped {proc_schema}.{proc_name} (type: {obj_type_code})")
+                        continue
+
+                    print(f"    Added {proc_schema}.{proc_name} ({obj_type})")
+                    calls.append((proc_schema, proc_name, obj_type))
+                else:
+                    print(f"    Not found in DB: {proc_schema}.{proc_name}")
+        finally:
+            cursor.close()
+
+        return calls

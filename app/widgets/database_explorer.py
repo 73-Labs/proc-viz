@@ -109,11 +109,6 @@ class DatabaseExplorer(QWidget):
         self.parameters_text.setReadOnly(True)
         self.tabs.addTab(self.parameters_text, "Parameters")
 
-        self.dependencies_tree = QTreeWidget()
-        self.dependencies_tree.setHeaderLabels(["Object"])
-        self.dependencies_tree.itemClicked.connect(self.on_dependency_item_clicked)
-        self.tabs.addTab(self.dependencies_tree, "Dependencies")
-
         self.details_text = QTextEdit()
         self.details_text.setReadOnly(True)
         self.tabs.addTab(self.details_text, "Details")
@@ -148,7 +143,8 @@ class DatabaseExplorer(QWidget):
                         proc_item.setText(0, f"🔧 {proc.name}")
                         proc_item.setData(0, Qt.UserRole, ("procedure", self.current_database, schema.name, proc.name))
                         proc_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
-                        QTreeWidgetItem(proc_item)
+                        placeholder = QTreeWidgetItem(proc_item)
+                        placeholder.setText(0, "Loading...")
                         self.procedure_count += 1
 
                 functions = self.accessor.get_functions(self.current_database, schema.name)
@@ -158,7 +154,8 @@ class DatabaseExplorer(QWidget):
                         func_item.setText(0, f"𝑓 {func.name}")
                         func_item.setData(0, Qt.UserRole, ("function", self.current_database, schema.name, func.name))
                         func_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
-                        QTreeWidgetItem(func_item)
+                        placeholder = QTreeWidgetItem(func_item)
+                        placeholder.setText(0, "Loading...")
                         self.procedure_count += 1
 
             self.tree.expandAll()
@@ -232,11 +229,13 @@ class DatabaseExplorer(QWidget):
         self.expanded_items.add(item_id)
 
         _, database, schema, name = data
+        print(f"Loading callees for {schema}.{name}")
 
         item.takeChildren()
 
         try:
             called = self.accessor.get_called_procedures(database, schema, name)
+            print(f"Found {len(called)} called procedures for {schema}.{name}")
             for dep in called:
                 child = QTreeWidgetItem(item)
                 icon = self.get_icon_for_type(dep['type'])
@@ -244,8 +243,11 @@ class DatabaseExplorer(QWidget):
                 child.setData(0, Qt.UserRole, (dep['type'].lower(), database, dep['schema'], dep['name']))
                 child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
                 QTreeWidgetItem(child)
+                print(f"  Added {dep['schema']}.{dep['name']}")
         except Exception as e:
             print(f"Error loading called procedures for {schema}.{name}: {str(e)}")
+            import traceback
+            traceback.print_exc()
 
     def get_icon_for_type(self, obj_type: str) -> str:
         """Get icon for object type."""
@@ -265,7 +267,6 @@ class DatabaseExplorer(QWidget):
             self.source_text.setText(source or f"No source found for {procedure}")
 
             self.parameters_text.setText(f"Parameters for {schema}.{procedure}\n\n(To be implemented)")
-            self.load_dependencies_tree(database, schema, procedure)
             self.details_text.setText(f"Schema: {schema}\nType: Stored Procedure\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -282,7 +283,6 @@ class DatabaseExplorer(QWidget):
             self.source_text.setText(source or f"No source found for {function}")
 
             self.parameters_text.setText(f"Parameters for {schema}.{function}\n\n(To be implemented)")
-            self.load_dependencies_tree(database, schema, function)
             self.details_text.setText(f"Schema: {schema}\nType: Function\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -299,7 +299,6 @@ class DatabaseExplorer(QWidget):
             self.source_text.setText(source or f"No source found for {view}")
 
             self.parameters_text.setText(f"View: {schema}.{view}")
-            self.load_dependencies_tree(database, schema, view)
             self.details_text.setText(f"Schema: {schema}\nType: View\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -312,7 +311,6 @@ class DatabaseExplorer(QWidget):
         self.procedure_label.setText("")
         self.source_text.clear()
         self.parameters_text.clear()
-        self.dependencies_tree.clear()
         self.details_text.clear()
 
     def on_close_details(self):
@@ -324,37 +322,3 @@ class DatabaseExplorer(QWidget):
         """Get total procedure count."""
         return self.procedure_count
 
-    def load_dependencies_tree(self, database: str, schema: str, name: str):
-        """Load dependencies tree for procedure/function."""
-        try:
-            self.dependencies_tree.clear()
-            deps = self.accessor.get_dependencies(database, schema, name)
-
-            for dep in deps:
-                item = QTreeWidgetItem(self.dependencies_tree)
-                icon = ICON_MAP.get(dep['type'], '📦')
-                item.setText(0, f"{icon} {dep['schema']}.{dep['name']}")
-                item.setData(0, Qt.UserRole, (dep['schema'], dep['name'], database))
-                item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
-
-        except Exception as e:
-            item = QTreeWidgetItem(self.dependencies_tree)
-            item.setText(0, f"Error: {str(e)}")
-
-    def on_dependency_item_clicked(self, item: QTreeWidgetItem, column: int):
-        """Handle dependency item click — lazy load children."""
-        data = item.data(0, Qt.UserRole)
-        if not data or item.childCount() > 0:
-            return
-
-        schema, name, database = data
-        try:
-            deps = self.accessor.get_dependencies(database, schema, name)
-            for dep in deps:
-                child = QTreeWidgetItem(item)
-                icon = ICON_MAP.get(dep['type'], '📦')
-                child.setText(0, f"{icon} {dep['schema']}.{dep['name']}")
-                child.setData(0, Qt.UserRole, (dep['schema'], dep['name'], database))
-                child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
-        except:
-            pass

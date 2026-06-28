@@ -1,0 +1,131 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Build executable (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          pyinstaller `
+            --onefile `
+            --windowed `
+            --name procedures-visualizer `
+            --add-data app;app `
+            main.py
+
+      - name: Build executable (macOS/Linux)
+        if: runner.os != 'Windows'
+        run: |
+          pyinstaller \
+            --onefile \
+            --windowed \
+            --name procedures-visualizer \
+            --add-data app:app \
+            main.py
+
+      - name: Create zip archive (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          cd dist
+          Compress-Archive -Path procedures-visualizer.exe -DestinationPath procedures-visualizer-${{ runner.os }}.zip
+          dir procedures-visualizer-*.zip
+
+      - name: Create zip archive (macOS/Linux)
+        if: runner.os != 'Windows'
+        run: |
+          cd dist
+          zip -r procedures-visualizer-${{ runner.os }}.zip procedures-visualizer
+          ls -lh procedures-visualizer-*.zip
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: procedures-visualizer-${{ runner.os }}
+          path: dist/procedures-visualizer-${{ runner.os }}.zip
+          retention-days: 7
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: success()
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=$(grep version pyproject.toml | head -1 | cut -d'"' -f2)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
+          release_name: Release v${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Windows Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/procedures-visualizer-Windows/procedures-visualizer-Windows.zip
+          asset_name: procedures-visualizer-windows-${{ steps.version.outputs.version }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload macOS Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/procedures-visualizer-macOS/procedures-visualizer-macOS.zip
+          asset_name: procedures-visualizer-macos-${{ steps.version.outputs.version }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload Linux Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./artifacts/procedures-visualizer-Linux/procedures-visualizer-Linux.zip
+          asset_name: procedures-visualizer-linux-${{ steps.version.outputs.version }}.zip
+          asset_content_type: application/zip

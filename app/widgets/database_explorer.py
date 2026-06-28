@@ -229,13 +229,11 @@ class DatabaseExplorer(QWidget):
         self.expanded_items.add(item_id)
 
         _, database, schema, name = data
-        print(f"Loading callees for {schema}.{name}")
 
         item.takeChildren()
 
         try:
             called = self.accessor.get_called_procedures(database, schema, name)
-            print(f"Found {len(called)} called procedures for {schema}.{name}")
             for dep in called:
                 child = QTreeWidgetItem(item)
                 icon = self.get_icon_for_type(dep['type'])
@@ -243,11 +241,8 @@ class DatabaseExplorer(QWidget):
                 child.setData(0, Qt.UserRole, (dep['type'].lower(), database, dep['schema'], dep['name']))
                 child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
                 QTreeWidgetItem(child)
-                print(f"  Added {dep['schema']}.{dep['name']}")
         except Exception as e:
             print(f"Error loading called procedures for {schema}.{name}: {str(e)}")
-            import traceback
-            traceback.print_exc()
 
     def get_icon_for_type(self, obj_type: str) -> str:
         """Get icon for object type."""

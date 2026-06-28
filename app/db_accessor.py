@@ -212,21 +212,15 @@ class DatabaseAccessor:
 
             # Parse source for explicit EXEC calls (catches dynamic SQL)
             source = self.get_procedure_source(database, schema, name)
-            print(f"Got procedure source: {source is not None} (len={len(source) if source else 0})")
             if not source:
                 source = self.get_function_source(database, schema, name)
-                print(f"Got function source: {source is not None} (len={len(source) if source else 0})")
 
             if source:
-                print(f"Parsing EXEC calls in {schema}.{name}")
                 exec_calls = self._parse_exec_calls(database, source)
-                print(f"Found {len(exec_calls)} EXEC calls via parsing")
                 for schema_name, obj_name, obj_type in exec_calls:
                     key = (schema_name, obj_name)
                     if key not in deps:
                         deps[key] = {'schema': schema_name, 'name': obj_name, 'type': obj_type}
-            else:
-                print(f"No source found for {schema}.{name}")
 
             return list(deps.values())
         finally:
@@ -303,7 +297,6 @@ class DatabaseAccessor:
         try:
             for match in re.finditer(pattern, source, re.IGNORECASE):
                 proc_ref = match.group(1).strip('[]')
-                print(f"  Found EXEC reference: {proc_ref}")
 
                 # Try to resolve full name with schema
                 if '.' in proc_ref:
@@ -332,13 +325,9 @@ class DatabaseAccessor:
                     elif obj_type_code in ('FN', 'IF', 'TF'):
                         obj_type = 'FUNCTION'
                     else:
-                        print(f"    Skipped {proc_schema}.{proc_name} (type: {obj_type_code})")
                         continue
 
-                    print(f"    Added {proc_schema}.{proc_name} ({obj_type})")
                     calls.append((proc_schema, proc_name, obj_type))
-                else:
-                    print(f"    Not found in DB: {proc_schema}.{proc_name}")
         finally:
             cursor.close()
 

@@ -169,3 +169,48 @@ class DatabaseAccessor:
             return deps
         finally:
             cursor.close()
+
+    def get_called_procedures(self, database: str, schema: str, name: str) -> List[Dict[str, str]]:
+        """Get procedures/functions/views that this object calls (for dependency tree)."""
+        cursor = self.conn.cursor()
+        try:
+            cursor.execute(f"""
+                SELECT DISTINCT
+                    sed.referenced_schema_name,
+                    sed.referenced_entity_name,
+                    CASE
+                        WHEN o.type = 'P' THEN 'PROCEDURE'
+                        WHEN o.type IN ('FN', 'IF', 'TF') THEN 'FUNCTION'
+                        WHEN o.type = 'V' THEN 'VIEW'
+                    END as obj_type
+                FROM [{database}].sys.sql_expression_dependencies sed
+                INNER JOIN [{database}].sys.objects ref_obj ON
+                    ref_obj.object_id = sed.referencing_id
+                INNER JOIN [{database}].sys.schemas ref_schema ON
+                    ref_schema.schema_id = ref_obj.schema_id
+                INNER JOIN [{database}].sys.objects o ON
+                    o.name = sed.referenced_entity_name
+                    AND o.schema_id = (
+                        SELECT schema_id FROM [{database}].sys.schemas
+                        WHERE name = sed.referenced_schema_name
+                    )
+                WHERE ref_obj.name = %s
+                AND ref_schema.name = %s
+                AND o.type IN ('P', 'FN', 'IF', 'TF', 'V')
+                ORDER BY sed.referenced_schema_name, sed.referenced_entity_name
+            """, (name, schema))
+            deps = []
+            for row in cursor.fetchall():
+                schema_name = row[0]
+                obj_name = row[1]
+                obj_type = row[2]
+
+                if schema_name and obj_name and obj_type:
+                    deps.append({
+                        'schema': schema_name,
+                        'name': obj_name,
+                        'type': obj_type
+                    })
+            return deps
+        finally:
+            cursor.close()

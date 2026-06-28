@@ -76,8 +76,10 @@ class DatabaseExplorer(QWidget):
         self.tree.header().setStretchLastSection(True)
         self.tree.itemClicked.connect(self.on_item_selected)
         self.tree.itemDoubleClicked.connect(self.on_item_double_clicked)
+        self.tree.itemExpanded.connect(self.on_item_expanded)
         layout.addWidget(self.tree)
 
+        self.expanded_items = set()
         return panel
 
     def create_right_panel(self) -> QWidget:
@@ -130,6 +132,7 @@ class DatabaseExplorer(QWidget):
         try:
             self.tree.clear()
             self.procedure_count = 0
+            self.expanded_items.clear()
 
             schemas = self.accessor.get_schemas(self.current_database)
 
@@ -144,6 +147,8 @@ class DatabaseExplorer(QWidget):
                         proc_item = QTreeWidgetItem(schema_item)
                         proc_item.setText(0, f"🔧 {proc.name}")
                         proc_item.setData(0, Qt.UserRole, ("procedure", self.current_database, schema.name, proc.name))
+                        proc_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                        QTreeWidgetItem(proc_item)
                         self.procedure_count += 1
 
                 functions = self.accessor.get_functions(self.current_database, schema.name)
@@ -152,6 +157,8 @@ class DatabaseExplorer(QWidget):
                         func_item = QTreeWidgetItem(schema_item)
                         func_item.setText(0, f"𝑓 {func.name}")
                         func_item.setData(0, Qt.UserRole, ("function", self.current_database, schema.name, func.name))
+                        func_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                        QTreeWidgetItem(func_item)
                         self.procedure_count += 1
 
             self.tree.expandAll()
@@ -196,6 +203,10 @@ class DatabaseExplorer(QWidget):
             _, database, schema, function = data
             self.load_function_details(database, schema, function)
 
+        elif item_type == "view":
+            _, database, schema, view = data
+            self.load_view_details(database, schema, view)
+
         else:
             self.clear_details()
 
@@ -203,6 +214,47 @@ class DatabaseExplorer(QWidget):
         """Expand/collapse on double click."""
         if item.childCount() > 0:
             item.setExpanded(not item.isExpanded())
+
+    def on_item_expanded(self, item: QTreeWidgetItem):
+        """Lazy-load dependencies when procedure/function item expanded."""
+        data = item.data(0, Qt.UserRole)
+        if not data or len(data) < 4:
+            return
+
+        item_type = data[0]
+        if item_type not in ("procedure", "function"):
+            return
+
+        item_id = id(item)
+        if item_id in self.expanded_items:
+            return
+
+        self.expanded_items.add(item_id)
+
+        _, database, schema, name = data
+
+        item.takeChildren()
+
+        try:
+            called = self.accessor.get_called_procedures(database, schema, name)
+            for dep in called:
+                child = QTreeWidgetItem(item)
+                icon = self.get_icon_for_type(dep['type'])
+                child.setText(0, f"{icon} {dep['name']}")
+                child.setData(0, Qt.UserRole, (dep['type'].lower(), database, dep['schema'], dep['name']))
+                child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                QTreeWidgetItem(child)
+        except Exception as e:
+            print(f"Error loading called procedures for {schema}.{name}: {str(e)}")
+
+    def get_icon_for_type(self, obj_type: str) -> str:
+        """Get icon for object type."""
+        icon_map = {
+            'PROCEDURE': '🔧',
+            'FUNCTION': '𝑓',
+            'VIEW': '📊',
+        }
+        return icon_map.get(obj_type, '📦')
 
     def load_procedure_details(self, database: str, schema: str, procedure: str):
         """Load procedure details."""
@@ -232,6 +284,23 @@ class DatabaseExplorer(QWidget):
             self.parameters_text.setText(f"Parameters for {schema}.{function}\n\n(To be implemented)")
             self.load_dependencies_tree(database, schema, function)
             self.details_text.setText(f"Schema: {schema}\nType: Function\nDatabase: {database}")
+
+            self.tabs.setCurrentIndex(0)
+
+        except Exception as e:
+            self.source_text.setText(f"Error loading details:\n{str(e)}")
+
+    def load_view_details(self, database: str, schema: str, view: str):
+        """Load view details."""
+        try:
+            self.procedure_label.setText(f"{schema}.{view}")
+
+            source = self.accessor.get_function_source(database, schema, view)
+            self.source_text.setText(source or f"No source found for {view}")
+
+            self.parameters_text.setText(f"View: {schema}.{view}")
+            self.load_dependencies_tree(database, schema, view)
+            self.details_text.setText(f"Schema: {schema}\nType: View\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
 

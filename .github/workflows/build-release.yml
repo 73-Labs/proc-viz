@@ -31,12 +31,7 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          pyinstaller `
-            --onefile `
-            --windowed `
-            --name procedures-visualizer `
-            --add-data app;app `
-            main.py
+          pyinstaller --onefile --windowed --name procedures-visualizer --add-data="app;app" main.py
 
       - name: Build executable (macOS/Linux)
         if: runner.os != 'Windows'

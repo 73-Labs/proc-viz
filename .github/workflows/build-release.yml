@@ -84,43 +84,15 @@ jobs:
         with:
           path: artifacts
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release with Assets
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: v${{ steps.version.outputs.version }}-${{ github.run_number }}
-          release_name: Release v${{ steps.version.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ steps.version.outputs.version }}-${{ github.run_number }}
+          name: Release v${{ steps.version.outputs.version }}
           draft: false
           prerelease: false
-
-      - name: Upload Windows Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/procedures-visualizer-Windows/procedures-visualizer-Windows.zip
-          asset_name: procedures-visualizer-windows-${{ steps.version.outputs.version }}.zip
-          asset_content_type: application/zip
-
-      - name: Upload macOS Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/procedures-visualizer-macOS/procedures-visualizer-macOS.zip
-          asset_name: procedures-visualizer-macos-${{ steps.version.outputs.version }}.zip
-          asset_content_type: application/zip
-
-      - name: Upload Linux Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./artifacts/procedures-visualizer-Linux/procedures-visualizer-Linux.zip
-          asset_name: procedures-visualizer-linux-${{ steps.version.outputs.version }}.zip
-          asset_content_type: application/zip
+          artifacts: >-
+            ./artifacts/procedures-visualizer-Windows/procedures-visualizer-Windows.zip,
+            ./artifacts/procedures-visualizer-macOS/procedures-visualizer-macOS.zip,
+            ./artifacts/procedures-visualizer-Linux/procedures-visualizer-Linux.zip

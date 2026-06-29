@@ -10,6 +10,7 @@ from PySide6.QtGui import QFont
 from app.db_accessor import DatabaseAccessor
 from app.drivers.database_driver import DatabaseDriver
 from app.widgets.sql_highlighter import SqlSyntaxHighlighter
+from app.widgets.loading_spinner import LoadingOverlay
 
 
 ICON_MAP = {
@@ -34,6 +35,7 @@ class DatabaseExplorer(QWidget):
         self.current_database = profile.database
         self.procedure_count = 0
         self.init_ui()
+        self.loading_overlay = LoadingOverlay(self, "Loading schemas...")
         QTimer.singleShot(0, self.load_procedures)
 
     def init_ui(self):
@@ -126,6 +128,7 @@ class DatabaseExplorer(QWidget):
 
     def load_procedures(self):
         """Load procedures into tree."""
+        self.loading_overlay.start()
         try:
             self.tree.clear()
             self.procedure_count = 0
@@ -164,6 +167,8 @@ class DatabaseExplorer(QWidget):
 
         except Exception as e:
             self.source_text.setText(f"Error loading procedures:\n{str(e)}")
+        finally:
+            self.loading_overlay.stop()
 
     def on_filter_changed(self, text: str):
         """Filter tree items based on search text."""
@@ -234,6 +239,7 @@ class DatabaseExplorer(QWidget):
 
         item.takeChildren()
 
+        self.loading_overlay.start()
         try:
             called = self.accessor.get_called_procedures(database, schema, name)
             for dep in called:
@@ -245,6 +251,8 @@ class DatabaseExplorer(QWidget):
                 QTreeWidgetItem(child)
         except Exception as e:
             print(f"Error loading called procedures for {schema}.{name}: {str(e)}")
+        finally:
+            self.loading_overlay.stop()
 
     def get_icon_for_type(self, obj_type: str) -> str:
         """Get icon for object type."""

@@ -6,6 +6,7 @@ from PySide6.QtCore import Qt
 from app.dialogs import ConnectionDialog
 from app.storage import ProfileManager
 from app.widgets import DatabaseExplorer
+from app.widgets.loading_spinner import LoadingOverlay
 from app.drivers.connection_manager import ConnectionManager
 from app.drivers.database_driver import DatabaseDriver
 
@@ -34,6 +35,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.content_widget)
 
         central_widget.setLayout(layout)
+        self.loading_overlay = LoadingOverlay(central_widget, "Connecting to database...")
         self.create_status_bar()
         self.show_welcome()
 
@@ -151,6 +153,7 @@ class MainWindow(QMainWindow):
         if profile is None:
             return
 
+        self.loading_overlay.start()
         password = self.profile_manager.get_password(profile.name)
         try:
             self.driver = ConnectionManager.create_connection(profile, password)
@@ -170,6 +173,8 @@ class MainWindow(QMainWindow):
                 f"Unexpected error:\n\n{str(e)}",
             )
             self.show_welcome()
+        finally:
+            self.loading_overlay.stop()
 
     def open_connection_dialog(self):
         """Open connection dialog."""
@@ -180,6 +185,7 @@ class MainWindow(QMainWindow):
             self.profile_manager.save_profile(profile, password)
             self.load_profiles_dropdown()
 
+            self.loading_overlay.start()
             try:
                 self.driver = ConnectionManager.create_connection(profile, password)
                 self.current_profile = profile
@@ -198,6 +204,8 @@ class MainWindow(QMainWindow):
                     f"Unexpected error:\n\n{str(e)}",
                 )
                 self.show_welcome()
+            finally:
+                self.loading_overlay.stop()
 
     def show_explorer(self, profile):
         """Display database explorer."""
@@ -227,9 +235,12 @@ class MainWindow(QMainWindow):
     def refresh_explorer(self):
         """Refresh explorer."""
         if self.explorer and self.current_profile:
+            self.loading_overlay.set_message("Refreshing schemas...")
+            self.loading_overlay.start()
             self.explorer.load_procedures()
             proc_count = self.explorer.get_procedure_count()
             self.proc_count_label.setText(f"{proc_count} procedures")
+            self.loading_overlay.stop()
 
     def close_connection(self):
         """Close connection."""

@@ -9,6 +9,7 @@ from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QFont
 from app.db_accessor import DatabaseAccessor
 from app.drivers.database_driver import DatabaseDriver
+from app.widgets.sql_highlighter import SqlSyntaxHighlighter
 
 
 ICON_MAP = {
@@ -103,6 +104,7 @@ class DatabaseExplorer(QWidget):
         self.source_text = QTextEdit()
         self.source_text.setReadOnly(True)
         self.source_text.setFont(self.get_monospace_font())
+        SqlSyntaxHighlighter(self.source_text.document())
         self.tabs.addTab(self.source_text, "Source")
 
         self.parameters_text = QTextEdit()

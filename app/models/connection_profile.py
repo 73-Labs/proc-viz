@@ -8,14 +8,23 @@ class AuthenticationMode(Enum):
     SQL_SERVER = "SQLServer"
 
 
+class DatabaseType(Enum):
+    """Supported database types."""
+    SQL_SERVER = "sqlserver"
+    MYSQL = "mysql"
+    POSTGRESQL = "postgresql"
+    ORACLE = "oracle"
+
+
 @dataclass
 class ConnectionProfile:
-    """Database connection profile with support for multiple authentication methods."""
+    """Database connection profile with support for multiple authentication methods and database types."""
 
     name: str
     server: str
-    port: int = 1433
     database: str = ""
+    port: int = 1433
+    db_type: DatabaseType = DatabaseType.SQL_SERVER
     authentication_mode: AuthenticationMode = AuthenticationMode.WINDOWS
     username: Optional[str] = None
     encrypt: bool = True
@@ -29,6 +38,7 @@ class ConnectionProfile:
             "server": self.server,
             "port": self.port,
             "database": self.database,
+            "db_type": self.db_type.value,
             "authentication_mode": self.authentication_mode.value,
             "username": self.username,
             "encrypt": self.encrypt,
@@ -40,11 +50,13 @@ class ConnectionProfile:
     def from_dict(cls, data: dict) -> "ConnectionProfile":
         """Create profile from dictionary (load from JSON)."""
         auth_mode = AuthenticationMode(data.get("authentication_mode", "Windows"))
+        db_type = DatabaseType(data.get("db_type", "sqlserver"))
         return cls(
             name=data["name"],
             server=data["server"],
             port=data.get("port", 1433),
             database=data.get("database", ""),
+            db_type=db_type,
             authentication_mode=auth_mode,
             username=data.get("username"),
             encrypt=data.get("encrypt", True),

@@ -3,10 +3,11 @@ from PySide6.QtWidgets import (
     QMessageBox, QToolBar, QLineEdit, QComboBox, QSizePolicy
 )
 from PySide6.QtCore import Qt
-import pymssql
 from app.dialogs import ConnectionDialog
 from app.storage import ProfileManager
 from app.widgets import DatabaseExplorer
+from app.drivers.connection_manager import ConnectionManager
+from app.drivers.database_driver import DatabaseDriver
 
 
 class MainWindow(QMainWindow):
@@ -16,7 +17,7 @@ class MainWindow(QMainWindow):
         self.setGeometry(100, 100, 1400, 900)
         self.setWindowIcon(self.create_icon())
         self.profile_manager = ProfileManager()
-        self.connection = None
+        self.driver: DatabaseDriver = None
         self.explorer = None
         self.current_profile = None
 
@@ -152,11 +153,10 @@ class MainWindow(QMainWindow):
 
         password = self.profile_manager.get_password(profile.name)
         try:
-            kwargs = profile.get_connection_kwargs(password)
-            self.connection = pymssql.connect(**kwargs, timeout=10)
+            self.driver = ConnectionManager.create_connection(profile, password)
             self.current_profile = profile
             self.show_explorer(profile)
-        except pymssql.DatabaseError as e:
+        except ConnectionError as e:
             QMessageBox.critical(
                 self,
                 "Connection Failed",
@@ -181,11 +181,10 @@ class MainWindow(QMainWindow):
             self.load_profiles_dropdown()
 
             try:
-                kwargs = profile.get_connection_kwargs(password)
-                self.connection = pymssql.connect(**kwargs, timeout=10)
+                self.driver = ConnectionManager.create_connection(profile, password)
                 self.current_profile = profile
                 self.show_explorer(profile)
-            except pymssql.DatabaseError as e:
+            except ConnectionError as e:
                 QMessageBox.critical(
                     self,
                     "Connection Failed",
@@ -207,7 +206,7 @@ class MainWindow(QMainWindow):
             if widget:
                 widget.deleteLater()
 
-        self.explorer = DatabaseExplorer(self.connection, profile)
+        self.explorer = DatabaseExplorer(self.driver, profile)
         self.content_layout.addWidget(self.explorer)
 
         self.status_label.setText(f"Connected to: {profile.server} - {profile.database}")
@@ -234,66 +233,21 @@ class MainWindow(QMainWindow):
 
     def close_connection(self):
         """Close connection."""
-        if self.connection:
+        if self.driver:
             try:
-                self.connection.close()
+                self.driver.close()
             except:
                 pass
-            self.connection = None
+            self.driver = None
 
         self.conn_dropdown.setCurrentIndex(0)
         self.show_welcome()
 
-    def load_saved_profiles(self):
-        """Load saved profiles into dropdown."""
-        self.conn_dropdown.blockSignals(True)
-        self.conn_dropdown.clear()
-        self.conn_dropdown.addItem("Select a profile...", None)
-
-        profiles = self.profile_manager.load_all_profiles()
-        for profile in profiles:
-            self.conn_dropdown.addItem(profile.name, profile)
-
-        self.conn_dropdown.blockSignals(False)
-
-    def on_profile_selected(self, index: int):
-        """Handle profile selection from dropdown."""
-        if index <= 0:
-            return
-
-        profile = self.conn_dropdown.currentData()
-        if not profile or self.connection:
-            return
-
-        password = self.profile_manager.get_password(profile.name)
-
-        try:
-            kwargs = profile.get_connection_kwargs(password)
-            self.connection = pymssql.connect(**kwargs, timeout=10)
-            self.current_profile = profile
-            self.show_explorer(profile)
-        except pymssql.DatabaseError as e:
-            QMessageBox.critical(
-                self,
-                "Connection Failed",
-                f"Failed to connect:\n\n{str(e)}",
-            )
-            self.conn_dropdown.setCurrentIndex(0)
-            self.show_welcome()
-        except Exception as e:
-            QMessageBox.critical(
-                self,
-                "Error",
-                f"Unexpected error:\n\n{str(e)}",
-            )
-            self.conn_dropdown.setCurrentIndex(0)
-            self.show_welcome()
-
     def closeEvent(self, event):
         """Close connection on window close."""
-        if self.connection:
+        if self.driver:
             try:
-                self.connection.close()
+                self.driver.close()
             except:
                 pass
         event.accept()

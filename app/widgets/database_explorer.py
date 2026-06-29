@@ -7,8 +7,8 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QFont
-import pymssql
 from app.db_accessor import DatabaseAccessor
+from app.drivers.database_driver import DatabaseDriver
 
 
 ICON_MAP = {
@@ -25,11 +25,11 @@ ICON_MAP = {
 class DatabaseExplorer(QWidget):
     """Database explorer matching reference layout."""
 
-    def __init__(self, connection: pymssql.Connection, profile):
+    def __init__(self, driver: DatabaseDriver, profile):
         super().__init__()
-        self.connection = connection
+        self.driver = driver
         self.profile = profile
-        self.accessor = DatabaseAccessor(connection)
+        self.accessor = DatabaseAccessor(driver)
         self.current_database = profile.database
         self.procedure_count = 0
         self.init_ui()

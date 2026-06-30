@@ -105,6 +105,11 @@ class DatabaseDriver(ABC):
         pass
 
     @abstractmethod
+    def get_objects_by_table(self, database: str, table_name: str) -> List[ObjectDependency]:
+        """Get procedures/functions/views that reference a specific table."""
+        pass
+
+    @abstractmethod
     def close(self) -> None:
         """Close database connection."""
         pass

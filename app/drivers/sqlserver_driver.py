@@ -255,6 +255,44 @@ class SQLServerDriver(DatabaseDriver):
         finally:
             cursor.close()
 
+    def get_objects_by_table(self, database: str, table_name: str) -> List[ObjectDependency]:
+        """Get procedures/functions/views that reference a specific table."""
+        cursor = self.conn.cursor()
+        try:
+            search_pattern = f"%{table_name}%"
+            cursor.execute(f"""
+                SELECT DISTINCT
+                    SCHEMA_NAME(o.schema_id) AS schema_name,
+                    o.name AS object_name,
+                    CASE
+                        WHEN o.type = 'P' THEN 'PROCEDURE'
+                        WHEN o.type IN ('FN', 'IF', 'TF') THEN 'FUNCTION'
+                        WHEN o.type = 'V' THEN 'VIEW'
+                    END as obj_type
+                FROM [{database}].sys.sql_modules m
+                JOIN [{database}].sys.objects o ON m.object_id = o.object_id
+                WHERE o.type IN ('P', 'FN', 'IF', 'TF', 'V')
+                  AND m.definition LIKE %s
+                ORDER BY SCHEMA_NAME(o.schema_id), o.name
+            """, (search_pattern,))
+
+            results = []
+            for row in cursor.fetchall():
+                schema_name = row[0].strip() if row[0] else None
+                obj_name = row[1].strip() if row[1] else None
+                obj_type = row[2].strip() if row[2] else None
+
+                if schema_name and obj_name and obj_type:
+                    results.append(ObjectDependency(
+                        schema=schema_name,
+                        name=obj_name,
+                        type=obj_type
+                    ))
+
+            return results
+        finally:
+            cursor.close()
+
     def _parse_exec_calls(self, database: str, source: str) -> list:
         """Parse procedure source for EXEC calls. Returns list of (schema, name, type)."""
         calls = []

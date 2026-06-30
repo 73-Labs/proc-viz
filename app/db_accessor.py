@@ -66,6 +66,11 @@ class DatabaseAccessor:
         callers = self.driver.get_calling_procedures(database, schema, name)
         return [{'schema': c.schema, 'name': c.name, 'type': c.type} for c in callers]
 
+    def get_objects_by_table(self, database: str, table_name: str) -> List[Dict[str, str]]:
+        """Get procedures/functions/views that reference a specific table."""
+        results = self.driver.get_objects_by_table(database, table_name)
+        return [{'schema': r.schema, 'name': r.name, 'type': r.type} for r in results]
+
     def close(self) -> None:
         """Close database connection."""
         self.driver.close()

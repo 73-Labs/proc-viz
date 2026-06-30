@@ -74,6 +74,11 @@ class DatabaseExplorer(QWidget):
         self.filter_input.textChanged.connect(self.on_filter_changed)
         layout.addWidget(self.filter_input)
 
+        self.table_filter_input = QLineEdit()
+        self.table_filter_input.setPlaceholderText("Filter by table name (Press Enter)")
+        self.table_filter_input.returnPressed.connect(self.on_table_filter_search)
+        layout.addWidget(self.table_filter_input)
+
         self.tree = QTreeWidget()
         self.tree.setHeaderLabels([""])
         self.tree.header().setStretchLastSection(True)
@@ -83,6 +88,7 @@ class DatabaseExplorer(QWidget):
         layout.addWidget(self.tree)
 
         self.expanded_items = set()
+        self.table_filter_active = False
         return panel
 
     def create_right_panel(self) -> QWidget:
@@ -172,9 +178,58 @@ class DatabaseExplorer(QWidget):
 
     def on_filter_changed(self, text: str):
         """Filter tree items based on search text."""
+        if self.table_filter_active:
+            return
         for i in range(self.tree.topLevelItemCount()):
             schema_item = self.tree.topLevelItem(i)
             self.filter_tree_item(schema_item, text.lower())
+
+    def on_table_filter_search(self):
+        """Search for objects that use a specific table."""
+        table_name = self.table_filter_input.text().strip()
+        if not table_name:
+            self.table_filter_active = False
+            self.load_procedures()
+            return
+
+        self.table_filter_active = True
+        self.loading_overlay.start()
+        try:
+            self.tree.clear()
+            results = self.accessor.get_objects_by_table(self.current_database, table_name)
+
+            if not results:
+                self.source_text.setText(f"No objects found referencing table: {table_name}")
+                return
+
+            schema_groups = {}
+            for obj in results:
+                schema = obj['schema']
+                if schema not in schema_groups:
+                    schema_groups[schema] = []
+                schema_groups[schema].append(obj)
+
+            for schema_name in sorted(schema_groups.keys()):
+                schema_item = QTreeWidgetItem(self.tree)
+                schema_item.setText(0, f"📋 {schema_name}")
+                schema_item.setData(0, Qt.UserRole, ("schema", self.current_database, schema_name))
+
+                for obj in sorted(schema_groups[schema_name], key=lambda x: x['name']):
+                    obj_type = obj['type']
+                    icon = self.get_icon_for_type(obj_type)
+                    obj_item = QTreeWidgetItem(schema_item)
+                    obj_item.setText(0, f"{icon} {obj['name']}")
+                    obj_item.setData(0, Qt.UserRole, (obj_type.lower(), self.current_database, schema_name, obj['name']))
+                    obj_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                    placeholder = QTreeWidgetItem(obj_item)
+                    placeholder.setText(0, "Loading...")
+
+            self.tree.expandAll()
+
+        except Exception as e:
+            self.source_text.setText(f"Error searching table references:\n{str(e)}")
+        finally:
+            self.loading_overlay.stop()
 
     def filter_tree_item(self, item: QTreeWidgetItem, text: str) -> bool:
         """Recursively filter tree items."""

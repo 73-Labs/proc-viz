@@ -174,7 +174,6 @@ class DatabaseExplorer(QWidget):
                         self.procedure_count += 1
 
             self.loading_overlay.set_message("Finalizing...")
-            self.tree.expandAll()
 
         except Exception as e:
             self.source_text.setText(f"Error loading procedures:\n{str(e)}")
@@ -229,8 +228,6 @@ class DatabaseExplorer(QWidget):
                     obj_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
                     placeholder = QTreeWidgetItem(obj_item)
                     placeholder.setText(0, "Loading...")
-
-            self.tree.expandAll()
 
         except Exception as e:
             self.source_text.setText(f"Error searching table references:\n{str(e)}")

@@ -228,3 +228,52 @@ class TestProfileManager:
         assert loaded.encrypt == original.encrypt
         assert loaded.trust_certificate == original.trust_certificate
         assert loaded.save_password == original.save_password
+
+    @patch("keyring.get_password")
+    @patch("keyring.set_password")
+    def test_rename_profile(self, mock_set, mock_get, profile_manager):
+        profiles_data = {
+            "OldName": {
+                "name": "OldName",
+                "server": "localhost",
+                "port": 1433,
+                "database": "DB",
+                "authentication_mode": "Windows",
+                "username": None,
+                "encrypt": True,
+                "trust_certificate": False,
+                "save_password": True,
+            }
+        }
+
+        with open(profile_manager.PROFILES_FILE, "w") as f:
+            json.dump(profiles_data, f)
+
+        mock_get.return_value = "stored_password"
+
+        profile_manager.rename_profile("OldName", "NewName")
+
+        with open(profile_manager.PROFILES_FILE) as f:
+            data = json.load(f)
+
+        assert "OldName" not in data
+        assert "NewName" in data
+        assert data["NewName"]["name"] == "NewName"
+        assert data["NewName"]["server"] == "localhost"
+        mock_set.assert_called_once_with("procedures-visualizer", "NewName", "stored_password")
+
+    def test_rename_profile_not_found(self, profile_manager):
+        with pytest.raises(ValueError, match="Profile 'NonExistent' not found"):
+            profile_manager.rename_profile("NonExistent", "NewName")
+
+    def test_rename_profile_already_exists(self, profile_manager):
+        profiles_data = {
+            "Profile1": {"name": "Profile1", "server": "localhost"},
+            "Profile2": {"name": "Profile2", "server": "localhost"},
+        }
+
+        with open(profile_manager.PROFILES_FILE, "w") as f:
+            json.dump(profiles_data, f)
+
+        with pytest.raises(ValueError, match="Profile 'Profile2' already exists"):
+            profile_manager.rename_profile("Profile1", "Profile2")

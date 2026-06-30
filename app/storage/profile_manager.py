@@ -97,6 +97,26 @@ class ProfileManager:
         profiles = self._load_profiles_from_file()
         return profile_name in profiles
 
+    def rename_profile(self, old_name: str, new_name: str) -> None:
+        """Rename profile and migrate keyring entry."""
+        profiles = self._load_profiles_from_file()
+        if old_name not in profiles:
+            raise ValueError(f"Profile '{old_name}' not found")
+        if new_name in profiles:
+            raise ValueError(f"Profile '{new_name}' already exists")
+
+        profile_dict = profiles.pop(old_name)
+        profile_dict["name"] = new_name
+        profiles[new_name] = profile_dict
+
+        with open(self.PROFILES_FILE, "w") as f:
+            json.dump(profiles, f, indent=2)
+
+        password = self.get_password(old_name)
+        if password:
+            keyring.set_password(self.KEYRING_SERVICE, new_name, password)
+            self.clear_password(old_name)
+
     def _load_profiles_from_file(self) -> dict:
         """Load all profiles from JSON file."""
         if not self.PROFILES_FILE.exists():

@@ -3,7 +3,7 @@ from PySide6.QtWidgets import (
     QMessageBox, QToolBar, QLineEdit, QComboBox, QSizePolicy
 )
 from PySide6.QtCore import Qt
-from app.dialogs import ConnectionDialog
+from app.dialogs import ConnectionDialog, ConnectionManagerDialog
 from app.storage import ProfileManager
 from app.widgets import DatabaseExplorer
 from app.widgets.loading_spinner import LoadingOverlay
@@ -52,6 +52,7 @@ class MainWindow(QMainWindow):
 
         file_menu = menubar.addMenu("File")
         file_menu.addAction("New Connection", self.open_connection_dialog)
+        file_menu.addAction("Manage Connections", self.open_connection_manager)
         file_menu.addAction("Close Connection", self.close_connection)
         file_menu.addSeparator()
         file_menu.addAction("Exit", self.close)
@@ -64,6 +65,7 @@ class MainWindow(QMainWindow):
 
         database_menu = menubar.addMenu("Database")
         database_menu.addAction("Connect", self.open_connection_dialog)
+        database_menu.addAction("Manage Connections", self.open_connection_manager)
         database_menu.addAction("Disconnect", self.close_connection)
 
         tools_menu = menubar.addMenu("Tools")
@@ -86,6 +88,10 @@ class MainWindow(QMainWindow):
         self.connect_btn = QPushButton("Connect")
         self.connect_btn.clicked.connect(self.open_connection_dialog)
         toolbar.addWidget(self.connect_btn)
+
+        self.manage_btn = QPushButton("Manage")
+        self.manage_btn.clicked.connect(self.open_connection_manager)
+        toolbar.addWidget(self.manage_btn)
 
         self.disconnect_btn = QPushButton("Disconnect")
         self.disconnect_btn.clicked.connect(self.close_connection)
@@ -206,6 +212,12 @@ class MainWindow(QMainWindow):
                 self.show_welcome()
             finally:
                 self.loading_overlay.stop()
+
+    def open_connection_manager(self):
+        """Open connection manager dialog."""
+        dialog = ConnectionManagerDialog(parent=self)
+        if dialog.exec() == ConnectionManagerDialog.Accepted:
+            self.load_profiles_dropdown()
 
     def show_explorer(self, profile):
         """Display database explorer."""

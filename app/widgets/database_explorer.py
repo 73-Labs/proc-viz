@@ -135,14 +135,18 @@ class DatabaseExplorer(QWidget):
     def load_procedures(self):
         """Load procedures into tree."""
         self.loading_overlay.start()
+        self.loading_overlay.set_message("Loading schemas...")
         try:
             self.tree.clear()
             self.procedure_count = 0
             self.expanded_items.clear()
 
             schemas = self.accessor.get_schemas(self.current_database)
+            total_schemas = len(schemas)
 
-            for schema in schemas:
+            for idx, schema in enumerate(schemas, 1):
+                self.loading_overlay.set_message(f"Loading schema {idx}/{total_schemas}: {schema.name}")
+
                 schema_item = QTreeWidgetItem(self.tree)
                 schema_item.setText(0, f"📋 {schema.name}")
                 schema_item.setData(0, Qt.UserRole, ("schema", schema.database, schema.name))
@@ -169,6 +173,7 @@ class DatabaseExplorer(QWidget):
                         placeholder.setText(0, "Loading...")
                         self.procedure_count += 1
 
+            self.loading_overlay.set_message("Finalizing...")
             self.tree.expandAll()
 
         except Exception as e:
@@ -194,6 +199,7 @@ class DatabaseExplorer(QWidget):
 
         self.table_filter_active = True
         self.loading_overlay.start()
+        self.loading_overlay.set_message(f"Searching for objects using table: {table_name}...")
         try:
             self.tree.clear()
             results = self.accessor.get_objects_by_table(self.current_database, table_name)
@@ -295,6 +301,7 @@ class DatabaseExplorer(QWidget):
         item.takeChildren()
 
         self.loading_overlay.start()
+        self.loading_overlay.set_message(f"Loading dependencies for {schema}.{name}...")
         try:
             called = self.accessor.get_called_procedures(database, schema, name)
             for dep in called:

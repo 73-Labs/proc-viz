@@ -64,14 +64,14 @@ class DatabaseExplorer(QWidget):
         layout = QVBoxLayout(panel)
 
         header_layout = QHBoxLayout()
-        header_label = QLabel("Procedures")
+        header_label = QLabel("Routines")
         header_label.setStyleSheet("font-weight: bold; font-size: 11pt;")
         header_layout.addWidget(header_label)
         header_layout.addStretch()
         layout.addLayout(header_layout)
 
         self.filter_input = QLineEdit()
-        self.filter_input.setPlaceholderText("Filter procedures (Ctrl+K)")
+        self.filter_input.setPlaceholderText("Filter routines (Ctrl+K)")
         self.filter_input.textChanged.connect(self.on_filter_changed)
         layout.addWidget(self.filter_input)
 
@@ -393,4 +393,3 @@ class DatabaseExplorer(QWidget):
     def get_procedure_count(self) -> int:
         """Get total procedure count."""
         return self.procedure_count
-

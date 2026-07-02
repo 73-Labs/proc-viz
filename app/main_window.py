@@ -108,7 +108,7 @@ class MainWindow(QMainWindow):
         toolbar.addWidget(QLabel("Search (Ctrl+F): "))
         self.search_box = QLineEdit()
         self.search_box.setMaximumWidth(300)
-        self.search_box.setPlaceholderText("Search procedures...")
+        self.search_box.setPlaceholderText("Search routines...")
         toolbar.addWidget(self.search_box)
 
         spacer = QWidget()
@@ -231,7 +231,7 @@ class MainWindow(QMainWindow):
 
         self.status_label.setText(f"Connected to: {profile.server} - {profile.database}")
         proc_count = self.explorer.get_procedure_count()
-        self.proc_count_label.setText(f"{proc_count} procedures")
+        self.proc_count_label.setText(f"{proc_count} routines")
 
         self.connect_btn.setEnabled(False)
         self.disconnect_btn.setEnabled(True)

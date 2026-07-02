@@ -1,7 +1,6 @@
 """Manages database connections with support for multiple database types."""
 
-import pymssql
-from typing import Optional
+from typing import Optional, Callable, Dict
 from app.models.connection_profile import ConnectionProfile, DatabaseType
 from app.drivers.database_driver import DatabaseDriver
 from app.drivers.driver_factory import DriverFactory
@@ -9,6 +8,17 @@ from app.drivers.driver_factory import DriverFactory
 
 class ConnectionManager:
     """Creates and manages database connections. Abstracts connection details from drivers."""
+
+    _connection_creators: Dict[DatabaseType, Callable[[ConnectionProfile, Optional[str]], DatabaseDriver]] = {}
+
+    @classmethod
+    def register_connection_creator(
+        cls,
+        db_type: DatabaseType,
+        creator: Callable[[ConnectionProfile, Optional[str]], DatabaseDriver],
+    ) -> None:
+        """Register connection creator for database type."""
+        cls._connection_creators[db_type] = creator
 
     @staticmethod
     def create_connection(profile: ConnectionProfile, password: Optional[str] = None) -> DatabaseDriver:
@@ -25,16 +35,10 @@ class ConnectionManager:
             ValueError: If database type not supported
             Exception: If connection fails
         """
-        if profile.db_type == DatabaseType.SQL_SERVER:
-            return ConnectionManager._create_sqlserver_connection(profile, password)
-        elif profile.db_type == DatabaseType.MYSQL:
-            raise NotImplementedError("MySQL support coming soon")
-        elif profile.db_type == DatabaseType.POSTGRESQL:
-            raise NotImplementedError("PostgreSQL support coming soon")
-        elif profile.db_type == DatabaseType.ORACLE:
-            raise NotImplementedError("Oracle support coming soon")
-        else:
-            raise ValueError(f"Unsupported database type: {profile.db_type}")
+        creator = ConnectionManager._connection_creators.get(profile.db_type)
+        if creator is None:
+            raise NotImplementedError(f"{profile.db_type.value} support coming soon")
+        return creator(profile, password)
 
     @staticmethod
     def _create_sqlserver_connection(
@@ -49,6 +53,8 @@ class ConnectionManager:
         Returns:
             SQLServerDriver instance
         """
+        import pymssql
+
         kwargs = profile.get_connection_kwargs(password)
 
         # Add timeout and other SQL Server specific options
@@ -63,3 +69,9 @@ class ConnectionManager:
             raise ConnectionError(f"Failed to connect to SQL Server: {e}")
         except Exception as e:
             raise Exception(f"Connection error: {e}")
+
+
+ConnectionManager.register_connection_creator(
+    DatabaseType.SQL_SERVER,
+    ConnectionManager._create_sqlserver_connection,
+)

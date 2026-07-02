@@ -12,9 +12,24 @@ from PySide6.QtWidgets import (
     QGroupBox,
 )
 from PySide6.QtCore import Qt
-import pymssql
-from app.models import ConnectionProfile, AuthenticationMode
+from app.models import ConnectionProfile, AuthenticationMode, DatabaseType
 from app.storage import ProfileManager
+
+try:
+    import pymssql  # type: ignore
+except ImportError:  # pragma: no cover - fallback for optional dependency
+    class _PymssqlShim:
+        class DatabaseError(Exception):
+            pass
+
+        class Error(Exception):
+            pass
+
+        @staticmethod
+        def connect(*args, **kwargs):
+            raise ImportError("pymssql is not installed")
+
+    pymssql = _PymssqlShim()
 
 
 class ConnectionDialog(QDialog):
@@ -45,6 +60,20 @@ class ConnectionDialog(QDialog):
         self.name_input.setText(self.profile.name)
         name_layout.addWidget(self.name_input)
         layout.addLayout(name_layout)
+
+        # Database Type
+        db_type_layout = QHBoxLayout()
+        db_type_layout.addWidget(QLabel("Database Type:"))
+        self.db_type_combo = QComboBox()
+        self.db_type_combo.addItem("SQL Server", DatabaseType.SQL_SERVER)
+        self.db_type_combo.addItem("PostgreSQL", DatabaseType.POSTGRESQL)
+        self.db_type_combo.addItem("Oracle", DatabaseType.ORACLE)
+        self.db_type_combo.addItem("MySQL", DatabaseType.MYSQL)
+        current_db_type_index = self._find_db_type_index(self.profile.db_type)
+        self.db_type_combo.setCurrentIndex(current_db_type_index)
+        self.db_type_combo.currentIndexChanged.connect(self.on_db_type_changed)
+        db_type_layout.addWidget(self.db_type_combo)
+        layout.addLayout(db_type_layout)
 
         # Server
         server_layout = QHBoxLayout()
@@ -79,15 +108,8 @@ class ConnectionDialog(QDialog):
         auth_layout = QHBoxLayout()
         auth_layout.addWidget(QLabel("Authentication:"))
         self.auth_combo = QComboBox()
-        self.auth_combo.addItem("Windows Authentication", AuthenticationMode.WINDOWS)
-        self.auth_combo.addItem("SQL Server Login", AuthenticationMode.SQL_SERVER)
-        current_index = (
-            1
-            if self.profile.authentication_mode == AuthenticationMode.SQL_SERVER
-            else 0
-        )
-        self.auth_combo.setCurrentIndex(current_index)
         self.auth_combo.currentIndexChanged.connect(self.on_auth_mode_changed)
+        self._populate_auth_options()
         auth_layout.addWidget(self.auth_combo)
         layout.addLayout(auth_layout)
 
@@ -146,16 +168,60 @@ class ConnectionDialog(QDialog):
         layout.addLayout(button_layout)
 
         self.setLayout(layout)
+        self.on_db_type_changed()
         self.on_auth_mode_changed()
 
-    def on_auth_mode_changed(self):
+    def _find_db_type_index(self, db_type: DatabaseType) -> int:
+        """Find database type combo index."""
+        if not hasattr(self, "db_type_combo"):
+            return 0
+        for idx in range(self.db_type_combo.count()):
+            if self.db_type_combo.itemData(idx) == db_type:
+                return idx
+        return 0
+
+    def _populate_auth_options(self) -> None:
+        """Populate auth options based on db type."""
+        selected_auth = self.auth_combo.currentData() if self.auth_combo.count() else None
+        self.auth_combo.blockSignals(True)
+        self.auth_combo.clear()
+
+        db_type = self.db_type_combo.currentData()
+        if db_type == DatabaseType.SQL_SERVER:
+            self.auth_combo.addItem("Windows Authentication", AuthenticationMode.WINDOWS)
+            self.auth_combo.addItem("SQL Server Login", AuthenticationMode.SQL_SERVER)
+        else:
+            self.auth_combo.addItem("Username / Password", AuthenticationMode.PASSWORD)
+
+        desired_mode = selected_auth or self.profile.authentication_mode
+        match_index = 0
+        for idx in range(self.auth_combo.count()):
+            if self.auth_combo.itemData(idx) == desired_mode:
+                match_index = idx
+                break
+        self.auth_combo.setCurrentIndex(match_index)
+        self.auth_combo.blockSignals(False)
+
+    def on_db_type_changed(self, *_args):
+        """Handle database type change."""
+        self._populate_auth_options()
+        self.on_auth_mode_changed()
+
+    def on_auth_mode_changed(self, *_args):
         """Handle authentication mode change."""
         auth_mode = self.auth_combo.currentData()
-        is_sql_auth = auth_mode == AuthenticationMode.SQL_SERVER
+        db_type = self.db_type_combo.currentData()
+        is_sql_server = db_type == DatabaseType.SQL_SERVER
+        needs_credentials = (
+            auth_mode in (AuthenticationMode.SQL_SERVER, AuthenticationMode.PASSWORD)
+            and is_sql_server
+        ) or (
+            auth_mode == AuthenticationMode.PASSWORD and db_type != DatabaseType.SQL_SERVER
+        )
 
-        self.username_input.setEnabled(is_sql_auth)
-        self.password_input.setEnabled(is_sql_auth)
-        self.save_password_check.setEnabled(is_sql_auth)
+        self.username_input.setEnabled(needs_credentials)
+        self.password_input.setEnabled(needs_credentials)
+        self.save_password_check.setEnabled(needs_credentials)
 
     def get_profile(self) -> ConnectionProfile:
         """Get configured connection profile."""
@@ -164,6 +230,7 @@ class ConnectionDialog(QDialog):
             server=self.server_input.text(),
             port=self.port_input.value(),
             database=self.database_input.text(),
+            db_type=self.db_type_combo.currentData(),
             authentication_mode=self.auth_combo.currentData(),
             username=self.username_input.text() or None,
             encrypt=self.encrypt_check.isChecked(),
@@ -176,6 +243,15 @@ class ConnectionDialog(QDialog):
         """Get entered password."""
         return self.password_input.text()
 
+    def _auth_requires_credentials(self, profile: ConnectionProfile) -> bool:
+        """Check if current auth mode needs username/password."""
+        if profile.db_type == DatabaseType.SQL_SERVER:
+            return profile.authentication_mode in (
+                AuthenticationMode.SQL_SERVER,
+                AuthenticationMode.PASSWORD,
+            )
+        return profile.authentication_mode == AuthenticationMode.PASSWORD
+
     def test_connection(self):
         """Test database connection."""
         profile = self.get_profile()
@@ -185,32 +261,32 @@ class ConnectionDialog(QDialog):
             return
 
         password = self.get_password()
+        needs_password = self._auth_requires_credentials(profile)
 
-        if profile.authentication_mode == AuthenticationMode.SQL_SERVER and not password:
-            QMessageBox.warning(self, "Validation Error", "Password is required for SQL Server authentication.")
+        if needs_password and not password:
+            QMessageBox.warning(self, "Validation Error", "Password is required for selected authentication mode.")
             return
 
         try:
             kwargs = profile.get_connection_kwargs(password)
-            conn = pymssql.connect(**kwargs, timeout=5)
+            if profile.db_type == DatabaseType.SQL_SERVER:
+                import pymssql
+
+                conn = pymssql.connect(**kwargs, timeout=5)
+            else:
+                raise NotImplementedError(f"{profile.db_type.value} connection test not wired yet")
             conn.close()
             QMessageBox.information(
                 self,
                 "Connection Successful",
                 f"Successfully connected to {profile.server}",
             )
-        except pymssql.DatabaseError as e:
+        except Exception as e:
             error_msg = str(e)
             QMessageBox.critical(
                 self,
                 "Connection Failed",
                 f"Failed to connect to database:\n\n{error_msg}",
-            )
-        except Exception as e:
-            QMessageBox.critical(
-                self,
-                "Error",
-                f"An unexpected error occurred:\n\n{str(e)}",
             )
 
     def load_saved_password(self):
@@ -232,12 +308,12 @@ class ConnectionDialog(QDialog):
             QMessageBox.warning(self, "Validation Error", "Server is required.")
             return
 
-        if profile.authentication_mode == AuthenticationMode.SQL_SERVER:
+        if self._auth_requires_credentials(profile):
             if not profile.username:
-                QMessageBox.warning(self, "Validation Error", "Username is required for SQL Server authentication.")
+                QMessageBox.warning(self, "Validation Error", "Username is required.")
                 return
             if not self.get_password():
-                QMessageBox.warning(self, "Validation Error", "Password is required for SQL Server authentication.")
+                QMessageBox.warning(self, "Validation Error", "Password is required.")
                 return
 
         self.password = self.password_input.text()

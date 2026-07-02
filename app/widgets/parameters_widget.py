@@ -88,16 +88,26 @@ class ParametersWidget(QWidget):
         font.setPointSize(9)
         return font
 
+    def clear_layout(self, layout):
+        """Recursively clear all items from a layout."""
+        while layout.count():
+            item = layout.takeAt(0)
+            if item.widget():
+                item.widget().deleteLater()
+            elif item.layout():
+                self.clear_layout(item.layout())
+
     def load_parameters(self, database: str, schema: str, procedure: str, parameters: List[Parameter]):
         """Load parameters into table and create input fields."""
+        # Clear old table and inputs first
+        self.params_table.clearContents()
+        self.params_table.setRowCount(0)
+
         self.procedure_info = (database, schema, procedure)
         self.parameters = parameters
 
-        # Clear previous inputs
-        for i in reversed(range(self.input_layout.count())):
-            widget = self.input_layout.takeAt(i).widget()
-            if widget:
-                widget.deleteLater()
+        # Clear previous inputs (including nested layouts)
+        self.clear_layout(self.input_layout)
         self.input_fields.clear()
 
         # Populate table
@@ -335,10 +345,7 @@ class ParametersWidget(QWidget):
         """Clear all parameters and fields."""
         self.parameters.clear()
         self.input_fields.clear()
+        self.params_table.clearContents()
         self.params_table.setRowCount(0)
         self.sql_preview.clear()
-
-        for i in reversed(range(self.input_layout.count())):
-            widget = self.input_layout.takeAt(i).widget()
-            if widget:
-                widget.deleteLater()
+        self.clear_layout(self.input_layout)

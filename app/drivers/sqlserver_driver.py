@@ -11,6 +11,7 @@ from app.drivers.database_driver import (
     Function,
     Table,
     ObjectDependency,
+    Parameter,
 )
 
 
@@ -339,6 +340,98 @@ class SQLServerDriver(DatabaseDriver):
             cursor.close()
 
         return calls
+
+    def get_procedure_parameters(self, database: str, schema: str, procedure: str) -> list:
+        """Get parameters for stored procedure."""
+        cursor = self.conn.cursor()
+        try:
+            cursor.execute(f"""
+                SELECT
+                    p.name,
+                    CASE
+                        WHEN p.is_output = 1 AND p.is_readonly = 0 THEN 'INOUT'
+                        WHEN p.is_output = 1 THEN 'OUT'
+                        ELSE 'IN'
+                    END as direction,
+                    TYPE_NAME(p.user_type_id) as data_type,
+                    p.max_length,
+                    p.precision,
+                    p.scale,
+                    p.is_readonly,
+                    p.has_default_value,
+                    ISNULL(p.default_value, ''),
+                    p.parameter_id
+                FROM [{database}].sys.parameters p
+                WHERE p.object_id = OBJECT_ID(N'[{database}].[{schema}].[{procedure}]')
+                AND p.parameter_id > 0
+                ORDER BY p.parameter_id
+            """)
+
+            params = []
+            for row in cursor.fetchall():
+                param = Parameter(
+                    name=row[0],
+                    direction=row[1],
+                    data_type=row[2],
+                    max_length=row[3] if row[3] and row[3] > 0 else None,
+                    precision=row[4] if row[4] else None,
+                    scale=row[5] if row[5] else None,
+                    is_readonly=bool(row[6]),
+                    has_default=bool(row[7]),
+                    default_value=row[8] if row[8] else None,
+                    ordinal_position=row[9]
+                )
+                params.append(param)
+
+            return params
+        finally:
+            cursor.close()
+
+    def get_function_parameters(self, database: str, schema: str, function: str) -> list:
+        """Get parameters for function."""
+        cursor = self.conn.cursor()
+        try:
+            cursor.execute(f"""
+                SELECT
+                    p.name,
+                    CASE
+                        WHEN p.is_output = 1 AND p.is_readonly = 0 THEN 'INOUT'
+                        WHEN p.is_output = 1 THEN 'OUT'
+                        WHEN p.parameter_id = 0 THEN 'RETURN'
+                        ELSE 'IN'
+                    END as direction,
+                    TYPE_NAME(p.user_type_id) as data_type,
+                    p.max_length,
+                    p.precision,
+                    p.scale,
+                    p.is_readonly,
+                    p.has_default_value,
+                    ISNULL(p.default_value, ''),
+                    p.parameter_id
+                FROM [{database}].sys.parameters p
+                WHERE p.object_id = OBJECT_ID(N'[{database}].[{schema}].[{function}]')
+                ORDER BY p.parameter_id
+            """)
+
+            params = []
+            for row in cursor.fetchall():
+                param = Parameter(
+                    name=row[0],
+                    direction=row[1],
+                    data_type=row[2],
+                    max_length=row[3] if row[3] and row[3] > 0 else None,
+                    precision=row[4] if row[4] else None,
+                    scale=row[5] if row[5] else None,
+                    is_readonly=bool(row[6]),
+                    has_default=bool(row[7]),
+                    default_value=row[8] if row[8] else None,
+                    ordinal_position=row[9]
+                )
+                params.append(param)
+
+            return params
+        finally:
+            cursor.close()
 
     def close(self) -> None:
         """Close database connection."""

@@ -51,6 +51,22 @@ class ObjectDependency:
     type: str
 
 
+@dataclass
+class Parameter:
+    """Stored procedure/function parameter."""
+    name: str
+    direction: str  # IN, OUT, INOUT, RETURN
+    data_type: str
+    max_length: Optional[int] = None
+    precision: Optional[int] = None
+    scale: Optional[int] = None
+    is_readonly: bool = False
+    has_default: bool = False
+    default_value: Optional[str] = None
+    ordinal_position: int = 0
+    description: Optional[str] = None
+
+
 class DatabaseDriver(ABC):
     """Abstract database driver interface. Implement for each target database."""
 
@@ -107,6 +123,16 @@ class DatabaseDriver(ABC):
     @abstractmethod
     def get_objects_by_table(self, database: str, table_name: str) -> List[ObjectDependency]:
         """Get procedures/functions/views that reference a specific table."""
+        pass
+
+    @abstractmethod
+    def get_procedure_parameters(self, database: str, schema: str, procedure: str) -> List['Parameter']:
+        """Get parameters for stored procedure."""
+        pass
+
+    @abstractmethod
+    def get_function_parameters(self, database: str, schema: str, function: str) -> List['Parameter']:
+        """Get parameters for function."""
         pass
 
     @abstractmethod

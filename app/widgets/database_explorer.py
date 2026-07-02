@@ -11,6 +11,7 @@ from app.db_accessor import DatabaseAccessor
 from app.drivers.database_driver import DatabaseDriver
 from app.widgets.sql_highlighter import SqlSyntaxHighlighter
 from app.widgets.loading_spinner import LoadingOverlay
+from app.widgets.parameters_widget import ParametersWidget
 
 
 ICON_MAP = {
@@ -115,9 +116,8 @@ class DatabaseExplorer(QWidget):
         SqlSyntaxHighlighter(self.source_text.document())
         self.tabs.addTab(self.source_text, "Source")
 
-        self.parameters_text = QTextEdit()
-        self.parameters_text.setReadOnly(True)
-        self.tabs.addTab(self.parameters_text, "Parameters")
+        self.parameters_widget = ParametersWidget()
+        self.tabs.addTab(self.parameters_widget, "Parameters")
 
         self.details_text = QTextEdit()
         self.details_text.setReadOnly(True)
@@ -330,7 +330,10 @@ class DatabaseExplorer(QWidget):
             source = self.accessor.get_procedure_source(database, schema, procedure)
             self.source_text.setText(source or f"No source found for {procedure}")
 
-            self.parameters_text.setText(f"Parameters for {schema}.{procedure}\n\n(To be implemented)")
+            # Load parameters
+            parameters = self.accessor.get_procedure_parameters(database, schema, procedure)
+            self.parameters_widget.load_parameters(database, schema, procedure, parameters)
+
             self.details_text.setText(f"Schema: {schema}\nType: Stored Procedure\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -346,7 +349,10 @@ class DatabaseExplorer(QWidget):
             source = self.accessor.get_function_source(database, schema, function)
             self.source_text.setText(source or f"No source found for {function}")
 
-            self.parameters_text.setText(f"Parameters for {schema}.{function}\n\n(To be implemented)")
+            # Load parameters
+            parameters = self.accessor.get_function_parameters(database, schema, function)
+            self.parameters_widget.load_parameters(database, schema, function, parameters)
+
             self.details_text.setText(f"Schema: {schema}\nType: Function\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -362,7 +368,9 @@ class DatabaseExplorer(QWidget):
             source = self.accessor.get_function_source(database, schema, view)
             self.source_text.setText(source or f"No source found for {view}")
 
-            self.parameters_text.setText(f"View: {schema}.{view}")
+            # Views have no parameters
+            self.parameters_widget.load_parameters("", "", "", [])
+
             self.details_text.setText(f"Schema: {schema}\nType: View\nDatabase: {database}")
 
             self.tabs.setCurrentIndex(0)
@@ -374,7 +382,7 @@ class DatabaseExplorer(QWidget):
         """Clear details panel."""
         self.procedure_label.setText("")
         self.source_text.clear()
-        self.parameters_text.clear()
+        self.parameters_widget.clear()
         self.details_text.clear()
 
     def on_close_details(self):

@@ -9,6 +9,7 @@ from app.drivers.database_driver import (
     Function,
     Table,
     ObjectDependency,
+    Parameter,
 )
 
 
@@ -70,6 +71,14 @@ class DatabaseAccessor:
         """Get procedures/functions/views that reference a specific table."""
         results = self.driver.get_objects_by_table(database, table_name)
         return [{'schema': r.schema, 'name': r.name, 'type': r.type} for r in results]
+
+    def get_procedure_parameters(self, database: str, schema: str, procedure: str) -> List[Parameter]:
+        """Get parameters for stored procedure."""
+        return self.driver.get_procedure_parameters(database, schema, procedure)
+
+    def get_function_parameters(self, database: str, schema: str, function: str) -> List[Parameter]:
+        """Get parameters for function."""
+        return self.driver.get_function_parameters(database, schema, function)
 
     def close(self) -> None:
         """Close database connection."""

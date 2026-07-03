@@ -1,5 +1,6 @@
 """SQL syntax highlighter for source code display."""
 
+from typing import Optional, Dict
 from PySide6.QtGui import QSyntaxHighlighter, QTextDocument, QTextCharFormat, QColor, QFont
 from PySide6.QtCore import Qt
 
@@ -7,28 +8,38 @@ from PySide6.QtCore import Qt
 class SqlSyntaxHighlighter(QSyntaxHighlighter):
     """Syntax highlighter for SQL code."""
 
-    def __init__(self, document: QTextDocument):
+    def __init__(self, document: QTextDocument, colors: Optional[Dict[str, str]] = None):
         super().__init__(document)
 
+        if colors is None:
+            colors = {
+                "keyword": "#0066CC",
+                "builtin": "#666666",
+                "string": "#CC0000",
+                "comment": "#669966",
+                "number": "#CC6600",
+                "function": "#9B6432",
+            }
+
         self.keyword_format = QTextCharFormat()
-        self.keyword_format.setForeground(QColor(0, 102, 204))
+        self.keyword_format.setForeground(QColor(colors["keyword"]))
         self.keyword_format.setFontWeight(QFont.Bold)
 
         self.builtin_format = QTextCharFormat()
-        self.builtin_format.setForeground(QColor(102, 102, 102))
+        self.builtin_format.setForeground(QColor(colors["builtin"]))
 
         self.string_format = QTextCharFormat()
-        self.string_format.setForeground(QColor(204, 0, 0))
+        self.string_format.setForeground(QColor(colors["string"]))
 
         self.comment_format = QTextCharFormat()
-        self.comment_format.setForeground(QColor(102, 153, 102))
+        self.comment_format.setForeground(QColor(colors["comment"]))
         self.comment_format.setFontItalic(True)
 
         self.number_format = QTextCharFormat()
-        self.number_format.setForeground(QColor(204, 102, 0))
+        self.number_format.setForeground(QColor(colors["number"]))
 
         self.function_format = QTextCharFormat()
-        self.function_format.setForeground(QColor(150, 100, 50))
+        self.function_format.setForeground(QColor(colors["function"]))
         self.function_format.setFontWeight(QFont.Bold)
 
         self.keywords = {
@@ -132,3 +143,13 @@ class SqlSyntaxHighlighter(QSyntaxHighlighter):
                 continue
 
             i += 1
+
+    def update_colors(self, colors: Dict[str, str]) -> None:
+        """Update syntax colors and rehighlight document."""
+        self.keyword_format.setForeground(QColor(colors["keyword"]))
+        self.builtin_format.setForeground(QColor(colors["builtin"]))
+        self.string_format.setForeground(QColor(colors["string"]))
+        self.comment_format.setForeground(QColor(colors["comment"]))
+        self.number_format.setForeground(QColor(colors["number"]))
+        self.function_format.setForeground(QColor(colors["function"]))
+        self.rehighlight()

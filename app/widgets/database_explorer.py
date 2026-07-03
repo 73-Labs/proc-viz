@@ -5,11 +5,13 @@ from PySide6.QtWidgets import (
     QTreeWidgetItem, QLineEdit, QTabWidget, QTextEdit,
     QSplitter, QPushButton, QLabel
 )
-from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QFont
+from PySide6.QtCore import Qt, QTimer, Signal
+from PySide6.QtGui import QFont, QKeySequence
+from PySide6.QtWidgets import QApplication
 from app.db_accessor import DatabaseAccessor
 from app.drivers.database_driver import DatabaseDriver
 from app.widgets.sql_highlighter import SqlSyntaxHighlighter
+from app.widgets.zoomable_text_edit import ZoomableTextEdit
 from app.widgets.loading_spinner import LoadingOverlay
 from app.widgets.parameters_widget import ParametersWidget
 
@@ -28,13 +30,18 @@ ICON_MAP = {
 class DatabaseExplorer(QWidget):
     """Database explorer matching reference layout."""
 
-    def __init__(self, driver: DatabaseDriver, profile):
+    zoom_changed = Signal(int)
+
+    def __init__(self, driver: DatabaseDriver, profile, syntax_colors=None, zoom_level=100):
         super().__init__()
         self.driver = driver
         self.profile = profile
         self.accessor = DatabaseAccessor(driver)
         self.current_database = profile.database
         self.procedure_count = 0
+        self.syntax_colors = syntax_colors or {}
+        self.highlighter = None
+        self.zoom_level = zoom_level
         self.init_ui()
         self.loading_overlay = LoadingOverlay(self, "Loading schemas...")
         QTimer.singleShot(0, self.load_procedures)
@@ -110,10 +117,12 @@ class DatabaseExplorer(QWidget):
 
         self.tabs = QTabWidget()
 
-        self.source_text = QTextEdit()
+        self.source_text = ZoomableTextEdit()
         self.source_text.setReadOnly(True)
         self.source_text.setFont(self.get_monospace_font())
-        SqlSyntaxHighlighter(self.source_text.document())
+        self.source_text.set_zoom_callback(self._on_zoom_callback)
+        self.highlighter = SqlSyntaxHighlighter(self.source_text.document(), self.syntax_colors)
+        self.set_zoom_level(self.zoom_level)
         self.tabs.addTab(self.source_text, "Source")
 
         self.parameters_widget = ParametersWidget()
@@ -127,9 +136,34 @@ class DatabaseExplorer(QWidget):
         return panel
 
     def get_monospace_font(self) -> QFont:
-        """Get monospace font for code."""
-        font = QFont("Courier")
-        font.setPointSize(9)
+        """Get monospace font for code (cross-platform)."""
+        font = QFont()
+        font_candidates = [
+            "JetBrains Mono",
+            "Fira Code",
+            "Cascadia Code",
+            "Source Code Pro",
+            "DejaVu Sans Mono",
+            "Liberation Mono",
+            "Consolas",
+            "Menlo",
+            "Monaco",
+            "Courier New",
+        ]
+        font.setStyleStrategy(QFont.PreferAntialias)
+        font.setPointSize(12)
+        font.setFixedPitch(True)
+
+        for family in font_candidates:
+            test_font = QFont(family)
+            test_font.setStyleStrategy(QFont.PreferAntialias)
+            fm = test_font.family()
+            if fm == family or family in fm:
+                font = test_font
+                font.setPointSize(12)
+                font.setFixedPitch(True)
+                break
+
         return font
 
     def load_procedures(self):
@@ -393,3 +427,58 @@ class DatabaseExplorer(QWidget):
     def get_procedure_count(self) -> int:
         """Get total procedure count."""
         return self.procedure_count
+
+    def update_theme(self, syntax_colors: dict) -> None:
+        """Update syntax highlighting colors."""
+        self.syntax_colors = syntax_colors
+        if self.highlighter:
+            self.highlighter.update_colors(syntax_colors)
+
+    def set_zoom_level(self, level: int) -> None:
+        """Set zoom level for code editor (50-200)."""
+        level = max(50, min(200, level))
+        self.zoom_level = level
+        font = self.get_monospace_font()
+        font.setPointSize(int(12 * level / 100))
+        self.source_text.setFont(font)
+        self.zoom_changed.emit(level)
+
+    def get_zoom_level(self) -> int:
+        """Get current zoom level."""
+        return self.zoom_level
+
+    def zoom_in(self) -> None:
+        """Zoom in (increase font size)."""
+        self.set_zoom_level(self.zoom_level + 10)
+
+    def zoom_out(self) -> None:
+        """Zoom out (decrease font size)."""
+        self.set_zoom_level(self.zoom_level - 10)
+
+    def reset_zoom(self) -> None:
+        """Reset zoom to 100%."""
+        self.set_zoom_level(100)
+
+    def keyPressEvent(self, event) -> None:
+        """Handle keyboard shortcuts for zoom."""
+        if event.modifiers() & Qt.ControlModifier:
+            if event.key() in (Qt.Key_Plus, Qt.Key_Equal):
+                self.zoom_in()
+                event.accept()
+                return
+            elif event.key() == Qt.Key_Minus:
+                self.zoom_out()
+                event.accept()
+                return
+            elif event.key() == Qt.Key_0:
+                self.reset_zoom()
+                event.accept()
+                return
+        super().keyPressEvent(event)
+
+    def _on_zoom_callback(self, action: str) -> None:
+        """Handle zoom callback from ZoomableTextEdit."""
+        if action == "zoom_in":
+            self.zoom_in()
+        elif action == "zoom_out":
+            self.zoom_out()

@@ -1,10 +1,12 @@
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
-    QMessageBox, QToolBar, QLineEdit, QComboBox, QSizePolicy
+    QMessageBox, QToolBar, QLineEdit, QComboBox, QSizePolicy, QApplication
 )
 from PySide6.QtCore import Qt
 from app.dialogs import ConnectionDialog, ConnectionManagerDialog
-from app.storage import ProfileManager
+from app.storage import ProfileManager, SettingsManager
+from app.themes.theme_manager import ThemeManager
+from app.themes.theme_definitions import ThemeDefinition
 from app.widgets import DatabaseExplorer
 from app.widgets.loading_spinner import LoadingOverlay
 from app.drivers.connection_manager import ConnectionManager
@@ -18,10 +20,13 @@ class MainWindow(QMainWindow):
         self.setGeometry(100, 100, 1400, 900)
         self.setWindowIcon(self.create_icon())
         self.profile_manager = ProfileManager()
+        self.settings_manager = SettingsManager()
+        self.theme_manager = ThemeManager()
         self.driver: DatabaseDriver = None
         self.explorer = None
         self.current_profile = None
 
+        self.init_theme()
         self.create_menu_bar()
         self.create_toolbar()
 
@@ -46,6 +51,45 @@ class MainWindow(QMainWindow):
         pixmap.fill(QColor(70, 130, 180))
         return QIcon(pixmap)
 
+    def init_theme(self) -> None:
+        """Initialize theme on startup."""
+        theme_name = self.settings_manager.get_theme()
+        self.theme_manager.set_theme(theme_name)
+        self.apply_theme()
+
+    def apply_theme(self) -> None:
+        """Apply current theme to application."""
+        stylesheet = self.theme_manager.generate_stylesheet()
+        QApplication.instance().setStyleSheet(stylesheet)
+        if self.explorer:
+            self.explorer.update_theme(self.theme_manager.get_syntax_colors())
+
+    def on_theme_changed(self, theme_name: str) -> None:
+        """Handle theme change."""
+        self.settings_manager.set_theme(theme_name)
+        self.theme_manager.set_theme(theme_name)
+        self.apply_theme()
+
+    def on_zoom_in(self) -> None:
+        """Zoom in code editor."""
+        if self.explorer:
+            self.explorer.zoom_in()
+
+    def on_zoom_out(self) -> None:
+        """Zoom out code editor."""
+        if self.explorer:
+            self.explorer.zoom_out()
+
+    def on_zoom_reset(self) -> None:
+        """Reset zoom to 100%."""
+        if self.explorer:
+            self.explorer.reset_zoom()
+
+    def on_explorer_zoom_changed(self, zoom_level: int) -> None:
+        """Handle zoom change from explorer."""
+        self.settings_manager.set_zoom_level(zoom_level)
+        self.zoom_level_label.setText(f"Zoom: {zoom_level}%")
+
     def create_menu_bar(self):
         """Create menu bar."""
         menubar = self.menuBar()
@@ -58,10 +102,17 @@ class MainWindow(QMainWindow):
         file_menu.addAction("Exit", self.close)
 
         edit_menu = menubar.addMenu("Edit")
-        edit_menu.addAction("Preferences")
 
         view_menu = menubar.addMenu("View")
         view_menu.addAction("Refresh", self.refresh_explorer)
+        view_menu.addSeparator()
+        view_menu.addAction("Zoom In (Ctrl++)", self.on_zoom_in)
+        view_menu.addAction("Zoom Out (Ctrl+-)", self.on_zoom_out)
+        view_menu.addAction("Reset Zoom (Ctrl+0)", self.on_zoom_reset)
+        view_menu.addSeparator()
+        theme_menu = view_menu.addMenu("Theme")
+        for theme_name in self.theme_manager.get_available_themes():
+            theme_menu.addAction(theme_name, lambda name=theme_name: self.on_theme_changed(name))
 
         database_menu = menubar.addMenu("Database")
         database_menu.addAction("Connect", self.open_connection_dialog)
@@ -120,6 +171,9 @@ class MainWindow(QMainWindow):
         self.status_label = QLabel("Not connected")
         self.statusBar().addWidget(self.status_label, 1)
 
+        self.zoom_level_label = QLabel("")
+        self.statusBar().addPermanentWidget(self.zoom_level_label)
+
         self.proc_count_label = QLabel("")
         self.statusBar().addPermanentWidget(self.proc_count_label)
 
@@ -136,6 +190,7 @@ class MainWindow(QMainWindow):
         self.content_layout.addWidget(label)
 
         self.status_label.setText("Not connected")
+        self.zoom_level_label.setText("")
         self.proc_count_label.setText("")
         self.connect_btn.setEnabled(True)
         self.disconnect_btn.setEnabled(False)
@@ -226,10 +281,15 @@ class MainWindow(QMainWindow):
             if widget:
                 widget.deleteLater()
 
-        self.explorer = DatabaseExplorer(self.driver, profile)
+        syntax_colors = self.theme_manager.get_syntax_colors()
+        zoom_level = self.settings_manager.get_zoom_level()
+        self.explorer = DatabaseExplorer(self.driver, profile, syntax_colors, zoom_level)
+        self.explorer.zoom_changed.connect(self.on_explorer_zoom_changed)
         self.content_layout.addWidget(self.explorer)
 
         self.status_label.setText(f"Connected to: {profile.server} - {profile.database}")
+        actual_zoom = self.explorer.get_zoom_level()
+        self.zoom_level_label.setText(f"Zoom: {actual_zoom}%")
         proc_count = self.explorer.get_procedure_count()
         self.proc_count_label.setText(f"{proc_count} routines")
 

@@ -96,8 +96,6 @@ class ConnectionProfile:
 
         if self.encrypt:
             kwargs["encryption"] = "require"
-        if self.trust_certificate:
-            kwargs["cafile"] = None
 
         return kwargs
 

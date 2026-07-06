@@ -5,8 +5,8 @@ from PySide6.QtWidgets import (
     QTreeWidgetItem, QLineEdit, QTabWidget, QTextEdit,
     QSplitter, QPushButton, QLabel
 )
-from PySide6.QtCore import Qt, QTimer, Signal
-from PySide6.QtGui import QFont, QKeySequence
+from PySide6.QtCore import Qt, QTimer, Signal, QPoint
+from PySide6.QtGui import QFont, QKeySequence, QIcon, QPixmap, QColor, QPainter, QPen
 from PySide6.QtWidgets import QApplication
 from app.db_accessor import DatabaseAccessor
 from app.drivers.database_driver import DatabaseDriver
@@ -16,14 +16,13 @@ from app.widgets.loading_spinner import LoadingOverlay
 from app.widgets.parameters_widget import ParametersWidget
 
 
-ICON_MAP = {
-    'OBJECT_OR_COLUMN': '📦',
-    'OBJECT_OR_TYPE': '📦',
-    'TYPE': '📋',
-    'SCHEMA': '📂',
-    'TABLE': '📊',
-    'PROCEDURE': '🔧',
-    'FUNCTION': '𝑓',
+ICON_COLORS = {
+    'SCHEMA': QColor(100, 150, 255),
+    'TABLE': QColor(0, 180, 100),
+    'PROCEDURE': QColor(255, 140, 0),
+    'FUNCTION': QColor(100, 200, 255),
+    'VIEW': QColor(150, 150, 0),
+    'DEFAULT': QColor(150, 150, 150),
 }
 
 
@@ -182,14 +181,16 @@ class DatabaseExplorer(QWidget):
                 self.loading_overlay.set_message(f"Loading schema {idx}/{total_schemas}: {schema.name}")
 
                 schema_item = QTreeWidgetItem(self.tree)
-                schema_item.setText(0, f"📋 {schema.name}")
+                schema_item.setText(0, schema.name)
+                schema_item.setIcon(0, self._create_schema_icon())
                 schema_item.setData(0, Qt.UserRole, ("schema", schema.database, schema.name))
 
                 procedures = self.accessor.get_procedures(self.current_database, schema.name)
                 if procedures:
                     for proc in procedures:
                         proc_item = QTreeWidgetItem(schema_item)
-                        proc_item.setText(0, f"🔧 {proc.name}")
+                        proc_item.setText(0, proc.name)
+                        proc_item.setIcon(0, self.get_icon_for_type('PROCEDURE'))
                         proc_item.setData(0, Qt.UserRole, ("procedure", self.current_database, schema.name, proc.name))
                         proc_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
                         placeholder = QTreeWidgetItem(proc_item)
@@ -200,7 +201,8 @@ class DatabaseExplorer(QWidget):
                 if functions:
                     for func in functions:
                         func_item = QTreeWidgetItem(schema_item)
-                        func_item.setText(0, f"𝑓 {func.name}")
+                        func_item.setText(0, func.name)
+                        func_item.setIcon(0, self.get_icon_for_type('FUNCTION'))
                         func_item.setData(0, Qt.UserRole, ("function", self.current_database, schema.name, func.name))
                         func_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
                         placeholder = QTreeWidgetItem(func_item)
@@ -250,14 +252,15 @@ class DatabaseExplorer(QWidget):
 
             for schema_name in sorted(schema_groups.keys()):
                 schema_item = QTreeWidgetItem(self.tree)
-                schema_item.setText(0, f"📋 {schema_name}")
+                schema_item.setText(0, schema_name)
+                schema_item.setIcon(0, self._create_schema_icon())
                 schema_item.setData(0, Qt.UserRole, ("schema", self.current_database, schema_name))
 
                 for obj in sorted(schema_groups[schema_name], key=lambda x: x['name']):
                     obj_type = obj['type']
-                    icon = self.get_icon_for_type(obj_type)
                     obj_item = QTreeWidgetItem(schema_item)
-                    obj_item.setText(0, f"{icon} {obj['name']}")
+                    obj_item.setText(0, obj['name'])
+                    obj_item.setIcon(0, self.get_icon_for_type(obj_type))
                     obj_item.setData(0, Qt.UserRole, (obj_type.lower(), self.current_database, schema_name, obj['name']))
                     obj_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
                     placeholder = QTreeWidgetItem(obj_item)
@@ -337,8 +340,8 @@ class DatabaseExplorer(QWidget):
             called = self.accessor.get_called_procedures(database, schema, name)
             for dep in called:
                 child = QTreeWidgetItem(item)
-                icon = self.get_icon_for_type(dep['type'])
-                child.setText(0, f"{icon} {dep['name']}")
+                child.setText(0, dep['name'])
+                child.setIcon(0, self.get_icon_for_type(dep['type']))
                 child.setData(0, Qt.UserRole, (dep['type'].lower(), database, dep['schema'], dep['name']))
                 child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
                 QTreeWidgetItem(child)
@@ -347,14 +350,53 @@ class DatabaseExplorer(QWidget):
         finally:
             self.loading_overlay.stop()
 
-    def get_icon_for_type(self, obj_type: str) -> str:
-        """Get icon for object type."""
-        icon_map = {
-            'PROCEDURE': '🔧',
-            'FUNCTION': '𝑓',
-            'VIEW': '📊',
-        }
-        return icon_map.get(obj_type, '📦')
+    def get_icon_for_type(self, obj_type: str) -> QIcon:
+        """Create icon for object type."""
+        pixmap = QPixmap(16, 16)
+        pixmap.fill(Qt.transparent)
+        painter = QPainter(pixmap)
+        painter.setRenderHint(QPainter.Antialiasing)
+
+        color = ICON_COLORS.get(obj_type, ICON_COLORS['DEFAULT'])
+        pen = QPen(color)
+        pen.setWidth(1.5)
+        painter.setPen(pen)
+        painter.setBrush(color)
+
+        if obj_type == 'SCHEMA':
+            painter.drawRect(2, 6, 12, 8)
+            painter.drawRect(2, 3, 6, 4)
+        elif obj_type == 'TABLE':
+            painter.drawRect(2, 3, 12, 10)
+            painter.drawLine(2, 7, 14, 7)
+            painter.drawLine(5, 3, 5, 13)
+            painter.drawLine(8, 3, 8, 13)
+            painter.drawLine(11, 3, 11, 13)
+        elif obj_type == 'PROCEDURE':
+            painter.drawEllipse(2, 5, 5, 6)
+            painter.drawEllipse(9, 5, 5, 6)
+            painter.drawRect(5, 8, 6, 1)
+            painter.drawLine(5, 4, 2, 1)
+            painter.drawLine(11, 4, 14, 1)
+        elif obj_type == 'FUNCTION':
+            font = painter.font()
+            font.setPointSize(8)
+            font.setBold(True)
+            painter.setFont(font)
+            painter.drawText(2, 2, 12, 12, Qt.AlignCenter, "f(x)")
+        elif obj_type == 'VIEW':
+            points = [QPoint(3, 10), QPoint(5, 7), QPoint(7, 9), QPoint(10, 5), QPoint(13, 8)]
+            painter.drawPolyline(points)
+            painter.drawEllipse(8, 11, 2, 2)
+        else:
+            painter.fillRect(3, 3, 10, 10, color)
+
+        painter.end()
+        return QIcon(pixmap)
+
+    def _create_schema_icon(self) -> QIcon:
+        """Create schema icon."""
+        return self.get_icon_for_type('SCHEMA')
 
     def load_procedure_details(self, database: str, schema: str, procedure: str):
         """Load procedure details."""

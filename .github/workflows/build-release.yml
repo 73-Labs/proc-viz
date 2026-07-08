@@ -33,8 +33,8 @@ jobs:
         run: |
           pyinstaller --onefile --windowed --name procedures-visualizer --add-data="app;app" main.py
 
-      - name: Build executable (macOS/Linux)
-        if: runner.os != 'Windows'
+      - name: Build executable (macOS)
+        if: runner.os == 'macOS'
         run: |
           pyinstaller \
             --onefile \
@@ -42,6 +42,70 @@ jobs:
             --name procedures-visualizer \
             --add-data app:app \
             main.py
+
+      - name: Build executable (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          # Build as onedir for AppImage bundling
+          pyinstaller \
+            --onedir \
+            --windowed \
+            --name procedures-visualizer \
+            --add-data app:app \
+            main.py
+
+      - name: Install Qt xcb dependencies for AppImage bundling (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libxcb-cursor0 \
+            libxkbcommon-x11-0 \
+            libxcb-icccm4 \
+            libxcb-keysyms1 \
+            libxcb-xkb1
+
+      - name: Setup AppImage build tools (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          APPIMAGE_DIR="${HOME}/.local/bin"
+          mkdir -p "$APPIMAGE_DIR"
+
+          # Download linuxdeploy
+          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -O "$APPIMAGE_DIR/linuxdeploy"
+          chmod +x "$APPIMAGE_DIR/linuxdeploy"
+
+          # Download linuxdeploy-plugin-qt
+          wget -q https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage -O "$APPIMAGE_DIR/linuxdeploy-plugin-qt"
+          chmod +x "$APPIMAGE_DIR/linuxdeploy-plugin-qt"
+
+          echo "$APPIMAGE_DIR" >> $GITHUB_PATH
+
+      - name: Build AppImage (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          # Create AppDir structure
+          APPDIR="${{ github.workspace }}/AppDir"
+          mkdir -p "$APPDIR/usr/bin"
+          mkdir -p "$APPDIR/usr/share/applications"
+          mkdir -p "$APPDIR/usr/share/icons/hicolor/256x256/apps"
+
+          # Copy PyInstaller onedir output to AppDir
+          cp -r dist/procedures-visualizer/* "$APPDIR/usr/bin/"
+
+          # Copy desktop file and icon
+          cp packaging/procedures-visualizer.desktop "$APPDIR/usr/share/applications/"
+          cp packaging/icon.png "$APPDIR/usr/share/icons/hicolor/256x256/apps/procedures-visualizer.png"
+
+          # Create AppRun symlink
+          mkdir -p "$APPDIR"
+          ln -sf usr/bin/procedures-visualizer "$APPDIR/AppRun"
+
+          # Build AppImage using linuxdeploy with Qt plugin
+          linuxdeploy --appdir "$APPDIR" --plugin qt --output appimage
+
+          # Move AppImage to dist
+          mv procedures-visualizer*.AppImage dist/
 
       - name: Create zip archive (Windows)
         if: runner.os == 'Windows'
@@ -51,18 +115,35 @@ jobs:
           Compress-Archive -Path procedures-visualizer.exe -DestinationPath procedures-visualizer-${{ runner.os }}.zip
           dir procedures-visualizer-*.zip
 
-      - name: Create zip archive (macOS/Linux)
-        if: runner.os != 'Windows'
+      - name: Create zip archive (macOS)
+        if: runner.os == 'macOS'
         run: |
           cd dist
           zip -r procedures-visualizer-${{ runner.os }}.zip procedures-visualizer
           ls -lh procedures-visualizer-*.zip
 
-      - name: Upload build artifact
+      - name: Package AppImage (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          cd dist
+          chmod +x procedures-visualizer*.AppImage
+          # Keep AppImage file directly (no extra zip needed for single file)
+          ls -lh procedures-visualizer*
+
+      - name: Upload build artifact (Windows/macOS)
+        if: runner.os != 'Linux'
         uses: actions/upload-artifact@v4
         with:
           name: procedures-visualizer-${{ runner.os }}
           path: dist/procedures-visualizer-${{ runner.os }}.zip
+          retention-days: 7
+
+      - name: Upload build artifact (Linux)
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: procedures-visualizer-Linux
+          path: dist/procedures-visualizer*.AppImage
           retention-days: 7
 
   release:
@@ -86,6 +167,16 @@ jobs:
         with:
           path: artifacts
 
+      - name: Prepare release artifacts
+        run: |
+          # Create a flat artifacts directory for release
+          mkdir -p release-assets
+          cp ./artifacts/procedures-visualizer-Windows/procedures-visualizer-Windows.zip release-assets/
+          cp ./artifacts/procedures-visualizer-macOS/procedures-visualizer-macOS.zip release-assets/
+          # Find and copy AppImage (handles version/run_number in filename)
+          cp ./artifacts/procedures-visualizer-Linux/*.AppImage release-assets/ || true
+          ls -lh release-assets/
+
       - name: Create Release with Assets
         uses: ncipollo/release-action@v1
         with:
@@ -95,6 +186,6 @@ jobs:
           draft: false
           prerelease: false
           artifacts: >-
-            ./artifacts/procedures-visualizer-Windows/procedures-visualizer-Windows.zip,
-            ./artifacts/procedures-visualizer-macOS/procedures-visualizer-macOS.zip,
-            ./artifacts/procedures-visualizer-Linux/procedures-visualizer-Linux.zip
+            release-assets/procedures-visualizer-Windows.zip,
+            release-assets/procedures-visualizer-macOS.zip,
+            release-assets/*.AppImage

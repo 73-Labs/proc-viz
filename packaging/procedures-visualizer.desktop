@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Procedures Visualizer
+Exec=procedures-visualizer
+Icon=procedures-visualizer
+Type=Application
+Categories=Utility;Database;
+Comment=Visualize SQL stored procedures and their execution flow

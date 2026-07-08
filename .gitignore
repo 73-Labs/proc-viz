@@ -217,5 +217,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# mcplens
-.mcplens/
+# codegraph
+.codegraph/
+
+# ide directories
+.idea/
+.vscode/

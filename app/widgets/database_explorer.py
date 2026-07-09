@@ -1,9 +1,12 @@
 """Database explorer with proper UI layout matching reference."""
 
+import json
+from datetime import datetime
+from typing import Optional
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QTreeWidget,
     QTreeWidgetItem, QLineEdit, QTabWidget, QTextEdit,
-    QSplitter, QPushButton, QLabel
+    QSplitter, QPushButton, QLabel, QFileDialog, QMessageBox
 )
 from PySide6.QtCore import Qt, QTimer, Signal, QPoint
 from PySide6.QtGui import QFont, QKeySequence, QIcon, QPixmap, QColor, QPainter, QPen
@@ -108,6 +111,10 @@ class DatabaseExplorer(QWidget):
         self.procedure_label.setStyleSheet("font-weight: bold; font-size: 12pt;")
         header_layout.addWidget(self.procedure_label)
         header_layout.addStretch()
+        export_btn = QPushButton("Export SQL")
+        export_btn.setMaximumWidth(140)
+        export_btn.clicked.connect(self.on_export_schema)
+        header_layout.addWidget(export_btn)
         close_btn = QPushButton("×")
         close_btn.setMaximumWidth(30)
         close_btn.clicked.connect(self.on_close_details)
@@ -500,6 +507,181 @@ class DatabaseExplorer(QWidget):
     def reset_zoom(self) -> None:
         """Reset zoom to 100%."""
         self.set_zoom_level(100)
+
+    def on_export_schema(self) -> None:
+        """Handle export schema button click."""
+        file_path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Export Database Schema",
+            f"{self.current_database}_schema.sql",
+            "SQL Files (*.sql);;All Files (*)"
+        )
+        if file_path:
+            try:
+                sql_script = self.export_schema()
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(sql_script)
+                QMessageBox.information(self, "Export Successful", f"Schema exported to {file_path}")
+            except Exception as e:
+                QMessageBox.critical(self, "Export Failed", f"Error exporting schema:\n{str(e)}")
+
+    def export_schema(self) -> str:
+        """Export complete database schema as SQL script."""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sql_lines = [
+            f"-- Database: {self.current_database}",
+            f"-- Exported: {timestamp}",
+            "",
+        ]
+
+        try:
+            schemas = self.accessor.get_schemas(self.current_database)
+            for schema in schemas:
+                sql_lines.append(f"-- ============================================")
+                sql_lines.append(f"-- Schema: {schema.name}")
+                sql_lines.append(f"-- ============================================")
+                sql_lines.append("")
+
+                # Get tables
+                try:
+                    tables = self.accessor.get_tables(self.current_database, schema.name)
+                    if tables:
+                        sql_lines.append(f"-- Tables in {schema.name}")
+                        for table in tables:
+                            try:
+                                table_ddl = self._get_table_create_statement(self.current_database, schema.name, table.name)
+                                if table_ddl:
+                                    sql_lines.append(table_ddl)
+                                    sql_lines.append("")
+                            except Exception:
+                                pass
+                except Exception:
+                    pass
+
+                # Get procedures
+                try:
+                    procedures = self.accessor.get_procedures(self.current_database, schema.name)
+                    if procedures:
+                        sql_lines.append(f"-- Procedures in {schema.name}")
+                        for proc in procedures:
+                            try:
+                                source = self.accessor.get_procedure_source(self.current_database, schema.name, proc.name)
+                                if source:
+                                    sql_lines.append(source)
+                                    sql_lines.append("")
+                            except Exception:
+                                pass
+                except Exception:
+                    pass
+
+                # Get functions
+                try:
+                    functions = self.accessor.get_functions(self.current_database, schema.name)
+                    if functions:
+                        sql_lines.append(f"-- Functions in {schema.name}")
+                        for func in functions:
+                            try:
+                                source = self.accessor.get_function_source(self.current_database, schema.name, func.name)
+                                if source:
+                                    sql_lines.append(source)
+                                    sql_lines.append("")
+                            except Exception:
+                                pass
+                except Exception:
+                    pass
+
+                sql_lines.append("")
+        except Exception as e:
+            raise RuntimeError(f"Failed to export schema: {str(e)}")
+
+        return "\n".join(sql_lines)
+
+    def _get_table_create_statement(self, database: str, schema: str, table: str) -> Optional[str]:
+        """Generate CREATE TABLE statement from SQL Server system views."""
+        try:
+            conn = self.driver.conn
+            cursor = conn.cursor()
+            try:
+                # Get table object ID
+                cursor.execute(f"SELECT OBJECT_ID(N'[{database}].[{schema}].[{table}]')")
+                table_id_result = cursor.fetchone()
+                if not table_id_result or table_id_result[0] is None:
+                    return None
+
+                # Get table columns and their properties
+                cursor.execute(f"""
+                    SELECT
+                        c.name,
+                        t.name,
+                        c.max_length,
+                        c.precision,
+                        c.scale,
+                        c.is_nullable,
+                        c.is_identity,
+                        dc.definition,
+                        c.column_id
+                    FROM [{database}].sys.columns c
+                    INNER JOIN [{database}].sys.types t ON c.user_type_id = t.user_type_id
+                    LEFT JOIN [{database}].sys.default_constraints dc ON c.default_object_id = dc.object_id
+                    WHERE c.object_id = OBJECT_ID(N'[{database}].[{schema}].[{table}]')
+                    ORDER BY c.column_id
+                """)
+
+                columns = cursor.fetchall()
+                if not columns:
+                    return None
+
+                # Get primary key constraint
+                cursor.execute(f"""
+                    SELECT kcu.column_name
+                    FROM [{database}].information_schema.table_constraints tc
+                    JOIN [{database}].information_schema.key_column_usage kcu
+                        ON tc.constraint_name = kcu.constraint_name
+                    WHERE tc.table_schema = %s
+                    AND tc.table_name = %s
+                    AND tc.constraint_type = 'PRIMARY KEY'
+                """, (schema, table))
+                pk_columns = set(row[0] for row in cursor.fetchall())
+
+                sql = f"CREATE TABLE [{schema}].[{table}] (\n"
+                col_defs = []
+
+                for col_name, col_type, max_len, precision, scale, nullable, is_identity, default_val, col_id in columns:
+                    col_def = f"    [{col_name}] {col_type}"
+
+                    # Add size info for variable-length types
+                    if col_type in ('varchar', 'char', 'nvarchar', 'nchar') and max_len and max_len > 0:
+                        size = max_len if col_type.startswith('n') is False else max_len // 2
+                        col_def += f"({size})" if size != -1 else "(MAX)"
+                    elif col_type in ('decimal', 'numeric') and precision:
+                        col_def += f"({precision},{scale})"
+
+                    # Add identity
+                    if is_identity:
+                        col_def += " IDENTITY(1,1)"
+
+                    # Add primary key
+                    if col_name in pk_columns:
+                        col_def += " PRIMARY KEY"
+
+                    # Add default
+                    if default_val:
+                        col_def += f" DEFAULT {default_val}"
+
+                    # Add nullable
+                    if not nullable:
+                        col_def += " NOT NULL"
+
+                    col_defs.append(col_def)
+
+                sql += ",\n".join(col_defs)
+                sql += "\n);"
+
+                return sql
+            finally:
+                cursor.close()
+        except Exception:
+            return None
 
     def keyPressEvent(self, event) -> None:
         """Handle keyboard shortcuts for zoom."""

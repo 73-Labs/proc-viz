@@ -79,6 +79,7 @@ class ThemeManager:
 
             QMenuBar::item:selected {{
                 background-color: {ui.hover};
+                color: {ui.foreground};
                 border-radius: 4px;
             }}
 
@@ -96,6 +97,7 @@ class ThemeManager:
 
             QMenu::item:selected {{
                 background-color: {ui.selection};
+                color: {ui.foreground};
                 border-radius: 0px;
             }}
 
@@ -177,6 +179,7 @@ class ThemeManager:
 
             QComboBox::drop-down:hover {{
                 background-color: {ui.hover};
+                color: {ui.foreground};
             }}
 
             QComboBox::down-arrow {{
@@ -206,6 +209,7 @@ class ThemeManager:
 
             QComboBox QAbstractItemView::item:selected {{
                 background-color: {ui.selection};
+                color: {ui.foreground};
             }}
 
             QLabel {{
@@ -228,11 +232,13 @@ class ThemeManager:
 
             QTreeWidget::item:hover {{
                 background-color: {ui.hover};
+                color: {ui.foreground};
                 border-radius: 2px;
             }}
 
             QTreeWidget::item:selected {{
                 background-color: {ui.selection};
+                color: {ui.foreground};
                 border-radius: 2px;
             }}
 

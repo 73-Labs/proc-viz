@@ -12,6 +12,18 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-17T00:00:00Z"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-07-17T00:00:00Z",
+      "error_message": "ERROR: Could not find qmake, please install or provide path using $QMAKE in linuxdeploy-plugin-qt",
+      "file": ".github/workflows/build-release.yml",
+      "root_cause": "Qt plugin requested for AppImage build, but PySide6 is pure Python and doesn't use qmake",
+      "fix": "Removed '--plugin qt' from linuxdeploy command and removed download of linuxdeploy-plugin-qt",
+      "tags": ["build", "appimage", "ci", "pyside6"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-17T00:00:00Z"
     }
   ]
 }

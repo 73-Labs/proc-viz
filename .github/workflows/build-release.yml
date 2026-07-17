@@ -100,8 +100,10 @@ jobs:
           # Build AppImage using linuxdeploy (PySide6 is pure Python, no Qt plugin needed)
           linuxdeploy --appdir "$APPDIR" --output appimage
 
-          # Move AppImage to dist
-          mv procedures-visualizer*.AppImage dist/
+          # appimagetool creates filename from desktop Name= field (Procedures_Visualizer-x86_64.AppImage)
+          # Rename to match expected pattern
+          mv Procedures_Visualizer-x86_64.AppImage procedures-visualizer-x86_64.AppImage
+          mv procedures-visualizer-x86_64.AppImage dist/
 
       - name: Create zip archive (Windows)
         if: runner.os == 'Windows'

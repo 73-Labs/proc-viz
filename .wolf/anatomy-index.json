@@ -1,0 +1,5110 @@
+{
+  "version": 1,
+  "meta": {
+    "lastScanned": "2026-07-17T01:35:09.857Z",
+    "fileCount": 503,
+    "hits": 0,
+    "misses": 0,
+    "renderedHash": "4b902bc8fbee58514113de02a1f2b23ad658ef0785173d7eaf66ca69ba2668c9",
+    "storeUpdatedAt": "2026-07-17T01:35:09.860Z"
+  },
+  "files": {
+    ".claude/commands/reframe.md": {
+      "description": "Mode: migrate [framework]",
+      "tokens": 551,
+      "hash": "17a75695be5d4629",
+      "size": 2221,
+      "mtimeMs": 1784252109770.0176,
+      "updatedAt": "2026-07-17T01:35:09.787Z",
+      "source": "scan"
+    },
+    ".claude/commands/security-audit.md": {
+      "description": "Layer 1 — Dependencies",
+      "tokens": 510,
+      "hash": "e6f7e0b7337c9c86",
+      "size": 2060,
+      "mtimeMs": 1784252109770.0176,
+      "updatedAt": "2026-07-17T01:35:09.788Z",
+      "source": "scan"
+    },
+    ".claude/rules/openwolf.md": {
+      "description": "",
+      "tokens": 328,
+      "hash": "6d735b2c1c54a916",
+      "size": 1323,
+      "mtimeMs": 1784252109754.0176,
+      "updatedAt": "2026-07-17T01:35:09.789Z",
+      "source": "scan"
+    },
+    ".claude/settings.json": {
+      "description": "",
+      "tokens": 514,
+      "hash": "f68759bb50af5ee4",
+      "size": 1799,
+      "mtimeMs": 1784252109754.0176,
+      "updatedAt": "2026-07-17T01:35:09.789Z",
+      "source": "scan"
+    },
+    ".codex/AGENTS.md": {
+      "description": "General Rules",
+      "tokens": 207,
+      "hash": "e678a7ff25a8121d",
+      "size": 826,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.789Z",
+      "source": "scan"
+    },
+    ".codex/config.toml": {
+      "description": "",
+      "tokens": 7,
+      "hash": "d37497c327812159",
+      "size": 24,
+      "mtimeMs": 1784252109770.0176,
+      "updatedAt": "2026-07-17T01:35:09.790Z",
+      "source": "scan"
+    },
+    ".codex/hooks.json": {
+      "description": "",
+      "tokens": 669,
+      "hash": "e920bd3cd1486861",
+      "size": 2341,
+      "mtimeMs": 1784252109770.0176,
+      "updatedAt": "2026-07-17T01:35:09.790Z",
+      "source": "scan"
+    },
+    ".codex/prompts/reframe.md": {
+      "description": "Mode: migrate [framework]",
+      "tokens": 551,
+      "hash": "17a75695be5d4629",
+      "size": 2221,
+      "mtimeMs": 1784252109770.0176,
+      "updatedAt": "2026-07-17T01:35:09.790Z",
+      "source": "scan"
+    },
+    ".codex/prompts/security-audit.md": {
+      "description": "Layer 1 — Dependencies",
+      "tokens": 510,
+      "hash": "e6f7e0b7337c9c86",
+      "size": 2060,
+      "mtimeMs": 1784252109770.0176,
+      "updatedAt": "2026-07-17T01:35:09.790Z",
+      "source": "scan"
+    },
+    ".github/workflows/build-release.yml": {
+      "description": "CI: Build and Release",
+      "tokens": 1796,
+      "hash": "4b65cbf94296bb72",
+      "size": 6283,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.791Z",
+      "source": "scan"
+    },
+    ".gitignore": {
+      "description": "Git ignore rules",
+      "tokens": 1250,
+      "hash": "a7c9d6064865792d",
+      "size": 4687,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.791Z",
+      "source": "scan"
+    },
+    "AGENTS.md": {
+      "description": "OpenWolf",
+      "tokens": 68,
+      "hash": "8c90778623bf50ac",
+      "size": 271,
+      "mtimeMs": 1784252109770.0176,
+      "updatedAt": "2026-07-17T01:35:09.791Z",
+      "source": "scan"
+    },
+    "app/__init__.py": {
+      "description": "Process visualization application.",
+      "tokens": 19,
+      "hash": "5ea3b18801c7ff86",
+      "size": 64,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.791Z",
+      "source": "scan"
+    },
+    "app/db_accessor.py": {
+      "description": "Multi-database accessor using pluggable drivers.",
+      "tokens": 1069,
+      "hash": "e475739d74c9657e",
+      "size": 3741,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.792Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "DatabaseAccessor",
+          "kind": "class",
+          "startLine": 16,
+          "endLine": 86,
+          "tokens": 994
+        }
+      ]
+    },
+    "app/dialogs/__init__.py": {
+      "description": "Application dialogs.",
+      "tokens": 63,
+      "hash": "f271f403bce19539",
+      "size": 220,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.792Z",
+      "source": "scan"
+    },
+    "app/dialogs/connection_dialog.py": {
+      "description": "_PymssqlShim: connect, init_ui, on_db_type_changed, on_auth_mode_changed + 5 more",
+      "tokens": 3426,
+      "hash": "865e333a177d3616",
+      "size": 11990,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.793Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ConnectionDialog",
+          "kind": "class",
+          "startLine": 35,
+          "endLine": 321,
+          "tokens": 3214
+        }
+      ]
+    },
+    "app/dialogs/connection_manager_dialog.py": {
+      "description": "ConnectionManagerDialog: init_ui, load_connections, get_selected_profile, edit_connection + 2 more",
+      "tokens": 1350,
+      "hash": "4b4144d350822314",
+      "size": 4724,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.793Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ConnectionManagerDialog",
+          "kind": "class",
+          "startLine": 17,
+          "endLine": 144,
+          "tokens": 1252
+        }
+      ]
+    },
+    "app/drivers/__init__.py": {
+      "description": "Database driver initialization and exports.",
+      "tokens": 114,
+      "hash": "09af47cc2b9aa367",
+      "size": 397,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.793Z",
+      "source": "scan"
+    },
+    "app/drivers/connection_manager.py": {
+      "description": "Manages database connections with support for multiple database types.",
+      "tokens": 768,
+      "hash": "df65f0d457c35104",
+      "size": 2686,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.794Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ConnectionManager",
+          "kind": "class",
+          "startLine": 9,
+          "endLine": 78,
+          "tokens": 680
+        }
+      ]
+    },
+    "app/drivers/database_driver.py": {
+      "description": "Abstract database driver interface for extensible multi-database support.",
+      "tokens": 1102,
+      "hash": "0a41768928ff93b3",
+      "size": 3857,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.794Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "SchemaObject",
+          "kind": "class",
+          "startLine": 9,
+          "endLine": 16,
+          "tokens": 35
+        },
+        {
+          "name": "Database",
+          "kind": "class",
+          "startLine": 17,
+          "endLine": 22,
+          "tokens": 29
+        },
+        {
+          "name": "Schema",
+          "kind": "class",
+          "startLine": 23,
+          "endLine": 28,
+          "tokens": 27
+        },
+        {
+          "name": "Procedure",
+          "kind": "class",
+          "startLine": 29,
+          "endLine": 34,
+          "tokens": 33
+        },
+        {
+          "name": "Function",
+          "kind": "class",
+          "startLine": 35,
+          "endLine": 40,
+          "tokens": 30
+        },
+        {
+          "name": "Table",
+          "kind": "class",
+          "startLine": 41,
+          "endLine": 46,
+          "tokens": 25
+        },
+        {
+          "name": "ObjectDependency",
+          "kind": "class",
+          "startLine": 47,
+          "endLine": 54,
+          "tokens": 34
+        },
+        {
+          "name": "Parameter",
+          "kind": "class",
+          "startLine": 55,
+          "endLine": 69,
+          "tokens": 119
+        },
+        {
+          "name": "DatabaseDriver",
+          "kind": "class",
+          "startLine": 70,
+          "endLine": 142,
+          "tokens": 712
+        }
+      ]
+    },
+    "app/drivers/driver_factory.py": {
+      "description": "Factory for creating database driver instances.",
+      "tokens": 610,
+      "hash": "4040bdc8a3a54119",
+      "size": 2134,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.794Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "DriverFactory",
+          "kind": "class",
+          "startLine": 8,
+          "endLine": 66,
+          "tokens": 551
+        }
+      ]
+    },
+    "app/drivers/initialization.py": {
+      "description": "check_pymssql_available",
+      "tokens": 53,
+      "hash": "49a808d58435c646",
+      "size": 183,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.794Z",
+      "source": "scan"
+    },
+    "app/drivers/odbc_manager.py": {
+      "description": "OdbcDriverManager: get_installed_drivers, has_sql_server_driver, get_available_driver, install_odbc_driver + 1 more",
+      "tokens": 2665,
+      "hash": "f94b1382f90262a6",
+      "size": 9327,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.795Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "OdbcDriverManager",
+          "kind": "class",
+          "startLine": 23,
+          "endLine": 255,
+          "tokens": 2556
+        }
+      ]
+    },
+    "app/drivers/sqlserver_driver.py": {
+      "description": "SQL Server database driver implementation.",
+      "tokens": 4917,
+      "hash": "6c25d09e98083f01",
+      "size": 17208,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.795Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "SQLServerDriver",
+          "kind": "class",
+          "startLine": 18,
+          "endLine": 440,
+          "tokens": 4838
+        }
+      ]
+    },
+    "app/main_window.py": {
+      "description": "MainWindow: create_icon, init_theme, apply_theme, on_theme_changed + 16 more",
+      "tokens": 3651,
+      "hash": "3c76638645a23692",
+      "size": 12778,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.796Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "MainWindow",
+          "kind": "class",
+          "startLine": 16,
+          "endLine": 337,
+          "tokens": 3464
+        }
+      ]
+    },
+    "app/models/__init__.py": {
+      "description": "Data models for the application.",
+      "tokens": 59,
+      "hash": "b1641cd1fdb3023d",
+      "size": 205,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.796Z",
+      "source": "scan"
+    },
+    "app/models/connection_profile.py": {
+      "description": "AuthenticationMode: to_dict, from_dict, get_connection_kwargs",
+      "tokens": 1566,
+      "hash": "e9b1c967c5445a55",
+      "size": 5480,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.796Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "AuthenticationMode",
+          "kind": "class",
+          "startLine": 7,
+          "endLine": 12,
+          "tokens": 32
+        },
+        {
+          "name": "DatabaseType",
+          "kind": "class",
+          "startLine": 13,
+          "endLine": 21,
+          "tokens": 50
+        },
+        {
+          "name": "ConnectionProfile",
+          "kind": "class",
+          "startLine": 22,
+          "endLine": 158,
+          "tokens": 1454
+        }
+      ]
+    },
+    "app/storage/__init__.py": {
+      "description": "Storage and persistence layer.",
+      "tokens": 55,
+      "hash": "1cb1186d5d894cb1",
+      "size": 191,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.796Z",
+      "source": "scan"
+    },
+    "app/storage/profile_manager.py": {
+      "description": "ProfileManager: PROFILES_FILE, PROFILES_FILE, save_profile, load_profile + 6 more",
+      "tokens": 1336,
+      "hash": "e0857b06ca24f401",
+      "size": 4674,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.797Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "_get_config_dir",
+          "kind": "fn",
+          "startLine": 10,
+          "endLine": 17,
+          "tokens": 78
+        },
+        {
+          "name": "ProfileManager",
+          "kind": "class",
+          "startLine": 18,
+          "endLine": 127,
+          "tokens": 1205
+        }
+      ]
+    },
+    "app/storage/settings.py": {
+      "description": "SettingsManager: get_theme, set_theme, get_zoom_level, set_zoom_level",
+      "tokens": 540,
+      "hash": "17c7be7dbaf63494",
+      "size": 1888,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.797Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "_get_config_dir",
+          "kind": "fn",
+          "startLine": 6,
+          "endLine": 14,
+          "tokens": 84
+        },
+        {
+          "name": "SettingsManager",
+          "kind": "class",
+          "startLine": 15,
+          "endLine": 58,
+          "tokens": 437
+        }
+      ]
+    },
+    "app/themes/__init__.py": {
+      "description": "",
+      "tokens": 0,
+      "hash": "e3b0c44298fc1c14",
+      "size": 0,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.797Z",
+      "source": "scan"
+    },
+    "app/themes/theme_definitions.py": {
+      "description": "from: get_theme, list_themes",
+      "tokens": 1152,
+      "hash": "49939ef874e1634a",
+      "size": 4031,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.797Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "SyntaxColors",
+          "kind": "class",
+          "startLine": 6,
+          "endLine": 16,
+          "tokens": 50
+        },
+        {
+          "name": "UIColors",
+          "kind": "class",
+          "startLine": 17,
+          "endLine": 29,
+          "tokens": 58
+        },
+        {
+          "name": "ThemeDefinition",
+          "kind": "class",
+          "startLine": 30,
+          "endLine": 178,
+          "tokens": 958
+        },
+        {
+          "name": "get_theme",
+          "kind": "fn",
+          "startLine": 179,
+          "endLine": 183,
+          "tokens": 34
+        },
+        {
+          "name": "list_themes",
+          "kind": "fn",
+          "startLine": 184,
+          "endLine": 187,
+          "tokens": 32
+        }
+      ]
+    },
+    "app/themes/theme_manager.py": {
+      "description": "ThemeManager: set_theme, get_current_theme, get_available_themes, subscribe + 4 more",
+      "tokens": 3341,
+      "hash": "cf9d64a33eaa4212",
+      "size": 11692,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.798Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ThemeManager",
+          "kind": "class",
+          "startLine": 6,
+          "endLine": 387,
+          "tokens": 3297
+        }
+      ]
+    },
+    "app/widgets/__init__.py": {
+      "description": "UI widgets for proc-viz.",
+      "tokens": 36,
+      "hash": "d5994f9052a1c801",
+      "size": 123,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.798Z",
+      "source": "scan"
+    },
+    "app/widgets/database_explorer.py": {
+      "description": "Database explorer with proper UI layout matching reference.",
+      "tokens": 7988,
+      "hash": "8bf3392352f7489f",
+      "size": 27959,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.799Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "DatabaseExplorer",
+          "kind": "class",
+          "startLine": 32,
+          "endLine": 709,
+          "tokens": 7675
+        }
+      ]
+    },
+    "app/widgets/loading_spinner.py": {
+      "description": "Loading spinner widget for async operations.",
+      "tokens": 895,
+      "hash": "2de02e273ff4341c",
+      "size": 3132,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "LoadingSpinner",
+          "kind": "class",
+          "startLine": 8,
+          "endLine": 50,
+          "tokens": 335
+        },
+        {
+          "name": "LoadingOverlay",
+          "kind": "class",
+          "startLine": 51,
+          "endLine": 104,
+          "tokens": 497
+        }
+      ]
+    },
+    "app/widgets/parameters_widget.py": {
+      "description": "Widget for displaying and testing procedure/function parameters.",
+      "tokens": 3944,
+      "hash": "2c606a7a84e33ab7",
+      "size": 13804,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "ParametersWidget",
+          "kind": "class",
+          "startLine": 14,
+          "endLine": 352,
+          "tokens": 3810
+        }
+      ]
+    },
+    "app/widgets/sql_highlighter.py": {
+      "description": "SQL syntax highlighter for source code display.",
+      "tokens": 1806,
+      "hash": "15539e3d650981b1",
+      "size": 6320,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "SqlSyntaxHighlighter",
+          "kind": "class",
+          "startLine": 8,
+          "endLine": 156,
+          "tokens": 1745
+        }
+      ]
+    },
+    "app/widgets/zoomable_text_edit.py": {
+      "description": "ZoomableTextEdit: wheelEvent, set_zoom_callback",
+      "tokens": 270,
+      "hash": "db46deee0f5f2ea1",
+      "size": 944,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan"
+    },
+    "ARCHITECTURE.md": {
+      "description": "Architecture",
+      "tokens": 2290,
+      "hash": "6f2d959db539e18c",
+      "size": 9288,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan"
+    },
+    "CLAUDE.md": {
+      "description": "OpenWolf",
+      "tokens": 394,
+      "hash": "3d2a82c1cbb3bcab",
+      "size": 1578,
+      "mtimeMs": 1784252109754.0176,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan"
+    },
+    "CONTRIBUTING.md": {
+      "description": "Contributing to proc-viz",
+      "tokens": 451,
+      "hash": "060b7ab8a1f194f1",
+      "size": 1803,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan"
+    },
+    "docker-compose.yml": {
+      "description": "Docker Compose services",
+      "tokens": 209,
+      "hash": "9a6f07919cc244eb",
+      "size": 729,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan"
+    },
+    "FEATURES.md": {
+      "description": "Features Guide",
+      "tokens": 2454,
+      "hash": "f6a69417c71a4792",
+      "size": 10020,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.800Z",
+      "source": "scan"
+    },
+    "GETTING_STARTED.md": {
+      "description": "Getting Started",
+      "tokens": 1036,
+      "hash": "aa472232b4980fae",
+      "size": 4195,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "init-db.sql": {
+      "description": "Create SQL Server login for app",
+      "tokens": 257,
+      "hash": "629fb12d2ca6b686",
+      "size": 899,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "LICENSE": {
+      "description": "Project license",
+      "tokens": 284,
+      "hash": "c254000c46fe0203",
+      "size": 1064,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "main.py": {
+      "description": "main",
+      "tokens": 72,
+      "hash": "1dfb6ae69dec1276",
+      "size": 249,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "packaging/procedures-visualizer.desktop": {
+      "description": "",
+      "tokens": 56,
+      "hash": "c7f08eeb87f0fbfc",
+      "size": 208,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "pyproject.toml": {
+      "description": "Python project configuration",
+      "tokens": 182,
+      "hash": "cb88d019da753dc8",
+      "size": 634,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "README.md": {
+      "description": "Project documentation",
+      "tokens": 2044,
+      "hash": "b20065884bc68e27",
+      "size": 8421,
+      "mtimeMs": 1784247839204.0554,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "requirements.txt": {
+      "description": "Python dependencies",
+      "tokens": 20,
+      "hash": "149777e27f4f7c2b",
+      "size": 80,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.801Z",
+      "source": "scan"
+    },
+    "tests/__init__.py": {
+      "description": "",
+      "tokens": 0,
+      "hash": "e3b0c44298fc1c14",
+      "size": 0,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.802Z",
+      "source": "scan"
+    },
+    "tests/test_connection_dialog.py": {
+      "description": "Tests: dialog_creation_empty_profile, dialog_creation_with_windows_profile, dialog_creation_with_sql_profile, windows_auth_disables_credentials + 1...",
+      "tokens": 2834,
+      "hash": "f78fd40655a6dc30",
+      "size": 9916,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.802Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "qapp",
+          "kind": "fn",
+          "startLine": 9,
+          "endLine": 17,
+          "tokens": 49
+        },
+        {
+          "name": "empty_profile",
+          "kind": "fn",
+          "startLine": 18,
+          "endLine": 23,
+          "tokens": 41
+        },
+        {
+          "name": "windows_profile",
+          "kind": "fn",
+          "startLine": 24,
+          "endLine": 35,
+          "tokens": 79
+        },
+        {
+          "name": "sql_profile",
+          "kind": "fn",
+          "startLine": 36,
+          "endLine": 48,
+          "tokens": 90
+        },
+        {
+          "name": "TestConnectionDialog",
+          "kind": "class",
+          "startLine": 49,
+          "endLine": 241,
+          "tokens": 2498
+        }
+      ]
+    },
+    "tests/test_connection_profile.py": {
+      "description": "Tests: windows_auth, sql_server_auth, create_windows_auth_profile, create_sql_server_auth_profile + 6 more",
+      "tokens": 1330,
+      "hash": "5aba2ca751f2b2df",
+      "size": 4654,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.802Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "TestAuthenticationMode",
+          "kind": "class",
+          "startLine": 5,
+          "endLine": 12,
+          "tokens": 66
+        },
+        {
+          "name": "TestConnectionProfile",
+          "kind": "class",
+          "startLine": 13,
+          "endLine": 137,
+          "tokens": 1237
+        }
+      ]
+    },
+    "tests/test_database_explorer.py": {
+      "description": "Tests for database explorer widget.",
+      "tokens": 1482,
+      "hash": "e69e0700e91e5205",
+      "size": 5186,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.802Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "qapp",
+          "kind": "fn",
+          "startLine": 22,
+          "endLine": 30,
+          "tokens": 51
+        },
+        {
+          "name": "mock_driver",
+          "kind": "fn",
+          "startLine": 31,
+          "endLine": 36,
+          "tokens": 34
+        },
+        {
+          "name": "test_profile",
+          "kind": "fn",
+          "startLine": 37,
+          "endLine": 48,
+          "tokens": 78
+        },
+        {
+          "name": "explorer",
+          "kind": "fn",
+          "startLine": 49,
+          "endLine": 72,
+          "tokens": 256
+        },
+        {
+          "name": "TestDatabaseExplorer",
+          "kind": "class",
+          "startLine": 73,
+          "endLine": 146,
+          "tokens": 934
+        }
+      ]
+    },
+    "tests/test_db_accessor.py": {
+      "description": "Tests for database accessor.",
+      "tokens": 1556,
+      "hash": "53d97231901e4a1e",
+      "size": 5445,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.802Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "mock_driver",
+          "kind": "fn",
+          "startLine": 18,
+          "endLine": 22,
+          "tokens": 29
+        },
+        {
+          "name": "TestDatabaseAccessor",
+          "kind": "class",
+          "startLine": 23,
+          "endLine": 145,
+          "tokens": 1438
+        }
+      ]
+    },
+    "tests/test_main.py": {
+      "description": "Tests: main_window_creation",
+      "tokens": 58,
+      "hash": "704f2838f6eaf715",
+      "size": 203,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.802Z",
+      "source": "scan"
+    },
+    "tests/test_profile_manager.py": {
+      "description": "Tests: save_profile_without_password, save_profile_with_password, save_profile_delete_password, load_profile + 13 more",
+      "tokens": 2799,
+      "hash": "46351e45d38bb707",
+      "size": 9796,
+      "mtimeMs": 1784247839208.0557,
+      "updatedAt": "2026-07-17T01:35:09.803Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "temp_profile_dir",
+          "kind": "fn",
+          "startLine": 11,
+          "endLine": 17,
+          "tokens": 51
+        },
+        {
+          "name": "profile_manager",
+          "kind": "fn",
+          "startLine": 18,
+          "endLine": 24,
+          "tokens": 60
+        },
+        {
+          "name": "TestProfileManager",
+          "kind": "class",
+          "startLine": 25,
+          "endLine": 280,
+          "tokens": 2613
+        }
+      ]
+    },
+    "venv/.gitignore": {
+      "description": "Git ignore rules",
+      "tokens": 19,
+      "hash": "36692e1840f82f75",
+      "size": 69,
+      "mtimeMs": 1784249312945.9263,
+      "updatedAt": "2026-07-17T01:35:09.803Z",
+      "source": "scan"
+    },
+    "venv/bin/activate": {
+      "description": "This file must be used with \"source bin/activate\" *from bash*",
+      "tokens": 583,
+      "hash": "867f69dc96721b09",
+      "size": 2186,
+      "mtimeMs": 1784249315485.8594,
+      "updatedAt": "2026-07-17T01:35:09.803Z",
+      "source": "scan"
+    },
+    "venv/bin/activate.csh": {
+      "description": "This file must be used with \"source bin/activate.csh\" *from csh*.",
+      "tokens": 248,
+      "hash": "0a3783d590353251",
+      "size": 927,
+      "mtimeMs": 1784249315485.8594,
+      "updatedAt": "2026-07-17T01:35:09.803Z",
+      "source": "scan"
+    },
+    "venv/bin/activate.fish": {
+      "description": "This file must be used with \"source <venv>/bin/activate.fish\" *from fish*",
+      "tokens": 587,
+      "hash": "e1e3b57977fb90c9",
+      "size": 2198,
+      "mtimeMs": 1784249315485.8594,
+      "updatedAt": "2026-07-17T01:35:09.803Z",
+      "source": "scan"
+    },
+    "venv/bin/Activate.ps1": {
+      "description": "Declares from",
+      "tokens": 2409,
+      "hash": "eb8ce20f580877d3",
+      "size": 9031,
+      "mtimeMs": 1781360281000,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/cffi-gen-src": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 67,
+      "hash": "b7022ad5dfce6fed",
+      "size": 249,
+      "mtimeMs": 1784249344033.1926,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/keyring": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 66,
+      "hash": "ddfbc702a3ad79ae",
+      "size": 244,
+      "mtimeMs": 1784249347233.1272,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/pip": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 68,
+      "hash": "2c04c712d77390ed",
+      "size": 255,
+      "mtimeMs": 1784249315357.8628,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/pip3": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 68,
+      "hash": "2c04c712d77390ed",
+      "size": 255,
+      "mtimeMs": 1784249315357.8628,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/pip3.13": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 68,
+      "hash": "2c04c712d77390ed",
+      "size": 255,
+      "mtimeMs": 1784249315357.8628,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/py.test": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "c13d3eff0f868119",
+      "size": 265,
+      "mtimeMs": 1784249342065.2336,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/pygmentize": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 67,
+      "hash": "ad7593ac069cd563",
+      "size": 249,
+      "mtimeMs": 1784249341533.2449,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/pyi-archive_viewer": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 73,
+      "hash": "24ac046b7251d81e",
+      "size": 272,
+      "mtimeMs": 1784249346969.1326,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/pyi-bindepend": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "4df2eece89a4786a",
+      "size": 267,
+      "mtimeMs": 1784249346969.1326,
+      "updatedAt": "2026-07-17T01:35:09.804Z",
+      "source": "scan"
+    },
+    "venv/bin/pyi-grab_version": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "69b1bf8d6a56ba5b",
+      "size": 270,
+      "mtimeMs": 1784249346969.1326,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyi-makespec": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "667d959f3c90bfc2",
+      "size": 266,
+      "mtimeMs": 1784249346969.1326,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyi-set_version": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "fa199a2e1af2ad28",
+      "size": 269,
+      "mtimeMs": 1784249346969.1326,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyinstaller": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 76,
+      "hash": "d8d6ebc8aff5dc8a",
+      "size": 283,
+      "mtimeMs": 1784249346973.1323,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-android-deploy": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 75,
+      "hash": "2325debd8cb0cb56",
+      "size": 280,
+      "mtimeMs": 1784249343569.2021,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-assistant": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "777535f20aa84c9b",
+      "size": 270,
+      "mtimeMs": 1784249343569.2021,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-balsam": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "0cb70fde04791706",
+      "size": 264,
+      "mtimeMs": 1784249343569.2021,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-balsamui": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "c228c926c0339bce",
+      "size": 268,
+      "mtimeMs": 1784249343569.2021,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-deploy": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "039678527d373068",
+      "size": 264,
+      "mtimeMs": 1784249343569.2021,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-designer": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "f49d705941de0eee",
+      "size": 268,
+      "mtimeMs": 1784249343569.2021,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-genpyi": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "1de8248b1bdffc6a",
+      "size": 264,
+      "mtimeMs": 1784249343569.2021,
+      "updatedAt": "2026-07-17T01:35:09.805Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-linguist": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "e6e71bc4ed369997",
+      "size": 268,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-lrelease": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "7d64464621f30f30",
+      "size": 268,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-lupdate": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "c7a25c194d3ca260",
+      "size": 266,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-metaobjectdump": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 75,
+      "hash": "2234a212e93dbe98",
+      "size": 280,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-project": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "192791b022550c5c",
+      "size": 266,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qml": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 69,
+      "hash": "80ff76b85bfd155c",
+      "size": 258,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qmlcachegen": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 74,
+      "hash": "a5a2e8d05c08e18b",
+      "size": 274,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qmlformat": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "0f1379fcb9b624b4",
+      "size": 270,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qmlimportscanner": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 76,
+      "hash": "32d17c3d26a71e4b",
+      "size": 284,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qmllint": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "bb9e1af8df390931",
+      "size": 266,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qmlls": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 70,
+      "hash": "61aff823b9fc5852",
+      "size": 262,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qmltyperegistrar": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 76,
+      "hash": "362febddf3397f3b",
+      "size": 284,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.806Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qsb": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 69,
+      "hash": "ba689f41f4249a8f",
+      "size": 258,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.807Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-qtpy2cpp": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "ca8f156fcba0a54c",
+      "size": 268,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.807Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-rcc": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 69,
+      "hash": "af718886f17223c5",
+      "size": 258,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.807Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-svgtoqml": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 72,
+      "hash": "bdf956360fe15beb",
+      "size": 268,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.807Z",
+      "source": "scan"
+    },
+    "venv/bin/pyside6-uic": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 69,
+      "hash": "32e4373cdf221ae6",
+      "size": 258,
+      "mtimeMs": 1784249343573.2021,
+      "updatedAt": "2026-07-17T01:35:09.807Z",
+      "source": "scan"
+    },
+    "venv/bin/pytest": {
+      "description": "-*- coding: utf-8 -*-",
+      "tokens": 71,
+      "hash": "c13d3eff0f868119",
+      "size": 265,
+      "mtimeMs": 1784249342069.2336,
+      "updatedAt": "2026-07-17T01:35:09.807Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_distutils_hack/__init__.py": {
+      "description": "don't import any costly modules",
+      "tokens": 1930,
+      "hash": "df81e6bcba34ee3e",
+      "size": 6755,
+      "mtimeMs": 1784249340045.2766,
+      "updatedAt": "2026-07-17T01:35:09.808Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "warn_distutils_present",
+          "kind": "fn",
+          "startLine": 10,
+          "endLine": 24,
+          "tokens": 167
+        },
+        {
+          "name": "clear_distutils",
+          "kind": "fn",
+          "startLine": 25,
+          "endLine": 44,
+          "tokens": 150
+        },
+        {
+          "name": "enabled",
+          "kind": "fn",
+          "startLine": 45,
+          "endLine": 62,
+          "tokens": 170
+        },
+        {
+          "name": "ensure_local_distutils",
+          "kind": "fn",
+          "startLine": 63,
+          "endLine": 79,
+          "tokens": 142
+        },
+        {
+          "name": "do_override",
+          "kind": "fn",
+          "startLine": 80,
+          "endLine": 91,
+          "tokens": 84
+        },
+        {
+          "name": "_TrivialRe",
+          "kind": "class",
+          "startLine": 92,
+          "endLine": 99,
+          "tokens": 54
+        },
+        {
+          "name": "DistutilsMetaFinder",
+          "kind": "class",
+          "startLine": 100,
+          "endLine": 213,
+          "tokens": 959
+        },
+        {
+          "name": "add_shim",
+          "kind": "fn",
+          "startLine": 214,
+          "endLine": 217,
+          "tokens": 21
+        },
+        {
+          "name": "shim",
+          "kind": "class",
+          "startLine": 218,
+          "endLine": 225,
+          "tokens": 47
+        },
+        {
+          "name": "insert_shim",
+          "kind": "fn",
+          "startLine": 226,
+          "endLine": 229,
+          "tokens": 19
+        },
+        {
+          "name": "_remove_shim",
+          "kind": "fn",
+          "startLine": 230,
+          "endLine": 240,
+          "tokens": 72
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_distutils_hack/override.py": {
+      "description": "",
+      "tokens": 13,
+      "hash": "12efecf8d17a5486",
+      "size": 44,
+      "mtimeMs": 1784249340045.2766,
+      "updatedAt": "2026-07-17T01:35:09.808Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/__init__.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 612,
+      "hash": "67fd91eaed65ca8b",
+      "size": 2142,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.809Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "get_hook_dirs",
+          "kind": "fn",
+          "startLine": 20,
+          "endLine": 48,
+          "tokens": 451
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/compat.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 439,
+      "hash": "d23f7495d45ff18a",
+      "size": 1535,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.809Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/pre_find_module_path/__init__.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 120,
+      "hash": "5ea4c1fffb8929e0",
+      "size": 420,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.809Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/pre_safe_import_module/__init__.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 120,
+      "hash": "5ea4c1fffb8929e0",
+      "size": 420,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.809Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/pre_safe_import_module/hook-tensorflow.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 405,
+      "hash": "da0dc321cd6c0891",
+      "size": 1415,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.809Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/pre_safe_import_module/hook-win32com.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 458,
+      "hash": "386bb4d5e1e65045",
+      "size": 1603,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.809Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/__init__.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 109,
+      "hash": "402bc6917dce53cc",
+      "size": 380,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.809Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_cryptography_openssl.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 216,
+      "hash": "8e7cc4924d4c6731",
+      "size": 755,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_enchant.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 258,
+      "hash": "3eb2aaa39c0ee524",
+      "size": 903,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_ffpyplayer.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 252,
+      "hash": "a8a3f06021509a60",
+      "size": 879,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_findlibs.py": {
+      "description": "you may not use this file except in compliance with the License.",
+      "tokens": 735,
+      "hash": "39e1c3773c8b0ae3",
+      "size": 2570,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "_pyi_rthook",
+          "kind": "fn",
+          "startLine": 17,
+          "endLine": 58,
+          "tokens": 435
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_nltk.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 153,
+      "hash": "279d1228ab62dccb",
+      "size": 534,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_osgeo.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 408,
+      "hash": "3c6231fdf74ad599",
+      "size": 1428,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_pygraphviz.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 308,
+      "hash": "1b96da897a37e5a1",
+      "size": 1076,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_pyproj.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 216,
+      "hash": "1817a11bdb1d82b7",
+      "size": 754,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_pyqtgraph_multiprocess.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 706,
+      "hash": "f8ba75e04868e6fa",
+      "size": 2469,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "_setup_pyqtgraph_multiprocess_hook",
+          "kind": "fn",
+          "startLine": 16,
+          "endLine": 53,
+          "tokens": 584
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_pythoncom.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 360,
+      "hash": "1d84982ef148585d",
+      "size": 1259,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.810Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_pywintypes.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 360,
+      "hash": "1d84982ef148585d",
+      "size": 1259,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.811Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_tensorflow.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 762,
+      "hash": "e62136eb34138037",
+      "size": 2665,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.811Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "_pyi_rthook",
+          "kind": "fn",
+          "startLine": 12,
+          "endLine": 54,
+          "tokens": 647
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_traitlets.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 231,
+      "hash": "eb3c43aa8c83b82c",
+      "size": 806,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.811Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_usb.py": {
+      "description": "This file is distributed under the terms of the Apache License 2.0",
+      "tokens": 919,
+      "hash": "6454f6df78130967",
+      "size": 3216,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.811Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "get_load_func",
+          "kind": "fn",
+          "startLine": 29,
+          "endLine": 86,
+          "tokens": 697
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/rthooks.dat": {
+      "description": "",
+      "tokens": 160,
+      "hash": "de78c98be55141ec",
+      "size": 599,
+      "mtimeMs": 1784249343597.2017,
+      "updatedAt": "2026-07-17T01:35:09.811Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/__init__.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 120,
+      "hash": "5ea4c1fffb8929e0",
+      "size": 420,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.812Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-_mssql.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 128,
+      "hash": "57f8f77dbf4bb278",
+      "size": 446,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.812Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-_mysql.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 156,
+      "hash": "ef1773213ec8f7c4",
+      "size": 544,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.812Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-accessible_output2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 174,
+      "hash": "51af4a9069dbc2df",
+      "size": 606,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.812Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-adbc_driver_manager.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 159,
+      "hash": "28f5ea89408e7d3b",
+      "size": 556,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.812Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-adbutils.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 306,
+      "hash": "405d8a58790b8af2",
+      "size": 1068,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.812Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-adios.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "dd08f0409c6a9576",
+      "size": 514,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.812Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-afmformats.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 167,
+      "hash": "1a282e6db2a81251",
+      "size": 582,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-aliyunsdkcore.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "ebd438f311a61143",
+      "size": 520,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-altair.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "6eddc81f29cc5d93",
+      "size": 514,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-amazonproduct.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 304,
+      "hash": "974099844eac1acb",
+      "size": 1063,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-anyio.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 187,
+      "hash": "fc991a35dee69620",
+      "size": 652,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-apkutils.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "2bc9496ea830f610",
+      "size": 516,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-appdirs.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 211,
+      "hash": "cf23c5c9441e4769",
+      "size": 736,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-appy.pod.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 167,
+      "hash": "cd761255c39a3354",
+      "size": 584,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-apscheduler.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 274,
+      "hash": "25867758223e52fc",
+      "size": 958,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-argon2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 130,
+      "hash": "b8bf4c371f9356fe",
+      "size": 455,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-astor.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "dfd7c0edf8e28a2f",
+      "size": 513,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.813Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-astroid.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 599,
+      "hash": "737bcbcf947d8295",
+      "size": 2096,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-astropy_iers_data.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 166,
+      "hash": "57fac1e47d583cd3",
+      "size": 581,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-astropy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 499,
+      "hash": "547182053829cd1f",
+      "size": 1744,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-av.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 595,
+      "hash": "8feb6949a02fa728",
+      "size": 2082,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-avro.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 281,
+      "hash": "451426a8dfb94573",
+      "size": 981,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-azurerm.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 240,
+      "hash": "afd3bdb37af8dfca",
+      "size": 838,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-backports.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 259,
+      "hash": "af4508967f9df1ea",
+      "size": 905,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-backports.zoneinfo.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 170,
+      "hash": "f7d03d2cdea48406",
+      "size": 595,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-bacon.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 479,
+      "hash": "96a7740a7638e415",
+      "size": 1675,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-bcrypt.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 145,
+      "hash": "861359a8a145e6a3",
+      "size": 505,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-bitsandbytes.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 319,
+      "hash": "6de2f947552ccb61",
+      "size": 1116,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.814Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-black.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 296,
+      "hash": "7d8294a23c60cd6d",
+      "size": 1036,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-bleak.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 201,
+      "hash": "666f565f43663d93",
+      "size": 702,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-blib2to3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 296,
+      "hash": "2e48f6715fd94ed8",
+      "size": 1035,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-blspy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 402,
+      "hash": "282a3da9699c161b",
+      "size": 1407,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-bokeh.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 264,
+      "hash": "fbc3946dea6969b0",
+      "size": 922,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-boto.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 225,
+      "hash": "25419a2ea92e4a5f",
+      "size": 786,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-boto3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 286,
+      "hash": "a48e668920e41ce5",
+      "size": 999,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-botocore.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 305,
+      "hash": "3778590bf0285468",
+      "size": 1067,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-branca.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "7d853681a28d0516",
+      "size": 514,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-BTrees.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 166,
+      "hash": "ec7f6e3e7c4022b9",
+      "size": 581,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.815Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cairocffi.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 456,
+      "hash": "c454919855f1a4ae",
+      "size": 1596,
+      "mtimeMs": 1784249343605.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cairosvg.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 373,
+      "hash": "2ed955352aab17b9",
+      "size": 1303,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-capstone.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 161,
+      "hash": "69a14682214b3f25",
+      "size": 562,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cassandra.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 238,
+      "hash": "f95846788bdc2892",
+      "size": 832,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-celpy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 280,
+      "hash": "93b8f13b3385c1fc",
+      "size": 979,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-certifi.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 210,
+      "hash": "90215e3d70f14701",
+      "size": 735,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cf_units.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 169,
+      "hash": "d7715637645a7529",
+      "size": 591,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cftime.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 173,
+      "hash": "deb57369360e9338",
+      "size": 605,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-chardet.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 400,
+      "hash": "a817b943bdfc84de",
+      "size": 1397,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-charset_normalizer.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 227,
+      "hash": "db3e132c0045b57b",
+      "size": 793,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.816Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cloudpickle.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 222,
+      "hash": "1c8ae8828cecbff6",
+      "size": 776,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cloudscraper.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "0d442c421c9d9490",
+      "size": 520,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-clr_loader.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 273,
+      "hash": "afab217ffc423a81",
+      "size": 954,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-clr.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 712,
+      "hash": "f3b428fb75c84aff",
+      "size": 2492,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cmocean.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "bf009b43086891f7",
+      "size": 529,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-compliance_checker.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 283,
+      "hash": "c0cebec400b34b74",
+      "size": 988,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-comtypes.client.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "88dd0e82832932f2",
+      "size": 683,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-countrycode.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "d61aaa3cd3e94313",
+      "size": 519,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-countryinfo.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 162,
+      "hash": "cff41598c7bcf64d",
+      "size": 565,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.817Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-Crypto.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 663,
+      "hash": "22689f238d573cde",
+      "size": 2320,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-Cryptodome.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 412,
+      "hash": "6bf7dbabb9230b56",
+      "size": 1441,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cryptography.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 1666,
+      "hash": "be16775aac7f9a58",
+      "size": 5831,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-CTkMessagebox.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 190,
+      "hash": "d362e68c89fc5355",
+      "size": 663,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cumm.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 158,
+      "hash": "6f1354922a662b37",
+      "size": 553,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-customtkinter.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "a68f3d496ad9d4c9",
+      "size": 520,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cv2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 2320,
+      "hash": "d83ed4dacf3ce7cb",
+      "size": 8117,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "find_cv2_extension",
+          "kind": "fn",
+          "startLine": 69,
+          "endLine": 169,
+          "tokens": 1467
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cx_Oracle.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 129,
+      "hash": "fd4c042aa1602661",
+      "size": 449,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-cytoolz.itertoolz.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 176,
+      "hash": "49dfccf806af9e0c",
+      "size": 614,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dash_bootstrap_components.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 153,
+      "hash": "e83ed075c668c73f",
+      "size": 533,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.818Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dash_core_components.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 151,
+      "hash": "c1ce47422e521959",
+      "size": 528,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dash_html_components.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 151,
+      "hash": "ec608e1210458e3f",
+      "size": 528,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dash_renderer.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "c129872abfcac62f",
+      "size": 521,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dash_table.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "18478945cd16da79",
+      "size": 518,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dash_uploader.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "4ea919459529481a",
+      "size": 521,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dash.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 217,
+      "hash": "3b37914009afea2c",
+      "size": 757,
+      "mtimeMs": 1784249343609.2014,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dask.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 215,
+      "hash": "485fb968027aca5c",
+      "size": 752,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-datasets.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "2f9d3c7a5555edac",
+      "size": 557,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dateparser.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 202,
+      "hash": "95dab9aa313dc211",
+      "size": 706,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dateparser.utils.strptime.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 174,
+      "hash": "c29df85454413454",
+      "size": 608,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.819Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dateutil.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "697c09bed6323e93",
+      "size": 516,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.820Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dbus_fast.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 172,
+      "hash": "7d6096587d475507",
+      "size": 601,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.820Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dclab.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 162,
+      "hash": "09f19d222e40dcb8",
+      "size": 567,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.820Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-ddgs.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 251,
+      "hash": "0b9be141c94b7050",
+      "size": 878,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.820Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-detectron2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "2f9d3c7a5555edac",
+      "size": 557,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.820Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-discid.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 407,
+      "hash": "aa1e0da6470af221",
+      "size": 1424,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.821Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-distorm3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 211,
+      "hash": "dbfe41a20e1df757",
+      "size": 736,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.821Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-distributed.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 430,
+      "hash": "606d88ab0c851585",
+      "size": 1502,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.821Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dns.rdata.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 165,
+      "hash": "e2a26e4975fba573",
+      "size": 577,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.821Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-docutils.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 228,
+      "hash": "f76efbe084798ff0",
+      "size": 798,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.821Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-docx.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "28c5df9a3b7b0272",
+      "size": 512,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-docx2pdf.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 179,
+      "hash": "14a269e4528fce04",
+      "size": 624,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-duckdb.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 274,
+      "hash": "984e4a6158ea90b1",
+      "size": 958,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-dynaconf.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 163,
+      "hash": "4acdc6ab5f6ad12f",
+      "size": 569,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-easyocr.py": {
+      "description": "Recognition backends are imported with `importlib.import_module()`.",
+      "tokens": 227,
+      "hash": "63f43e15ac1b5e89",
+      "size": 793,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eccodeslib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 227,
+      "hash": "0cc1d0e7967bb7fe",
+      "size": 794,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eckitlib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "47b5495cdb755a4a",
+      "size": 560,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eel.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 157,
+      "hash": "01a707099778d7ce",
+      "size": 548,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-emoji.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "001b6e2b3099a9a1",
+      "size": 513,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-enchant.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 842,
+      "hash": "272c916b3b76a2f7",
+      "size": 2945,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eng_to_ipa.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "60344cb31c08f55c",
+      "size": 518,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.822Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-ens.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 146,
+      "hash": "def0b777f10da392",
+      "size": 511,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-enzyme.parsers.ebml.core.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 207,
+      "hash": "c92fe0d40c4e5b6f",
+      "size": 722,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_abi.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 145,
+      "hash": "3479bb9dc8d6083f",
+      "size": 505,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_account.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 146,
+      "hash": "c23bd629cad32b67",
+      "size": 509,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_hash.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 233,
+      "hash": "97336c2d1e64bb3d",
+      "size": 814,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_keyfile.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 146,
+      "hash": "0984e7616bd1294c",
+      "size": 509,
+      "mtimeMs": 1784249343613.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_keys.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 191,
+      "hash": "e2be6498b4ed0113",
+      "size": 667,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_rlp.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 184,
+      "hash": "91058c5428b27388",
+      "size": 643,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_typing.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 168,
+      "hash": "73acb0c1ed44853a",
+      "size": 586,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_utils.network.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "d5d9941ab08b15af",
+      "size": 517,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-eth_utils.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 145,
+      "hash": "3911370734ab1c10",
+      "size": 507,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-exchangelib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 128,
+      "hash": "3e35310916d16e81",
+      "size": 447,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.823Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fabric.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 210,
+      "hash": "1fcee29fb85df911",
+      "size": 733,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fairscale.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "73fdf9ac9e30d1aa",
+      "size": 557,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fake_useragent.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 150,
+      "hash": "cbff840e1896eb61",
+      "size": 522,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-faker.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "e8c30118d1b4a190",
+      "size": 685,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-falcon.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 342,
+      "hash": "a8e7a51904ae7d15",
+      "size": 1194,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fastai.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "2f9d3c7a5555edac",
+      "size": 557,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fastparquet.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 420,
+      "hash": "cb74163b3af3f916",
+      "size": 1469,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fckitlib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "e61e0fbc69b18b79",
+      "size": 560,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-ffpyplayer.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 265,
+      "hash": "fa77b2bfcc035e10",
+      "size": 925,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fiona.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 246,
+      "hash": "22361b89a51e78a0",
+      "size": 860,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-flask_compress.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "50c1e32c71d80ed9",
+      "size": 512,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-flask_restx.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 156,
+      "hash": "2a74ee75a3e06324",
+      "size": 546,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.824Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-flex.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 158,
+      "hash": "abb987cf35cb90d5",
+      "size": 551,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-flirpy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 186,
+      "hash": "c66237113f2dd23d",
+      "size": 650,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fmpy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 229,
+      "hash": "64bb30f67c18a653",
+      "size": 799,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-folium.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 157,
+      "hash": "27cd5a2c3fbd141b",
+      "size": 547,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-freetype.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 167,
+      "hash": "b75aab2947716089",
+      "size": 584,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-frictionless.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 204,
+      "hash": "b487610c0f97e03a",
+      "size": 714,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fsspec.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 150,
+      "hash": "0fe435b86c02734a",
+      "size": 522,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-fvcore.nn.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "2f9d3c7a5555edac",
+      "size": 557,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gadfly.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 129,
+      "hash": "f6650d96235a748a",
+      "size": 449,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gbulb.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 164,
+      "hash": "40ccde591426ba51",
+      "size": 574,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gcloud.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 227,
+      "hash": "9a418b694a433025",
+      "size": 792,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.825Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-geopandas.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 154,
+      "hash": "7f8f2cd4953fc4c9",
+      "size": 536,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gitlab.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 210,
+      "hash": "686d911f6527284c",
+      "size": 735,
+      "mtimeMs": 1784249343617.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-globus_sdk.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 183,
+      "hash": "616988d037ce61aa",
+      "size": 639,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gmplot.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "deeb219a3639a527",
+      "size": 519,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gmsh.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 286,
+      "hash": "2c3b6529d0a332e9",
+      "size": 999,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gooey.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 169,
+      "hash": "6ea6aba9b1f85182",
+      "size": 589,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.api_core.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "d9b9ff9e66d04976",
+      "size": 513,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.cloud.bigquery.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 176,
+      "hash": "1c2f66a4548effae",
+      "size": 616,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.cloud.core.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "292dcb429698fd07",
+      "size": 515,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.cloud.kms_v1.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 203,
+      "hash": "eb7581b4751cd029",
+      "size": 709,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.cloud.pubsub_v1.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "34137402f5e89e88",
+      "size": 517,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.826Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.cloud.speech.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "20398190cd885d6f",
+      "size": 517,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.cloud.storage.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "20f22a14ae9f6c39",
+      "size": 518,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-google.cloud.translate.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "a84b37e31e1e2079",
+      "size": 520,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-googleapiclient.model.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 244,
+      "hash": "13e88322e65ce995",
+      "size": 852,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-grapheme.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "a990e059db0e5dea",
+      "size": 516,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-graphql_query.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 178,
+      "hash": "2895274f9330ee3d",
+      "size": 623,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-great_expectations.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 151,
+      "hash": "94612c1bb73c4826",
+      "size": 526,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gribapi.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 1137,
+      "hash": "f2dab10486efad32",
+      "size": 3977,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "get_eccodes_library_path",
+          "kind": "fn",
+          "startLine": 30,
+          "endLine": 90,
+          "tokens": 794
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-grpc.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "2ce48d03d20d15f6",
+      "size": 512,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-gtk.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 191,
+      "hash": "7ec08afe027e1abd",
+      "size": 667,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.827Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-h3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 181,
+      "hash": "974d9f7d2c53ea09",
+      "size": 633,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-h5py.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 172,
+      "hash": "d70714208b328d9e",
+      "size": 599,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-hdf5plugin.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 167,
+      "hash": "55758f7eaca0908d",
+      "size": 583,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-hexbytes.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 185,
+      "hash": "c4dc2331ef2e29c5",
+      "size": 646,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-HtmlTestRunner.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 171,
+      "hash": "b61cb9b5c432de52",
+      "size": 598,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-httplib2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 168,
+      "hash": "8df5dc496b3bf98e",
+      "size": 588,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-humanize.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 225,
+      "hash": "8ebacb5ed7491c66",
+      "size": 785,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-hydra.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 465,
+      "hash": "392dbdcc4e8ad4f7",
+      "size": 1627,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-ijson.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "dda053e54ffdb2b7",
+      "size": 530,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-imageio_ffmpeg.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 259,
+      "hash": "dbeb0f9a4e4e5ce0",
+      "size": 905,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-imageio.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 227,
+      "hash": "bc9853c00dc51702",
+      "size": 793,
+      "mtimeMs": 1784249343621.2012,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-imagingcontrol4.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "509f26e90db1e31f",
+      "size": 530,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-iminuit.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 241,
+      "hash": "3790852c47c8a1b4",
+      "size": 843,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.828Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-intake.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 154,
+      "hash": "c7655ccf6692fff1",
+      "size": 539,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-IPython.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 388,
+      "hash": "90a09f79a11be712",
+      "size": 1358,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-iso639.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 156,
+      "hash": "d44a4a507a7d22ce",
+      "size": 546,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-itk.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 224,
+      "hash": "cca44adbb93715b4",
+      "size": 784,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jaraco.text.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 168,
+      "hash": "7f24f2b93190b52a",
+      "size": 586,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jedi.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 167,
+      "hash": "515e5cf57c31ac96",
+      "size": 584,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jieba.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "d235727186068cbd",
+      "size": 513,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jinja2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 130,
+      "hash": "1451233b80a8a889",
+      "size": 452,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jinxed.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 143,
+      "hash": "e066f66b165dffe2",
+      "size": 498,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jira.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 177,
+      "hash": "3264dbc5073a332b",
+      "size": 617,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.829Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jsonpath_rw_ext.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "83d555972266e6f1",
+      "size": 513,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jsonrpcserver.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 174,
+      "hash": "b9638e753190a86d",
+      "size": 608,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jsonschema_specifications.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "9032b37f4f481e56",
+      "size": 532,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jsonschema.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 237,
+      "hash": "aa685c551bf20ff6",
+      "size": 828,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-jupyterlab.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "4d4de8d0880453dc",
+      "size": 518,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-kaleido.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "55032f9162b70756",
+      "size": 515,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-khmernltk.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 159,
+      "hash": "f5142e7773509620",
+      "size": 554,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-kinterbasdb.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 241,
+      "hash": "733b4eaf669412a4",
+      "size": 843,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-langchain_classic.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 150,
+      "hash": "16f583653a2a3afe",
+      "size": 525,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-langchain.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 604,
+      "hash": "74efc62b125cafb9",
+      "size": 2112,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-langcodes.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "ee19054c6152ce7d",
+      "size": 517,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.830Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-langdetect.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "433d2c8834bd7af5",
+      "size": 518,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-laonlp.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "65d10d80a8ff145c",
+      "size": 514,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lark.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "cd0ccb4f952ee63c",
+      "size": 512,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-ldfparser.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 151,
+      "hash": "108c31465a8c9b67",
+      "size": 527,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lensfunpy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 190,
+      "hash": "98f969dbaeb86b1e",
+      "size": 665,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-libaudioverse.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 171,
+      "hash": "634b676b4cdcbd75",
+      "size": 598,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-librosa.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 337,
+      "hash": "ac635f07358910d0",
+      "size": 1178,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lightgbm.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 268,
+      "hash": "ef4b004263d54ce9",
+      "size": 937,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lightning.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 239,
+      "hash": "eedd2b63b51aa1c5",
+      "size": 834,
+      "mtimeMs": 1784249343625.201,
+      "updatedAt": "2026-07-17T01:35:09.831Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-limits.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "2afa16fe1f18ff07",
+      "size": 514,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-linear_operator.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 155,
+      "hash": "6a634d829e2b6920",
+      "size": 542,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lingua.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "81eb11215bc1b118",
+      "size": 514,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-litestar.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "c49dd8d058f6b1b9",
+      "size": 531,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-llvmlite.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 202,
+      "hash": "077f9d7424a287d7",
+      "size": 705,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-logilab.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 269,
+      "hash": "c9bfae376460fb58",
+      "size": 939,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lxml.etree.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 138,
+      "hash": "5c5d5513402702d8",
+      "size": 481,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lxml.isoschematron.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 174,
+      "hash": "b0a7ab11ce9c4925",
+      "size": 608,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lxml.objectify.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 130,
+      "hash": "3195f4ceaa37fc5e",
+      "size": 452,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lxml.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 193,
+      "hash": "96ec45d8f50f1891",
+      "size": 673,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-lz4.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 158,
+      "hash": "16d681ec47545107",
+      "size": 553,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.832Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-magic.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 180,
+      "hash": "b41360e32d1da217",
+      "size": 630,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-mako.codegen.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 174,
+      "hash": "8f170c2b31e22be9",
+      "size": 608,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-mariadb.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 315,
+      "hash": "f158c432f787c023",
+      "size": 1102,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-markdown.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 274,
+      "hash": "1aecd7c05f35d617",
+      "size": 957,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-mecab.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "4e639a1e60ec56a5",
+      "size": 557,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-metpy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 218,
+      "hash": "0be8ca46ae3a0aab",
+      "size": 763,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-migrate.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 213,
+      "hash": "c33840179a0f2d81",
+      "size": 743,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-mimesis.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 176,
+      "hash": "9e36e05ae4c9000e",
+      "size": 616,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-minecraft_launcher_lib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "37a99fd39b31dc35",
+      "size": 529,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-mistune.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 219,
+      "hash": "f7f6e56e99c1ffff",
+      "size": 766,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.833Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-mnemonic.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "ed734986b0ffc5e4",
+      "size": 516,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-monai.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "3fa29f10e59b3d24",
+      "size": 557,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-moviepy.audio.fx.all.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 195,
+      "hash": "255f4936ce773ee0",
+      "size": 682,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-moviepy.video.fx.all.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 195,
+      "hash": "715e3304793efcbb",
+      "size": 682,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-mpl_toolkits.basemap.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 367,
+      "hash": "38dfab3d8f243bf2",
+      "size": 1283,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-msoffcrypto.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 164,
+      "hash": "e8f847bb4f7d92fe",
+      "size": 573,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nacl.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 294,
+      "hash": "625f5c27320e14ac",
+      "size": 1029,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-names.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 175,
+      "hash": "c53e6a26544c14ea",
+      "size": 610,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nanite.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 163,
+      "hash": "d56026e73afddf31",
+      "size": 570,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-narwhals.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 295,
+      "hash": "b18804308fe16b80",
+      "size": 1032,
+      "mtimeMs": 1784249343629.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nbconvert.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 190,
+      "hash": "86355f923f574b2e",
+      "size": 663,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.834Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nbdime.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "291c4bd2a0cdbd60",
+      "size": 514,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nbformat.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "a4e0caadb0f9139e",
+      "size": 516,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nbt.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 140,
+      "hash": "b9549dc4cf03cd20",
+      "size": 488,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-ncclient.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 247,
+      "hash": "dbbd9af289cbc784",
+      "size": 862,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-netCDF4.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 474,
+      "hash": "7888a3858c44898b",
+      "size": 1658,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nicegui.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "e76e0641354b8f46",
+      "size": 514,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-niquests.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 150,
+      "hash": "a9035bd4677c502c",
+      "size": 524,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nltk.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 231,
+      "hash": "9ae481a0eff29ce2",
+      "size": 808,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nnpy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 144,
+      "hash": "64a169333815b8c7",
+      "size": 503,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.835Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-notebook.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 299,
+      "hash": "d7052b76dbd3a978",
+      "size": 1046,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-numba.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 726,
+      "hash": "fbd6585b43ef3632",
+      "size": 2538,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-numbers_parser.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 168,
+      "hash": "4e442b13a9ef57e0",
+      "size": 586,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-numcodecs.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 223,
+      "hash": "7a9c486a023ebab8",
+      "size": 778,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cublas.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cuda_cupti.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cuda_nvcc.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 368,
+      "hash": "856542036a8a2dcb",
+      "size": 1287,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cuda_nvrtc.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cuda_runtime.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cudnn.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.836Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cufft.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.curand.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cusolver.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.cusparse.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.nccl.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.nvjitlink.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-nvidia.nvtx.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 196,
+      "hash": "aef5cf7cc2159968",
+      "size": 686,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-office365.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 194,
+      "hash": "78e6a3580426ddbf",
+      "size": 679,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-onnxruntime.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 165,
+      "hash": "f7c5fa05ae1d6ad1",
+      "size": 576,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.837Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-opencc.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "3fd98b26252d0fe7",
+      "size": 514,
+      "mtimeMs": 1784249343633.201,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-OpenGL_accelerate.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 218,
+      "hash": "e726044cffdd2d0c",
+      "size": 761,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-OpenGL.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 446,
+      "hash": "81d445e78c669bb5",
+      "size": 1558,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-openpyxl.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 182,
+      "hash": "9ba5a808a5359dca",
+      "size": 637,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-opentelemetry.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 369,
+      "hash": "424a32fb2efe3f32",
+      "size": 1290,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-orjson.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 178,
+      "hash": "6ea9e5ba47c6355e",
+      "size": 621,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-osgeo.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 832,
+      "hash": "63dbb00ba1112c4c",
+      "size": 2910,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pandas_flavor.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 228,
+      "hash": "f076b6a4ee117714",
+      "size": 795,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-panel.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 187,
+      "hash": "b584a427b73be57f",
+      "size": 654,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.838Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-parsedatetime.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 242,
+      "hash": "f50df390022be962",
+      "size": 844,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-parso.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 182,
+      "hash": "c32b6f7f614024e6",
+      "size": 635,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-passlib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 213,
+      "hash": "e3e450119a30fd89",
+      "size": 744,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-paste.exceptions.reporter.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 170,
+      "hash": "2aa9f7e66542996f",
+      "size": 594,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-patoolib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 190,
+      "hash": "65c3f4b67265221f",
+      "size": 665,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-patsy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 131,
+      "hash": "bd635b9f2cc02735",
+      "size": 456,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pdfminer.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "6c8f090509fbf910",
+      "size": 516,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pendulum.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 228,
+      "hash": "8dba060a6c653bb0",
+      "size": 795,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.839Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-phonenumbers.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 195,
+      "hash": "ce38f156e4021947",
+      "size": 682,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pingouin.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "f039cd7d8fc77e9b",
+      "size": 516,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pint.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 160,
+      "hash": "91955e12da8a6179",
+      "size": 558,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pinyin.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 211,
+      "hash": "83489203d265526d",
+      "size": 738,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-platformdirs.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 240,
+      "hash": "34212878ffd7297e",
+      "size": 839,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-plotly.py": {
+      "description": "/*.*', 'validators/**/*.*'])",
+      "tokens": 201,
+      "hash": "81c910a37cbb374a",
+      "size": 702,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-plum.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 200,
+      "hash": "76dee72fa9907da1",
+      "size": 699,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pointcept.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 144,
+      "hash": "668839db88ada3df",
+      "size": 503,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pptx.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 150,
+      "hash": "6764be213617ac41",
+      "size": 522,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.840Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-prettytable.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 190,
+      "hash": "2496d1bea6968fc9",
+      "size": 662,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-psutil.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 479,
+      "hash": "254e5b56c5768861",
+      "size": 1675,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-psychopy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 167,
+      "hash": "4e370089f2863149",
+      "size": 584,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-psycopg_binary.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 174,
+      "hash": "78f6bed1a59c1ba9",
+      "size": 606,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-psycopg_c.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 169,
+      "hash": "20ddf2f98151710e",
+      "size": 591,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-psycopg2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 130,
+      "hash": "01884b380b5c7ad2",
+      "size": 453,
+      "mtimeMs": 1784249343637.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-publicsuffix2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "d490229bf40c1ede",
+      "size": 521,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pubsub.core.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 166,
+      "hash": "e87ad814da629cc2",
+      "size": 580,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-puremagic.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "d17bdbd164653c1e",
+      "size": 517,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.841Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-py.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 150,
+      "hash": "53b5c323eaa7d4bf",
+      "size": 524,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyarrow.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 208,
+      "hash": "9189b85da27c1901",
+      "size": 727,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pycountry.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 198,
+      "hash": "09f66556204e24bb",
+      "size": 691,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pycparser.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 250,
+      "hash": "3f8dcafb20c8f179",
+      "size": 875,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pycrfsuite.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 144,
+      "hash": "4561e46ae0061d9e",
+      "size": 501,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pydantic.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 587,
+      "hash": "4916404a635b012a",
+      "size": 2053,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pydicom.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 906,
+      "hash": "f0e76f18133f3a02",
+      "size": 3170,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pydivert.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "7d33b3d9957c76cf",
+      "size": 530,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyecharts.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "2edf3acd92158d13",
+      "size": 516,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.842Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel_io.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 294,
+      "hash": "76f9b9103d29a853",
+      "size": 1026,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel_ods.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 173,
+      "hash": "233d1f589ff2bbe6",
+      "size": 604,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel_ods3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 168,
+      "hash": "26adaf50eb962c7e",
+      "size": 587,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel_odsr.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 161,
+      "hash": "9eb4fc8d5a8fe973",
+      "size": 562,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel_xls.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 167,
+      "hash": "a0a6f8fee0213789",
+      "size": 582,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel_xlsx.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 169,
+      "hash": "e1fe8ca116f996fe",
+      "size": 589,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel_xlsxw.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 164,
+      "hash": "43a9c50970fff0ce",
+      "size": 571,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel-io.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 155,
+      "hash": "15972ec288f2a7fa",
+      "size": 540,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel-ods.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 155,
+      "hash": "c26d9a676b87d9cc",
+      "size": 542,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel-ods3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 156,
+      "hash": "1253caf81b159336",
+      "size": 545,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.843Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel-odsr.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 155,
+      "hash": "1fc7f72ae7a654c2",
+      "size": 541,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel-xls.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 155,
+      "hash": "e11d23ff3ae9fdfd",
+      "size": 542,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel-xlsx.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 156,
+      "hash": "f028b0ed781c9fd8",
+      "size": 545,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel-xlsxw.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 157,
+      "hash": "7dd52a915cd6f255",
+      "size": 548,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcel.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 363,
+      "hash": "3b80315a08c702a1",
+      "size": 1270,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyexcelerate.Writer.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "2ff2b1c91d9adbb7",
+      "size": 520,
+      "mtimeMs": 1784249343641.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pygraphviz.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 1780,
+      "hash": "76f690258934fda5",
+      "size": 6227,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "_collect_graphviz_files",
+          "kind": "fn",
+          "startLine": 21,
+          "endLine": 146,
+          "tokens": 1615
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pygwalker.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "ae238135ffd35283",
+      "size": 517,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pylibmagic.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 183,
+      "hash": "1c28b65516d47814",
+      "size": 638,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.844Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pylint.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 800,
+      "hash": "ec21a0384964e3e8",
+      "size": 2797,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan",
+      "symbols": [
+        {
+          "name": "_filter_func",
+          "kind": "fn",
+          "startLine": 68,
+          "endLine": 76,
+          "tokens": 65
+        }
+      ]
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pylsl.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 388,
+      "hash": "aa86463c8c51e57d",
+      "size": 1356,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pymediainfo.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 492,
+      "hash": "4991e65e55c8de18",
+      "size": 1720,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pymeshlab.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 684,
+      "hash": "5e1c4d57c969f4eb",
+      "size": 2391,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pymorphy3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 252,
+      "hash": "5a288c6a96ad3d0f",
+      "size": 882,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pymssql.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 201,
+      "hash": "96fc574903d63a35",
+      "size": 702,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pynng.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 144,
+      "hash": "3d3f88de47063579",
+      "size": 504,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pynput.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 150,
+      "hash": "06cb792bbac9db1e",
+      "size": 522,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyodbc.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 229,
+      "hash": "3b8c713fedd4623d",
+      "size": 800,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyopencl.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 182,
+      "hash": "05899d9859967cbb",
+      "size": 636,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.845Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pypdfium2_raw.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 190,
+      "hash": "f61d3afa376f930c",
+      "size": 664,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pypdfium2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 156,
+      "hash": "9df430fe3ae5a728",
+      "size": 543,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pypemicro.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 440,
+      "hash": "000711aa60d3f7df",
+      "size": 1537,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyphen.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 147,
+      "hash": "4ce2088b35fdcec4",
+      "size": 514,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyppeteer.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 163,
+      "hash": "b5005fb431e347a5",
+      "size": 569,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyproj.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 862,
+      "hash": "7c495c18c47deecd",
+      "size": 3015,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pypsexec.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 190,
+      "hash": "d5db09a57c5049ff",
+      "size": 663,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pypylon.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 715,
+      "hash": "d2556c78a2a7f1af",
+      "size": 2502,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.846Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyqtgraph.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 779,
+      "hash": "4d5ffcdffe3df82b",
+      "size": 2724,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyshark.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 256,
+      "hash": "4222b99e09c62607",
+      "size": 894,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pysnmp.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 178,
+      "hash": "55316eef438a367b",
+      "size": 620,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pystray.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 185,
+      "hash": "cf0ae64a446a72a0",
+      "size": 645,
+      "mtimeMs": 1784249343645.2007,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-PyTaskbar.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "86edebfa3c973298",
+      "size": 516,
+      "mtimeMs": 1784249343601.2014,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pytest.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "2acc1189903899ce",
+      "size": 530,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pythainlp.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "2e3632699e9b8a9a",
+      "size": 517,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pythoncom.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 375,
+      "hash": "f0136823e5f37457",
+      "size": 1310,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pytokens.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 202,
+      "hash": "2d8add2f4e0d88fb",
+      "size": 704,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyttsx.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 195,
+      "hash": "0dcfe4d5c38cad38",
+      "size": 680,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.847Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyttsx3.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 273,
+      "hash": "b5228019ee658b76",
+      "size": 953,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyviz_comms.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "b48a2e0d120f5ccb",
+      "size": 519,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pyvjoy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 149,
+      "hash": "cffe69cdd8658d30",
+      "size": 520,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pywintypes.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 375,
+      "hash": "3f5737db43a96746",
+      "size": 1312,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-pywt.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 250,
+      "hash": "87ae8b1e2132b2d3",
+      "size": 875,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-qtmodern.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 154,
+      "hash": "62cc4cb9ec4ebae9",
+      "size": 539,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-radicale.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 162,
+      "hash": "7e205e045759105e",
+      "size": 566,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-raven.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 136,
+      "hash": "64c8efb3f6cc3332",
+      "size": 474,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-rawpy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 157,
+      "hash": "5279f70e68bed433",
+      "size": 549,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.848Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-rdflib.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 152,
+      "hash": "ad920b600207c552",
+      "size": 530,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-redmine.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 132,
+      "hash": "581eb1bcf9ed4c43",
+      "size": 459,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-regex.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 129,
+      "hash": "35bc133b16de681d",
+      "size": 450,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-reportlab.lib.utils.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 142,
+      "hash": "a59a913503ab8ad6",
+      "size": 495,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-reportlab.pdfbase._fontdata.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 216,
+      "hash": "b445d9a297731a85",
+      "size": 754,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-resampy.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 171,
+      "hash": "bc05dc150345ed3d",
+      "size": 596,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-rich.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 195,
+      "hash": "3c63af0c5418724f",
+      "size": 680,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-rlp.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 181,
+      "hash": "3196912cf4fecb1a",
+      "size": 631,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-rpy2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 151,
+      "hash": "8f0df1ecc1736755",
+      "size": 526,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-rtree.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 567,
+      "hash": "1fb7b6e14966e2d6",
+      "size": 1982,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.849Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-ruamel.yaml.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 486,
+      "hash": "2c7ca52d6a0d1936",
+      "size": 1698,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.850Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-rubicon.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 164,
+      "hash": "40ccde591426ba51",
+      "size": 574,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.850Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-sacremoses.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 148,
+      "hash": "966eba704ef574aa",
+      "size": 518,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.850Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-sam2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 391,
+      "hash": "a3ef2b14db0043e2",
+      "size": 1368,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.850Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-saml2.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 326,
+      "hash": "4b552a412ab8aac2",
+      "size": 1138,
+      "mtimeMs": 1784249343649.2004,
+      "updatedAt": "2026-07-17T01:35:09.850Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks/hook-schwifty.py": {
+      "description": "This file is distributed under the terms of the GNU General Public",
+      "tokens": 162,
+      "hash": "291f0d5cfeab5b2b",
+      "size": 566,
+      "mtimeMs": 1784249343653.2004,
+      "updatedAt": "2026-07-17T01:35:09.850Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/distutils-precedence.pth": {
+      "description": "",
+      "tokens": 41,
+      "hash": "2638ce9e2500e572",
+      "size": 151,
+      "mtimeMs": 1784249340041.2766,
+      "updatedAt": "2026-07-17T01:35:09.851Z",
+      "source": "scan"
+    },
+    "venv/lib/python3.13/site-packages/py.py": {
+      "description": "shim for pylib going away",
+      "tokens": 94,
+      "hash": "b71675b5d9845ba0",
+      "size": 329,
+      "mtimeMs": 1784249341781.2397,
+      "updatedAt": "2026-07-17T01:35:09.852Z",
+      "source": "scan"
+    },
+    "venv/pyvenv.cfg": {
+      "description": "",
+      "tokens": 48,
+      "hash": "3033aa05854ea992",
+      "size": 177,
+      "mtimeMs": 1784249312945.9263,
+      "updatedAt": "2026-07-17T01:35:09.853Z",
+      "source": "scan"
+    }
+  }
+}

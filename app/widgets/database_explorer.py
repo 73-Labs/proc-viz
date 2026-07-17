@@ -6,7 +6,8 @@ from typing import Optional
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QTreeWidget,
     QTreeWidgetItem, QLineEdit, QTabWidget, QTextEdit,
-    QSplitter, QPushButton, QLabel, QFileDialog, QMessageBox
+    QSplitter, QPushButton, QLabel, QFileDialog, QMessageBox,
+    QCheckBox, QComboBox
 )
 from PySide6.QtCore import Qt, QTimer, Signal, QPoint
 from PySide6.QtGui import QFont, QKeySequence, QIcon, QPixmap, QColor, QPainter, QPen
@@ -44,6 +45,8 @@ class DatabaseExplorer(QWidget):
         self.syntax_colors = syntax_colors or {}
         self.highlighter = None
         self.zoom_level = zoom_level
+        self.lazy_load_enabled = True
+        self.loaded_schemas = set()
         self.init_ui()
         self.loading_overlay = LoadingOverlay(self, "Loading schemas...")
         QTimer.singleShot(0, self.load_procedures)
@@ -77,12 +80,25 @@ class DatabaseExplorer(QWidget):
         header_label.setStyleSheet("font-weight: bold; font-size: 11pt;")
         header_layout.addWidget(header_label)
         header_layout.addStretch()
+        self.lazy_load_checkbox = QCheckBox("Lazy Load")
+        self.lazy_load_checkbox.setChecked(True)
+        self.lazy_load_checkbox.stateChanged.connect(self.on_lazy_load_toggled)
+        header_layout.addWidget(self.lazy_load_checkbox)
         layout.addLayout(header_layout)
 
         self.filter_input = QLineEdit()
         self.filter_input.setPlaceholderText("Filter routines (Ctrl+K)")
         self.filter_input.textChanged.connect(self.on_filter_changed)
         layout.addWidget(self.filter_input)
+
+        table_search_layout = QHBoxLayout()
+        self.schema_selector = QComboBox()
+        self.schema_selector.setMaximumWidth(120)
+        self.schema_selector.addItem("All Schemas")
+        table_search_layout.addWidget(QLabel("Schema:"))
+        table_search_layout.addWidget(self.schema_selector)
+        table_search_layout.addStretch()
+        layout.addLayout(table_search_layout)
 
         self.table_filter_input = QLineEdit()
         self.table_filter_input.setPlaceholderText("Filter by table name (Press Enter)")
@@ -180,6 +196,7 @@ class DatabaseExplorer(QWidget):
             self.tree.clear()
             self.procedure_count = 0
             self.expanded_items.clear()
+            self.loaded_schemas.clear()
 
             schemas = self.accessor.get_schemas(self.current_database)
             total_schemas = len(schemas)
@@ -192,36 +209,63 @@ class DatabaseExplorer(QWidget):
                 schema_item.setIcon(0, self._create_schema_icon())
                 schema_item.setData(0, Qt.UserRole, ("schema", schema.database, schema.name))
 
-                procedures = self.accessor.get_procedures(self.current_database, schema.name)
-                if procedures:
-                    for proc in procedures:
-                        proc_item = QTreeWidgetItem(schema_item)
-                        proc_item.setText(0, proc.name)
-                        proc_item.setIcon(0, self.get_icon_for_type('PROCEDURE'))
-                        proc_item.setData(0, Qt.UserRole, ("procedure", self.current_database, schema.name, proc.name))
-                        proc_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
-                        placeholder = QTreeWidgetItem(proc_item)
-                        placeholder.setText(0, "Loading...")
-                        self.procedure_count += 1
+                if self.lazy_load_enabled:
+                    schema_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                    placeholder = QTreeWidgetItem(schema_item)
+                    placeholder.setText(0, "Loading...")
+                else:
+                    self._load_schema_contents(schema_item, schema.name)
 
-                functions = self.accessor.get_functions(self.current_database, schema.name)
-                if functions:
-                    for func in functions:
-                        func_item = QTreeWidgetItem(schema_item)
-                        func_item.setText(0, func.name)
-                        func_item.setIcon(0, self.get_icon_for_type('FUNCTION'))
-                        func_item.setData(0, Qt.UserRole, ("function", self.current_database, schema.name, func.name))
-                        func_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
-                        placeholder = QTreeWidgetItem(func_item)
-                        placeholder.setText(0, "Loading...")
-                        self.procedure_count += 1
-
+            self._populate_schema_selector(schemas)
             self.loading_overlay.set_message("Finalizing...")
 
         except Exception as e:
             self.source_text.setText(f"Error loading procedures:\n{str(e)}")
         finally:
             self.loading_overlay.stop()
+
+    def _load_schema_contents(self, schema_item: QTreeWidgetItem, schema_name: str):
+        """Load procedures and functions for a schema."""
+        procedures = self.accessor.get_procedures(self.current_database, schema_name)
+        if procedures:
+            for proc in procedures:
+                proc_item = QTreeWidgetItem(schema_item)
+                proc_item.setText(0, proc.name)
+                proc_item.setIcon(0, self.get_icon_for_type('PROCEDURE'))
+                proc_item.setData(0, Qt.UserRole, ("procedure", self.current_database, schema_name, proc.name))
+                proc_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                placeholder = QTreeWidgetItem(proc_item)
+                placeholder.setText(0, "Loading...")
+                self.procedure_count += 1
+
+        functions = self.accessor.get_functions(self.current_database, schema_name)
+        if functions:
+            for func in functions:
+                func_item = QTreeWidgetItem(schema_item)
+                func_item.setText(0, func.name)
+                func_item.setIcon(0, self.get_icon_for_type('FUNCTION'))
+                func_item.setData(0, Qt.UserRole, ("function", self.current_database, schema_name, func.name))
+                func_item.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                placeholder = QTreeWidgetItem(func_item)
+                placeholder.setText(0, "Loading...")
+                self.procedure_count += 1
+
+    def _populate_schema_selector(self, schemas):
+        """Populate schema selector with schema names."""
+        self.schema_selector.blockSignals(True)
+        current_count = self.schema_selector.count()
+        if current_count > 1:
+            for _ in range(current_count - 1):
+                self.schema_selector.removeItem(1)
+        for schema in schemas:
+            self.schema_selector.addItem(schema.name)
+        self.schema_selector.blockSignals(False)
+
+    def on_lazy_load_toggled(self, state: int):
+        """Handle lazy load checkbox toggled."""
+        self.lazy_load_enabled = self.lazy_load_checkbox.isChecked()
+        self.table_filter_active = False
+        self.load_procedures()
 
     def on_filter_changed(self, text: str):
         """Filter tree items based on search text."""
@@ -250,12 +294,21 @@ class DatabaseExplorer(QWidget):
                 self.source_text.setText(f"No objects found referencing table: {table_name}")
                 return
 
+            selected_schema = self.schema_selector.currentText()
+            is_filtering_by_schema = selected_schema != "All Schemas"
+
             schema_groups = {}
             for obj in results:
                 schema = obj['schema']
+                if is_filtering_by_schema and schema != selected_schema:
+                    continue
                 if schema not in schema_groups:
                     schema_groups[schema] = []
                 schema_groups[schema].append(obj)
+
+            if not schema_groups:
+                self.source_text.setText(f"No objects found in schema {selected_schema} referencing table: {table_name}")
+                return
 
             for schema_name in sorted(schema_groups.keys()):
                 schema_item = QTreeWidgetItem(self.tree)
@@ -322,40 +375,52 @@ class DatabaseExplorer(QWidget):
             item.setExpanded(not item.isExpanded())
 
     def on_item_expanded(self, item: QTreeWidgetItem):
-        """Lazy-load dependencies when procedure/function item expanded."""
+        """Lazy-load dependencies or schema contents when item expanded."""
         data = item.data(0, Qt.UserRole)
-        if not data or len(data) < 4:
+        if not data:
             return
 
         item_type = data[0]
-        if item_type not in ("procedure", "function"):
-            return
 
-        item_id = id(item)
-        if item_id in self.expanded_items:
-            return
+        if item_type == "schema" and self.lazy_load_enabled:
+            _, database, schema_name = data
+            if schema_name in self.loaded_schemas:
+                return
+            self.loaded_schemas.add(schema_name)
+            item.takeChildren()
+            self.loading_overlay.start()
+            self.loading_overlay.set_message(f"Loading procedures and functions for {schema_name}...")
+            try:
+                self._load_schema_contents(item, schema_name)
+            except Exception as e:
+                print(f"Error loading schema contents for {schema_name}: {str(e)}")
+            finally:
+                self.loading_overlay.stop()
 
-        self.expanded_items.add(item_id)
-
-        _, database, schema, name = data
-
-        item.takeChildren()
-
-        self.loading_overlay.start()
-        self.loading_overlay.set_message(f"Loading dependencies for {schema}.{name}...")
-        try:
-            called = self.accessor.get_called_procedures(database, schema, name)
-            for dep in called:
-                child = QTreeWidgetItem(item)
-                child.setText(0, dep['name'])
-                child.setIcon(0, self.get_icon_for_type(dep['type']))
-                child.setData(0, Qt.UserRole, (dep['type'].lower(), database, dep['schema'], dep['name']))
-                child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
-                QTreeWidgetItem(child)
-        except Exception as e:
-            print(f"Error loading called procedures for {schema}.{name}: {str(e)}")
-        finally:
-            self.loading_overlay.stop()
+        elif item_type in ("procedure", "function"):
+            item_id = id(item)
+            if item_id in self.expanded_items:
+                return
+            self.expanded_items.add(item_id)
+            if len(data) < 4:
+                return
+            _, database, schema, name = data
+            item.takeChildren()
+            self.loading_overlay.start()
+            self.loading_overlay.set_message(f"Loading dependencies for {schema}.{name}...")
+            try:
+                called = self.accessor.get_called_procedures(database, schema, name)
+                for dep in called:
+                    child = QTreeWidgetItem(item)
+                    child.setText(0, dep['name'])
+                    child.setIcon(0, self.get_icon_for_type(dep['type']))
+                    child.setData(0, Qt.UserRole, (dep['type'].lower(), database, dep['schema'], dep['name']))
+                    child.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                    QTreeWidgetItem(child)
+            except Exception as e:
+                print(f"Error loading called procedures for {schema}.{name}: {str(e)}")
+            finally:
+                self.loading_overlay.stop()
 
     def get_icon_for_type(self, obj_type: str) -> QIcon:
         """Create icon for object type."""

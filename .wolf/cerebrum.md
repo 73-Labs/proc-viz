@@ -6,12 +6,16 @@
 
 ## User Preferences
 
-<!-- How the user likes things done. Code style, tools, patterns, communication. -->
+- User likes terse caveman-mode communication (prefer fragments over full sentences)
+- User requested lazy-load strategy with toggle checkbox + schema selector for table search
 
 ## Key Learnings
 
-- **Project:** procedures-visualizer
-- **Description:** Desktop application for exploring, analyzing, and understanding SQL Server stored procedures. Browse procedures organized by schema, view dependencies, search by table name, and examine source code wi
+- **Project:** procedures-visualizer — PySide6 GUI for SQL Server exploration
+- **Architecture:** DatabaseExplorer widget manages tree UI, DatabaseAccessor queries backend, lazy-load uses QTimer + LoadingOverlay for async ops
+- **Lazy-load pattern:** Schema expand triggers on_item_expanded() → loads procs/funcs into tree via _load_schema_contents()
+- **Test setup:** Tests mock DatabaseAccessor; syntax_colors must be dict with keyword/builtin/string/comment/number/function keys or SqlSyntaxHighlighter fails
+- **Build issue:** pyproject.toml needs explicit `packages = ["app"]` or setuptools autodiscovers 'packaging/' dir as package
 
 ## Do-Not-Repeat
 

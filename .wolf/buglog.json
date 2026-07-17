@@ -1,4 +1,17 @@
 {
   "version": 1,
-  "bugs": []
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-07-17T00:00:00Z",
+      "error_message": "Multiple top-level packages discovered in a flat-layout: ['app', 'packaging']. Setuptools will not proceed with this build.",
+      "file": "pyproject.toml",
+      "root_cause": "setuptools auto-discovery picked up 'packaging' directory as a top-level package alongside 'app'",
+      "fix": "Added [tool.setuptools] packages = ['app'] to explicitly specify only 'app' should be included",
+      "tags": ["build", "setuptools", "ci"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-17T00:00:00Z"
+    }
+  ]
 }

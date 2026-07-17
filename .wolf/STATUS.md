@@ -2,7 +2,7 @@
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
 > Update this file at the end of every work phase so the next `/clear` resumes in 1 read.
-> Last updated: 2026-07-17
+> Last updated: 2026-07-17 (completed lazy-load feature + build fix)
 
 ---
 

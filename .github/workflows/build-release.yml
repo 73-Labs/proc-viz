@@ -75,10 +75,6 @@ jobs:
           wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage -O "$APPIMAGE_DIR/linuxdeploy"
           chmod +x "$APPIMAGE_DIR/linuxdeploy"
 
-          # Download linuxdeploy-plugin-qt
-          wget -q https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage -O "$APPIMAGE_DIR/linuxdeploy-plugin-qt"
-          chmod +x "$APPIMAGE_DIR/linuxdeploy-plugin-qt"
-
           echo "$APPIMAGE_DIR" >> $GITHUB_PATH
 
       - name: Build AppImage (Linux)
@@ -101,8 +97,8 @@ jobs:
           mkdir -p "$APPDIR"
           ln -sf usr/bin/procedures-visualizer "$APPDIR/AppRun"
 
-          # Build AppImage using linuxdeploy with Qt plugin
-          linuxdeploy --appdir "$APPDIR" --plugin qt --output appimage
+          # Build AppImage using linuxdeploy (PySide6 is pure Python, no Qt plugin needed)
+          linuxdeploy --appdir "$APPDIR" --output appimage
 
           # Move AppImage to dist
           mv procedures-visualizer*.AppImage dist/

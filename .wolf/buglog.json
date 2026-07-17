@@ -24,6 +24,18 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-17T00:00:00Z"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-07-17T00:00:00Z",
+      "error_message": "mv: cannot stat 'procedures-visualizer*.AppImage': No such file or directory",
+      "file": ".github/workflows/build-release.yml",
+      "root_cause": "appimagetool generates filename from desktop file Name= field (Procedures_Visualizer-x86_64.AppImage), workflow expected lowercase with dash (procedures-visualizer*.AppImage)",
+      "fix": "Rename Procedures_Visualizer-x86_64.AppImage to procedures-visualizer-x86_64.AppImage after creation",
+      "tags": ["build", "appimage", "ci", "filename"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-17T00:00:00Z"
     }
   ]
 }

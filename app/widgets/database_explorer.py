@@ -49,6 +49,7 @@ class DatabaseExplorer(QWidget):
         self.loaded_schemas = set()
         self.init_ui()
         self.loading_overlay = LoadingOverlay(self, "Loading schemas...")
+        self.loading_overlay.timeout_occurred.connect(self.on_loading_timeout)
         QTimer.singleShot(0, self.load_procedures)
 
     def init_ui(self):
@@ -266,6 +267,15 @@ class DatabaseExplorer(QWidget):
         self.lazy_load_enabled = self.lazy_load_checkbox.isChecked()
         self.table_filter_active = False
         self.load_procedures()
+
+    def on_loading_timeout(self):
+        """Handle loading timeout (5 minutes exceeded)."""
+        QMessageBox.warning(
+            self,
+            "Loading Timeout",
+            "The loading operation timed out after 5 minutes. Please try again or check your database connection."
+        )
+        self.source_text.setText("Error: Loading operation timed out after 5 minutes.")
 
     def on_filter_changed(self, text: str):
         """Filter tree items based on search text."""

@@ -49,16 +49,20 @@ class LoadingSpinner(QWidget):
 
 
 class LoadingOverlay(QWidget):
-    """Semi-transparent overlay with spinner and message."""
+    """Semi-transparent overlay with spinner and message. Blocks interaction, 5min timeout."""
     finished = Signal()
+    timeout_occurred = Signal()
 
-    def __init__(self, parent=None, message="Loading..."):
+    def __init__(self, parent=None, message="Loading...", timeout_ms=5*60*1000):
         super().__init__(parent)
         self.setStyleSheet("background-color: rgba(0, 0, 0, 150);")
         self.setCursor(Qt.WaitCursor)
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.raise_()
         self.setFocusPolicy(Qt.StrongFocus)
+        self.timeout_ms = timeout_ms
+        self.timeout_timer = QTimer()
+        self.timeout_timer.timeout.connect(self._on_timeout)
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -80,21 +84,36 @@ class LoadingOverlay(QWidget):
         self.hide()
 
     def start(self):
-        """Show overlay and start spinner."""
+        """Show overlay and start spinner with timeout."""
         if self.parent():
             self.setGeometry(self.parent().rect())
         self.show()
         self.raise_()
         self.spinner.start()
+        self.timeout_timer.start(self.timeout_ms)
 
     def stop(self):
         """Hide overlay and stop spinner."""
+        self.timeout_timer.stop()
         self.spinner.stop()
         self.hide()
 
     def set_message(self, message: str):
         """Update overlay message."""
         self.message_label.setText(message)
+
+    def _on_timeout(self):
+        """Handle timeout — stop overlay and emit signal."""
+        self.stop()
+        self.timeout_occurred.emit()
+
+    def mousePressEvent(self, event):
+        """Block all mouse clicks while loading."""
+        event.ignore()
+
+    def keyPressEvent(self, event):
+        """Block all key presses while loading."""
+        event.ignore()
 
     def resizeEvent(self, event):
         """Adjust overlay size when parent resizes."""

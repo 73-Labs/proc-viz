@@ -30,6 +30,22 @@ ICON_COLORS = {
 }
 
 
+class RoutineTreeWidget(QTreeWidget):
+    """Tree widget that handles Enter key to show procedure/function details."""
+
+    item_enter_pressed = Signal(QTreeWidgetItem)
+
+    def keyPressEvent(self, event):
+        """Handle Enter key to show details for selected procedure/function."""
+        if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
+            current_item = self.currentItem()
+            if current_item:
+                self.item_enter_pressed.emit(current_item)
+                event.accept()
+                return
+        super().keyPressEvent(event)
+
+
 class DatabaseExplorer(QWidget):
     """Database explorer matching reference layout."""
 
@@ -106,12 +122,13 @@ class DatabaseExplorer(QWidget):
         self.table_filter_input.returnPressed.connect(self.on_table_filter_search)
         layout.addWidget(self.table_filter_input)
 
-        self.tree = QTreeWidget()
+        self.tree = RoutineTreeWidget()
         self.tree.setHeaderLabels([""])
         self.tree.header().setStretchLastSection(True)
         self.tree.itemClicked.connect(self.on_item_selected)
         self.tree.itemDoubleClicked.connect(self.on_item_double_clicked)
         self.tree.itemExpanded.connect(self.on_item_expanded)
+        self.tree.item_enter_pressed.connect(lambda item: self.on_item_selected(item, 0))
         layout.addWidget(self.tree)
 
         self.expanded_items = set()
@@ -759,7 +776,7 @@ class DatabaseExplorer(QWidget):
             return None
 
     def keyPressEvent(self, event) -> None:
-        """Handle keyboard shortcuts for zoom."""
+        """Handle keyboard shortcuts for zoom and filter."""
         if event.modifiers() & Qt.ControlModifier:
             if event.key() in (Qt.Key_Plus, Qt.Key_Equal):
                 self.zoom_in()
@@ -771,6 +788,11 @@ class DatabaseExplorer(QWidget):
                 return
             elif event.key() == Qt.Key_0:
                 self.reset_zoom()
+                event.accept()
+                return
+            elif event.key() == Qt.Key_K:
+                self.filter_input.setFocus()
+                self.filter_input.selectAll()
                 event.accept()
                 return
         super().keyPressEvent(event)

@@ -154,14 +154,6 @@ class MainWindow(QMainWindow):
         self.refresh_btn.setEnabled(False)
         toolbar.addWidget(self.refresh_btn)
 
-        toolbar.addSeparator()
-
-        toolbar.addWidget(QLabel("Search (Ctrl+F): "))
-        self.search_box = QLineEdit()
-        self.search_box.setMaximumWidth(300)
-        self.search_box.setPlaceholderText("Search routines...")
-        toolbar.addWidget(self.search_box)
-
         spacer = QWidget()
         spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         toolbar.addWidget(spacer)
@@ -195,8 +187,6 @@ class MainWindow(QMainWindow):
         self.connect_btn.setEnabled(True)
         self.disconnect_btn.setEnabled(False)
         self.refresh_btn.setEnabled(False)
-        self.search_box.setEnabled(False)
-        self.search_box.clear()
 
     def load_profiles_dropdown(self):
         """Load saved profiles into dropdown."""
@@ -296,13 +286,6 @@ class MainWindow(QMainWindow):
         self.connect_btn.setEnabled(False)
         self.disconnect_btn.setEnabled(True)
         self.refresh_btn.setEnabled(True)
-        self.search_box.setEnabled(True)
-        self.search_box.textChanged.connect(self.on_search_text_changed)
-
-    def on_search_text_changed(self, text: str):
-        """Handle search box text changes."""
-        if self.explorer:
-            self.explorer.filter_input.setText(text)
 
     def refresh_explorer(self):
         """Refresh explorer."""

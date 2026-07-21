@@ -1,23 +1,23 @@
 {
-  "session_id": "session-2026-07-18-2113",
-  "started": "2026-07-18T00:13:59.843Z",
+  "session_id": "session-2026-07-21-1951",
+  "started": "2026-07-21T22:51:17.600Z",
   "files_read": {
-    "/home/larrosa/dev/73Labs/proc-viz/app/widgets/loading_spinner.py": {
-      "count": 1,
-      "tokens": 895,
-      "first_read": "2026-07-18T00:19:23.276Z"
-    },
     "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py": {
-      "count": 3,
+      "count": 4,
       "tokens": 7988,
-      "first_read": "2026-07-18T00:19:58.182Z"
+      "first_read": "2026-07-21T22:53:22.941Z"
+    },
+    "/home/larrosa/dev/73Labs/proc-viz/app/main_window.py": {
+      "count": 1,
+      "tokens": 3651,
+      "first_read": "2026-07-21T22:57:51.021Z"
     }
   },
   "files_written": [],
   "edit_counts": {},
   "anatomy_hits": 2,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 2,
+  "repeated_reads_warned": 3,
   "cerebrum_warnings": 0,
-  "stop_count": 1
+  "stop_count": 4
 }

@@ -16,9 +16,11 @@
 - `init-db.sql` — Create SQL Server login for app (~257 tok)
 - `LICENSE` — Project license (~284 tok)
 - `main.py` — main (~72 tok)
+- `NEXT_FEATURES.md` — Implementation roadmap and acceptance criteria (~6500 tok)
 - `pyproject.toml` — Python project configuration (~182 tok)
 - `README.md` — Project documentation (~2044 tok)
 - `requirements.txt` — Python dependencies (~20 tok)
+- `run_tests.sh` — Test runner with virtualenv and headless Qt support (~180 tok)
 
 ## .claude/
 
@@ -161,6 +163,12 @@
   - fn `temp_profile_dir` L11-17 (~51 tok)
   - fn `profile_manager` L18-24 (~60 tok)
   - class `TestProfileManager` L25-280 (~2613 tok)
+
+## tests/integration/
+
+- `__init__.py` — Opt-in SQL Server integration tests (~20 tok)
+- `conftest.py` — Guarded SQL Server fixture and seed application (~2100 tok)
+- `test_sqlserver.py` — End-to-end SQLServerDriver coverage (~1200 tok)
 
 ## venv/
 

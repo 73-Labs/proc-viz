@@ -48,10 +48,7 @@ class ProfileManager:
         if password and profile.save_password:
             keyring.set_password(self.KEYRING_SERVICE, profile.name, password)
         elif not profile.save_password:
-            try:
-                keyring.delete_password(self.KEYRING_SERVICE, profile.name)
-            except keyring.errors.PasswordDeleteError:
-                pass
+            self.clear_password(profile.name)
 
     def load_profile(self, profile_name: str) -> Optional[ConnectionProfile]:
         """Load profile by name from local storage."""
@@ -73,10 +70,7 @@ class ProfileManager:
             with open(self.PROFILES_FILE, "w") as f:
                 json.dump(profiles, f, indent=2)
 
-        try:
-            keyring.delete_password(self.KEYRING_SERVICE, profile_name)
-        except keyring.errors.PasswordDeleteError:
-            pass
+        self.clear_password(profile_name)
 
     def get_password(self, profile_name: str) -> Optional[str]:
         """Retrieve password from keyring for given profile."""
@@ -89,7 +83,7 @@ class ProfileManager:
         """Remove password from keyring."""
         try:
             keyring.delete_password(self.KEYRING_SERVICE, profile_name)
-        except keyring.errors.PasswordDeleteError:
+        except keyring.errors.KeyringError:
             pass
 
     def profile_exists(self, profile_name: str) -> bool:

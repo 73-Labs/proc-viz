@@ -2,7 +2,7 @@
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
 > Update this file at the end of every work phase so the next `/clear` resumes in 1 read.
-> Last updated: 2026-07-17 (completed lazy-load feature + build fix)
+> Last updated: 2026-07-23 (test runner failures fixed)
 
 ---
 
@@ -10,18 +10,23 @@
 
 - Lazy-load strategy with checkbox (default ON) — loads only schemas initially, procedures/functions on expand
 - Schema selector for table search — filters search results to selected schema
+- Task 1 integration-test foundation — opt-in SQL Server suite, guarded fixture, deterministic seed
+- Test runner baseline restored — 64 passed, 4 integration skipped without SQL Server
 
 ---
 
 ## 🚀 Next phase
 
-**Goal:** Ready for testing / next feature request
+**Goal:** Reliable refresh, reconnect, cancellation, and stale-state handling (Task 2)
 
 ### Acceptance criteria
-- (waiting for user feedback on lazy-load feature)
+- Refresh, failure, cancellation, and reconnect lifecycle behavior covered by tests
 
 ### Files modified
-- `app/widgets/database_explorer.py` — lazy-load + schema selector
+- `tests/integration/` — SQL Server fixture and end-to-end driver tests
+- `init-db.sql` — deterministic schema and data
+- `README.md`, `pyproject.toml` — integration-test docs/config
+- `app/widgets/sql_highlighter.py`, `app/models/connection_profile.py`, `app/dialogs/connection_dialog.py`, `app/storage/profile_manager.py` — test/runtime robustness fixes
 
 ### Decisions made
 - Lazy-load ON by default (loads only schemas, procs/funcs on expand)

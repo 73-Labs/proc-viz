@@ -30,3 +30,6 @@ procedures-visualizer = "main:main"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
+markers = [
+    "integration: tests requiring an external SQL Server test database",
+]

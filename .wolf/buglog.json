@@ -36,6 +36,66 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-17T00:00:00Z"
+    },
+    {
+      "id": "bug-004",
+      "timestamp": "2026-07-22T00:00:00Z",
+      "error_message": "Fatal Python error: Aborted",
+      "file": "tests/test_connection_dialog.py",
+      "root_cause": "Qt tests started without a display backend in the headless environment",
+      "fix": "Run tests with QT_QPA_PLATFORM=offscreen",
+      "tags": ["tests", "qt", "headless"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "bug-005",
+      "timestamp": "2026-07-22T00:00:00Z",
+      "error_message": "KeyError: 'keyword'",
+      "file": "app/widgets/sql_highlighter.py",
+      "root_cause": "Existing DatabaseExplorer tests pass an empty syntax color mapping",
+      "fix": "Merge default syntax colors before constructing or updating highlighter formats",
+      "tags": ["tests", "syntax-highlighting"],
+      "related_bugs": [],
+      "occurrences": 4,
+      "last_seen": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-07-22T00:00:00Z",
+      "error_message": "KeyError: 'cafile'",
+      "file": "app/models/connection_profile.py",
+      "root_cause": "Existing test expects certificate kwargs not produced by current profile implementation",
+      "fix": "Emit cafile=None when encrypted SQL Server connection trusts certificate",
+      "tags": ["tests", "connection"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "bug-007",
+      "timestamp": "2026-07-22T00:00:00Z",
+      "error_message": "NoKeyringError: No recommended backend was available",
+      "file": "app/storage/profile_manager.py",
+      "root_cause": "Headless test environment has no configured keyring backend",
+      "fix": "Treat unavailable keyring backend as absent password during cleanup",
+      "tags": ["tests", "keyring"],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-07-22T00:00:00Z",
+      "error_message": "assert 'error occurred' in connection failure dialog",
+      "file": "tests/test_connection_dialog.py",
+      "root_cause": "Existing test assertion no longer matches current user-facing error text",
+      "fix": "Use error wording expected by connection-dialog test",
+      "tags": ["tests", "connection-dialog"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-22T00:00:00Z"
     }
   ]
 }

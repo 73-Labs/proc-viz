@@ -1,6 +1,10 @@
 -- Database: DummyDB
 -- Exported: 2026-07-21 20:15:41
 
+-- The integration fixture creates/selects the database before applying this file.
+IF SCHEMA_ID(N'FunctionSchema') IS NULL
+    EXEC(N'CREATE SCHEMA [FunctionSchema]');
+
 -- ============================================
 -- Schema: db_accessadmin
 -- ============================================
@@ -59,6 +63,12 @@ CREATE TABLE [dbo].[Employees] (
     [ManagerID] int,
     [CreatedDate] datetime DEFAULT (getdate())
 );
+
+INSERT INTO [dbo].[Employees] ([Name], [Department], [Salary], [ManagerID])
+VALUES
+    (N'Alice Manager', N'Engineering', 120000.00, NULL),
+    (N'Bob Developer', N'Engineering', 90000.00, 1),
+    (N'Carol Analyst', N'Finance', 80000.00, NULL);
 
 -- Procedures in dbo
 CREATE PROCEDURE sp_GetDepartmentStats
@@ -303,4 +313,3 @@ END;
 -- ============================================
 -- Schema: sys
 -- ============================================
-

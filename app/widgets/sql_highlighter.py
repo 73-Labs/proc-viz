@@ -5,21 +5,23 @@ from PySide6.QtGui import QSyntaxHighlighter, QTextDocument, QTextCharFormat, QC
 from PySide6.QtCore import Qt
 
 
+DEFAULT_COLORS = {
+    "keyword": "#0066CC",
+    "builtin": "#666666",
+    "string": "#CC0000",
+    "comment": "#669966",
+    "number": "#CC6600",
+    "function": "#9B6432",
+}
+
+
 class SqlSyntaxHighlighter(QSyntaxHighlighter):
     """Syntax highlighter for SQL code."""
 
     def __init__(self, document: QTextDocument, colors: Optional[Dict[str, str]] = None):
         super().__init__(document)
 
-        if colors is None:
-            colors = {
-                "keyword": "#0066CC",
-                "builtin": "#666666",
-                "string": "#CC0000",
-                "comment": "#669966",
-                "number": "#CC6600",
-                "function": "#9B6432",
-            }
+        colors = {**DEFAULT_COLORS, **(colors or {})}
 
         self.keyword_format = QTextCharFormat()
         self.keyword_format.setForeground(QColor(colors["keyword"]))
@@ -146,6 +148,7 @@ class SqlSyntaxHighlighter(QSyntaxHighlighter):
 
     def update_colors(self, colors: Dict[str, str]) -> None:
         """Update syntax colors and rehighlight document."""
+        colors = {**DEFAULT_COLORS, **(colors or {})}
         self.keyword_format.setForeground(QColor(colors["keyword"]))
         self.builtin_format.setForeground(QColor(colors["builtin"]))
         self.string_format.setForeground(QColor(colors["string"]))

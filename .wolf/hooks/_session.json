@@ -1,23 +1,12 @@
 {
-  "session_id": "session-2026-07-21-1951",
-  "started": "2026-07-21T22:51:17.600Z",
-  "files_read": {
-    "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py": {
-      "count": 4,
-      "tokens": 7988,
-      "first_read": "2026-07-21T22:53:22.941Z"
-    },
-    "/home/larrosa/dev/73Labs/proc-viz/app/main_window.py": {
-      "count": 1,
-      "tokens": 3651,
-      "first_read": "2026-07-21T22:57:51.021Z"
-    }
-  },
+  "session_id": "session-2026-07-23-2154",
+  "started": "2026-07-23T00:54:58.203Z",
+  "files_read": {},
   "files_written": [],
   "edit_counts": {},
-  "anatomy_hits": 2,
+  "anatomy_hits": 0,
   "anatomy_misses": 0,
-  "repeated_reads_warned": 3,
+  "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
   "stop_count": 4
 }

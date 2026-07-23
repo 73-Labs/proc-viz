@@ -183,10 +183,25 @@ proc-viz/
 ### Run Tests
 
 ```bash
-pytest
-pytest -v                    # Verbose
-pytest tests/test_file.py   # Specific file
+./run_tests.sh
+./run_tests.sh -v                    # Verbose
+./run_tests.sh tests/test_file.py    # Specific file
 ```
+
+### Run SQL Server integration tests
+
+Unit tests are offline. Integration tests are opt-in and use the deterministic
+database in `init-db.sql`:
+
+```bash
+docker compose up -d
+PROC_VIZ_INTEGRATION=1 pytest -m integration -v
+```
+
+The fixture skips with a clear message when SQL Server is unavailable. For an
+external test instance, set `PROC_VIZ_TEST_HOST`, `PROC_VIZ_TEST_PORT`,
+`PROC_VIZ_TEST_USER`, `PROC_VIZ_TEST_PASSWORD`, and `PROC_VIZ_TEST_DATABASE`.
+The database must be `DummyDB` or start with `proc_viz_test`.
 
 ### Code Style
 

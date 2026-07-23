@@ -286,7 +286,7 @@ class ConnectionDialog(QDialog):
             QMessageBox.critical(
                 self,
                 "Connection Failed",
-                f"Failed to connect to database:\n\n{error_msg}",
+                f"An error occurred while connecting to database:\n\n{error_msg}",
             )
 
     def load_saved_password(self):

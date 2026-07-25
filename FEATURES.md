@@ -84,7 +84,27 @@ Examples:
 - Type "Get" → shows all procedures with "Get" in name
 - Type "sp_User" → shows "sp_UserCreate", "sp_UserUpdate", etc.
 
-Clear filter to show all procedures again.
+**Advanced Search & Filtering:**
+
+**Search Scope** — Filter by object type:
+- **All Objects** — Procedures, functions, tables, and views
+- **Procedures** — Stored procedures only
+- **Functions** — User-defined functions only
+- **Tables** — Base tables only
+- **Views** — Database views only
+
+**Schema Filter** — Limit search to specific schema:
+- Default: "All Schemas" (searches all schemas)
+- Select schema from dropdown to narrow results
+- Works with all search modes
+
+**Exact Match Mode** — Toggle for precise matching:
+- **Off (default)** — Partial match (substring search)
+- **On** — Exact name match only
+
+**Result Count** — Shows number of matching objects found
+
+**Clear Filter** — Click ✕ button to restore full tree and reset filters
 
 ### Search by Table Name
 
@@ -203,12 +223,12 @@ Additional metadata about procedure:
 
 | Shortcut | Action |
 |----------|--------|
-| Ctrl+K | Focus procedure filter |
+| Ctrl+K | Focus procedure/routine filter (quick search) |
 | Ctrl+C | Copy selected text |
 | Ctrl+A | Select all text |
 | Enter | Execute table search (in table filter) |
 | Tab | Move between UI elements |
-| Esc | Clear filter |
+| Esc | Clear filter (or click ✕ button) |
 
 ## Status Bar
 

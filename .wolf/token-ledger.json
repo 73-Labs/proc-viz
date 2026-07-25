@@ -2,19 +2,19 @@
   "version": 1,
   "created_at": "2026-07-17T01:35:09.756Z",
   "lifetime": {
-    "total_tokens_estimated": 197196,
-    "total_reads": 84,
+    "total_tokens_estimated": 213563,
+    "total_reads": 91,
     "total_writes": 0,
-    "total_sessions": 9,
-    "anatomy_hits": 84,
-    "anatomy_misses": 0,
-    "repeated_reads_blocked": 46,
-    "estimated_savings_vs_bare_cli": 157084,
-    "real_input_tokens": 4674,
-    "real_output_tokens": 182048,
-    "real_cache_read_tokens": 26893562,
-    "real_cache_creation_tokens": 880495,
-    "real_api_calls": 574
+    "total_sessions": 10,
+    "anatomy_hits": 90,
+    "anatomy_misses": 1,
+    "repeated_reads_blocked": 53,
+    "estimated_savings_vs_bare_cli": 207694,
+    "real_input_tokens": 5043,
+    "real_output_tokens": 202431,
+    "real_cache_read_tokens": 29746218,
+    "real_cache_creation_tokens": 952202,
+    "real_api_calls": 620
   },
   "sessions": [
     {
@@ -1023,6 +1023,72 @@
         "cache_read_input_tokens": 3134264,
         "cache_creation_input_tokens": 128972,
         "api_calls": 58
+      }
+    },
+    {
+      "id": "session-2026-07-25-1119",
+      "agent": "claude",
+      "started": "2026-07-25T14:19:44.731Z",
+      "ended": "2026-07-25T14:40:54.919Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_database_explorer.py",
+          "tokens_estimated": 1482,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_connection_profile.py",
+          "tokens_estimated": 1330,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/FEATURES.md",
+          "tokens_estimated": 2454,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/README.md",
+          "tokens_estimated": 2044,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 16367,
+        "output_tokens_estimated": 0,
+        "reads_count": 7,
+        "writes_count": 0,
+        "repeated_reads_blocked": 7,
+        "anatomy_lookups": 6
+      },
+      "real_usage": {
+        "input_tokens": 369,
+        "output_tokens": 20383,
+        "cache_read_input_tokens": 2852656,
+        "cache_creation_input_tokens": 71707,
+        "api_calls": 46
       }
     }
   ],

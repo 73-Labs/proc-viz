@@ -12,7 +12,9 @@ Desktop application for exploring, analyzing, and understanding SQL Server store
 
 ### Procedure Exploration
 - **Schema browser** — Hierarchical tree view of schemas → procedures → functions
-- **Procedure search** — Quick filter by name (Ctrl+K)
+- **Unified search** — Filter by name, scope (procedures/functions/tables/views), and schema
+- **Quick filter** (Ctrl+K) — Real-time filtering with match highlighting
+- **Advanced filtering** — Exact match mode, scope selector, schema filter, result counter
 - **Table name search** — Find all procedures/functions that reference a specific table
 - **Lazy loading** — Efficient loading with progress indicators
 

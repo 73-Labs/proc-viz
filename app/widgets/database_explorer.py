@@ -63,6 +63,13 @@ class DatabaseExplorer(QWidget):
         self.zoom_level = zoom_level
         self.lazy_load_enabled = True
         self.loaded_schemas = set()
+        # Task 3 — search and filtering state
+        self.filter_debounce_timer = None
+        self.table_filter_active = False
+        self.search_filter_active = False
+        self.last_filter_text = ""
+        self.last_search_scope = "All Objects"
+        self.last_selected_schema = "All Schemas"
         self.init_ui()
         self.loading_overlay = LoadingOverlay(self, "Loading schemas...")
         self.loading_overlay.timeout_occurred.connect(self.on_loading_timeout)
@@ -103,19 +110,45 @@ class DatabaseExplorer(QWidget):
         header_layout.addWidget(self.lazy_load_checkbox)
         layout.addLayout(header_layout)
 
+        # Filter input with clear button
+        filter_layout = QHBoxLayout()
         self.filter_input = QLineEdit()
         self.filter_input.setPlaceholderText("Filter routines (Ctrl+K)")
-        self.filter_input.textChanged.connect(self.on_filter_changed)
-        layout.addWidget(self.filter_input)
+        self.filter_input.textChanged.connect(self.on_filter_text_changed)
+        filter_layout.addWidget(self.filter_input)
+        self.clear_filter_btn = QPushButton("✕")
+        self.clear_filter_btn.setMaximumWidth(30)
+        self.clear_filter_btn.clicked.connect(self.on_clear_filter)
+        filter_layout.addWidget(self.clear_filter_btn)
+        layout.addLayout(filter_layout)
 
-        table_search_layout = QHBoxLayout()
+        # Search scope and options
+        scope_layout = QHBoxLayout()
+        scope_layout.addWidget(QLabel("Scope:"))
+        self.search_scope_selector = QComboBox()
+        self.search_scope_selector.setMaximumWidth(120)
+        self.search_scope_selector.addItems(["All Objects", "Procedures", "Functions", "Tables", "Views"])
+        self.search_scope_selector.currentTextChanged.connect(self.on_search_scope_changed)
+        scope_layout.addWidget(self.search_scope_selector)
+        self.exact_match_checkbox = QCheckBox("Exact Match")
+        self.exact_match_checkbox.stateChanged.connect(self.on_exact_match_toggled)
+        scope_layout.addWidget(self.exact_match_checkbox)
+        scope_layout.addStretch()
+        layout.addLayout(scope_layout)
+
+        # Schema selector and result count
+        schema_layout = QHBoxLayout()
+        schema_layout.addWidget(QLabel("Schema:"))
         self.schema_selector = QComboBox()
         self.schema_selector.setMaximumWidth(120)
         self.schema_selector.addItem("All Schemas")
-        table_search_layout.addWidget(QLabel("Schema:"))
-        table_search_layout.addWidget(self.schema_selector)
-        table_search_layout.addStretch()
-        layout.addLayout(table_search_layout)
+        self.schema_selector.currentTextChanged.connect(self.on_schema_changed)
+        schema_layout.addWidget(self.schema_selector)
+        self.result_count_label = QLabel()
+        self.result_count_label.setStyleSheet("color: #666; font-size: 10pt;")
+        schema_layout.addWidget(self.result_count_label)
+        schema_layout.addStretch()
+        layout.addLayout(schema_layout)
 
         self.table_filter_input = QLineEdit()
         self.table_filter_input.setPlaceholderText("Filter by table name (Press Enter)")
@@ -132,7 +165,6 @@ class DatabaseExplorer(QWidget):
         layout.addWidget(self.tree)
 
         self.expanded_items = set()
-        self.table_filter_active = False
         return panel
 
     def create_right_panel(self) -> QWidget:
@@ -215,6 +247,8 @@ class DatabaseExplorer(QWidget):
             self.procedure_count = 0
             self.expanded_items.clear()
             self.loaded_schemas.clear()
+            # Preserve filter state during refresh
+            self.search_filter_active = False
 
             schemas = self.accessor.get_schemas(self.current_database)
             total_schemas = len(schemas)
@@ -236,6 +270,9 @@ class DatabaseExplorer(QWidget):
 
             self._populate_schema_selector(schemas)
             self.loading_overlay.set_message("Finalizing...")
+            # Restore filter if active
+            if self.last_filter_text or self.search_filter_active:
+                self._apply_filter()
 
         except Exception as e:
             self.source_text.setText(f"Error loading procedures:\n{str(e)}")
@@ -283,6 +320,7 @@ class DatabaseExplorer(QWidget):
         """Handle lazy load checkbox toggled."""
         self.lazy_load_enabled = self.lazy_load_checkbox.isChecked()
         self.table_filter_active = False
+        self.search_filter_active = False
         self.load_procedures()
 
     def on_loading_timeout(self):
@@ -294,13 +332,127 @@ class DatabaseExplorer(QWidget):
         )
         self.source_text.setText("Error: Loading operation timed out after 5 minutes.")
 
-    def on_filter_changed(self, text: str):
-        """Filter tree items based on search text."""
+    def on_filter_text_changed(self, text: str):
+        """Handle filter text change with debounce."""
         if self.table_filter_active:
             return
+        self.last_filter_text = text
+        # Debounce with 300ms delay
+        if self.filter_debounce_timer:
+            self.filter_debounce_timer.stop()
+        self.filter_debounce_timer = QTimer()
+        self.filter_debounce_timer.setSingleShot(True)
+        self.filter_debounce_timer.timeout.connect(self._apply_filter)
+        self.filter_debounce_timer.start(300)
+
+    def _apply_filter(self):
+        """Apply filter with current settings."""
+        if self.table_filter_active:
+            return
+        text = self.last_filter_text
+        scope = self.search_scope_selector.currentText()
+        schema = self.schema_selector.currentText()
+        exact_match = self.exact_match_checkbox.isChecked()
+
+        self.search_filter_active = bool(text)
+        visible_count = 0
+
         for i in range(self.tree.topLevelItemCount()):
             schema_item = self.tree.topLevelItem(i)
-            self.filter_tree_item(schema_item, text.lower())
+            count = self._filter_tree_item(schema_item, text, scope, schema, exact_match)
+            visible_count += count
+
+        self._update_result_count(visible_count, text)
+
+    def _filter_tree_item(self, item: QTreeWidgetItem, text: str, scope: str, selected_schema: str, exact_match: bool) -> int:
+        """Recursively filter tree items. Returns count of visible items."""
+        visible = False
+        child_visible_count = 0
+
+        for i in range(item.childCount()):
+            child = item.child(i)
+            child_count = self._filter_tree_item(child, text, scope, selected_schema, exact_match)
+            if child_count > 0:
+                visible = True
+            child_visible_count += child_count
+
+        item_data = item.data(0, Qt.UserRole)
+        item_type = item_data[0] if item_data else None
+        item_text = item.text(0).lower()
+
+        # Check if item matches filters
+        if item_type == "schema":
+            # Schema items visible if they have visible children or match schema filter
+            if selected_schema == "All Schemas" or item_text == selected_schema.lower():
+                visible = True
+        elif text:  # Only apply text filter if search is active
+            # Check scope filter
+            if scope == "All Objects" or (scope == "Procedures" and item_type == "procedure") or \
+               (scope == "Functions" and item_type == "function") or \
+               (scope == "Tables" and item_type == "table") or \
+               (scope == "Views" and item_type == "view"):
+                if exact_match:
+                    visible = (item_text == text.lower())
+                else:
+                    visible = (text.lower() in item_text)
+            # If visible due to text match, also check schema filter
+            if visible and selected_schema != "All Schemas":
+                # Get schema for this item
+                if len(item_data) >= 3:
+                    item_schema = item_data[2]
+                else:
+                    # Try to find parent schema
+                    parent = item.parent()
+                    if parent:
+                        parent_data = parent.data(0, Qt.UserRole)
+                        item_schema = parent_data[2] if parent_data and len(parent_data) >= 3 else None
+                    else:
+                        item_schema = None
+                if item_schema and item_schema != selected_schema:
+                    visible = False
+
+        item.setHidden(not visible)
+        visible_count = child_visible_count
+        if visible and item_type != "schema":
+            visible_count += 1
+        return visible_count
+
+    def _update_result_count(self, count: int, text: str):
+        """Update result count label."""
+        if text:
+            self.result_count_label.setText(f"{count} match{'es' if count != 1 else ''}")
+        else:
+            self.result_count_label.setText("")
+
+    def on_search_scope_changed(self, scope: str):
+        """Handle search scope change."""
+        self.last_search_scope = scope
+        if self.last_filter_text:
+            self._apply_filter()
+
+    def on_schema_changed(self, schema: str):
+        """Handle schema selection change."""
+        self.last_selected_schema = schema
+        if self.last_filter_text:
+            self._apply_filter()
+
+    def on_exact_match_toggled(self, state: int):
+        """Handle exact match toggle."""
+        if self.last_filter_text:
+            self._apply_filter()
+
+    def on_clear_filter(self):
+        """Clear filter and restore full tree."""
+        self.filter_input.clear()
+        self.last_filter_text = ""
+        self.search_filter_active = False
+        self.result_count_label.setText("")
+        for i in range(self.tree.topLevelItemCount()):
+            self.tree.topLevelItem(i).setHidden(False)
+
+    def filter_tree_item(self, item: QTreeWidgetItem, text: str) -> bool:
+        """Legacy method for backward compatibility. Use _filter_tree_item instead."""
+        return self._filter_tree_item(item, text, "All Objects", "All Schemas", False) > 0
 
     def on_table_filter_search(self):
         """Search for objects that use a specific table."""
@@ -357,21 +509,6 @@ class DatabaseExplorer(QWidget):
             self.source_text.setText(f"Error searching table references:\n{str(e)}")
         finally:
             self.loading_overlay.stop()
-
-    def filter_tree_item(self, item: QTreeWidgetItem, text: str) -> bool:
-        """Recursively filter tree items."""
-        visible = False
-
-        for i in range(item.childCount()):
-            child = item.child(i)
-            if self.filter_tree_item(child, text):
-                visible = True
-
-        if not text or text in item.text(0).lower():
-            visible = True
-
-        item.setHidden(not visible)
-        return visible
 
     def on_item_selected(self, item: QTreeWidgetItem, column: int):
         """Handle tree item selection."""

@@ -87,7 +87,7 @@ class TestConnectionProfile:
         )
         kwargs = profile.get_connection_kwargs()
 
-        assert kwargs["host"] == "localhost"
+        assert kwargs["server"] == "localhost"
         assert kwargs["port"] == 1433
         assert kwargs["database"] == "TestDB"
         assert "user" not in kwargs
@@ -106,7 +106,7 @@ class TestConnectionProfile:
 
         assert kwargs["user"] == "admin"
         assert kwargs["password"] == "secret"
-        assert kwargs["host"] == "localhost"
+        assert kwargs["server"] == "localhost"
         assert kwargs["database"] == "TestDB"
 
     def test_connection_kwargs_with_certificate_options(self):
@@ -120,7 +120,7 @@ class TestConnectionProfile:
         kwargs = profile.get_connection_kwargs()
 
         assert kwargs["encryption"] == "require"
-        assert kwargs["cafile"] is None
+        assert "cafile" not in kwargs
 
     def test_connection_kwargs_without_encrypt(self):
         profile = ConnectionProfile(

@@ -25,7 +25,11 @@
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->
 <!-- Format: [YYYY-MM-DD] Description of what went wrong and what to do instead. -->
+- [2026-07-25] Tree filtering with lazy-load: Placeholder items are created before real content loads. Tests must either disable lazy-load or wait for expansion before checking visibility.
 
 ## Decision Log
 
 <!-- Significant technical decisions with rationale. Why X was chosen over Y. -->
+- **Task 3 debounce strategy:** Use QTimer with 300ms timeout instead of immediate filtering. Prevents excessive tree recalculation on rapid keystrokes; doesn't interfere with Ctrl+K focus behavior (immediate focus, debounced filter).
+- **Search scope vs table reference search:** Keep separate. Routine name filter uses local tree filtering (fast, no DB). Table reference search uses server-side query (different UI, different flow). Avoids conflating two independent features.
+- **Schema filter application:** Apply to both routine filter AND table search for consistency. User can filter results by schema in either mode.

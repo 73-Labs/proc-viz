@@ -51,3 +51,10 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-07-25 11:19
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 11:45 | Task 3: Unified search and filtering — added scope selector, schema filter for routines, exact-match toggle, debounce, result count, clear button, state preservation, 16 new tests | app/widgets/database_explorer.py, tests/test_database_explorer.py | 80 passed; fixed pre-existing connection profile test failures | ~2500 |
+| 12:00 | Updated FEATURES.md with advanced search documentation; updated README.md features; updated STATUS.md | FEATURES.md, README.md, .wolf/STATUS.md | Task 3 documented | ~400 |

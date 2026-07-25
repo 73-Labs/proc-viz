@@ -13,6 +13,7 @@
 - Task 1 integration-test foundation — opt-in SQL Server suite, guarded fixture, deterministic seed
 - Test runner baseline restored — 80 passed, 4 integration skipped without SQL Server
 - **Task 3: Unified search and filtering** — scope selector, schema filter for routines, exact-match mode, debounce, result count, clear button, filter preservation
+- **Task 4: Dependency graph view** — PyVis interactive graphs, cycle detection, depth/direction selectors, DOT export, full cross-schema names
 
 ---
 

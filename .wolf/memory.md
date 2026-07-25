@@ -58,3 +58,20 @@
 |------|--------|---------|---------|--------|
 | 11:45 | Task 3: Unified search and filtering — added scope selector, schema filter for routines, exact-match toggle, debounce, result count, clear button, state preservation, 16 new tests | app/widgets/database_explorer.py, tests/test_database_explorer.py | 80 passed; fixed pre-existing connection profile test failures | ~2500 |
 | 12:00 | Updated FEATURES.md with advanced search documentation; updated README.md features; updated STATUS.md | FEATURES.md, README.md, .wolf/STATUS.md | Task 3 documented | ~400 |
+
+## Session: 2026-07-25 11:57
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-25 13:00
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 13:00 | Task 4: Dependency graph view — implemented PyVis interactive graphs with cycle detection, depth/direction selectors, DOT export, cross-schema names | app/widgets/dependency_graph.py (new), app/widgets/database_explorer.py, requirements.txt, tests/test_dependency_graph.py (new) | 98 passed, 4 skipped; graph loads on routine selection; cycle edges highlighted red; DOT export ready | ~3500 |
+| 13:15 | Updated STATUS.md (Task 4 done), FEATURES.md (graph feature docs), memory.md | STATUS.md, FEATURES.md, .wolf/memory.md | Task 4 documented | ~400 |
+
+## Session: 2026-07-25 12:16
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

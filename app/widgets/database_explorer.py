@@ -18,6 +18,7 @@ from app.widgets.sql_highlighter import SqlSyntaxHighlighter
 from app.widgets.zoomable_text_edit import ZoomableTextEdit
 from app.widgets.loading_spinner import LoadingOverlay
 from app.widgets.parameters_widget import ParametersWidget
+from app.widgets.dependency_graph import DependencyGraphWidget
 
 
 ICON_COLORS = {
@@ -203,6 +204,9 @@ class DatabaseExplorer(QWidget):
         self.details_text = QTextEdit()
         self.details_text.setReadOnly(True)
         self.tabs.addTab(self.details_text, "Details")
+
+        self.graph_widget = DependencyGraphWidget(self.accessor, self.current_database)
+        self.tabs.addTab(self.graph_widget, "Graph")
 
         layout.addWidget(self.tabs)
         return panel
@@ -648,6 +652,9 @@ class DatabaseExplorer(QWidget):
 
             self.details_text.setText(f"Schema: {schema}\nType: Stored Procedure\nDatabase: {database}")
 
+            # Load dependency graph
+            self.graph_widget.load_routine(schema, procedure)
+
             self.tabs.setCurrentIndex(0)
 
         except Exception as e:
@@ -666,6 +673,9 @@ class DatabaseExplorer(QWidget):
             self.parameters_widget.load_parameters(database, schema, function, parameters)
 
             self.details_text.setText(f"Schema: {schema}\nType: Function\nDatabase: {database}")
+
+            # Load dependency graph
+            self.graph_widget.load_routine(schema, function)
 
             self.tabs.setCurrentIndex(0)
 
@@ -696,6 +706,7 @@ class DatabaseExplorer(QWidget):
         self.source_text.clear()
         self.parameters_widget.clear()
         self.details_text.clear()
+        self.graph_widget.cleanup()
 
     def on_close_details(self):
         """Close details panel."""

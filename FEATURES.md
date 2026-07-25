@@ -185,6 +185,35 @@ Useful for:
 
 Dependencies only load when you expand tree item. Avoids loading entire dependency graph upfront.
 
+### Dependency Graph Visualization
+
+Click procedure or function and navigate to **Graph** tab to visualize dependencies as interactive network.
+
+**Features:**
+
+- **Zoom & Pan** — Interactive PyVis graph with mouse controls
+- **Direction Selector** — Choose "Callers", "Callees", or "Both"
+- **Depth Control** — Set recursion depth (1–3 levels)
+- **Cycle Detection** — Red edges highlight circular dependencies
+- **Export** — Save graph as DOT format (Graphviz)
+
+**Colors:**
+
+- 🟨 Yellow — Selected routine
+- 🟢 Cyan — Regular dependencies
+- 🔴 Red — Nodes/edges in cycles
+
+**Example:**
+
+Select `usp_InsertOrder`:
+- Direction: Both
+- Depth: 2
+
+Graph shows:
+- All procedures calling `usp_InsertOrder` (1–2 levels up)
+- All procedures called by `usp_InsertOrder` (1–2 levels down)
+- Any circular dependencies highlighted in red
+
 ## Parameters
 
 ### View Procedure Parameters

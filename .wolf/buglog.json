@@ -96,6 +96,30 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-07-25T00:00:00Z",
+      "error_message": "Connection error: connect() got an unexpected keyword argument 'cafile'",
+      "file": "app/models/connection_profile.py",
+      "root_cause": "pymssql.connect() does not accept cafile parameter; encryption handled via encryption='require' parameter alone",
+      "fix": "Removed cafile=None from SQL Server kwargs when trust_certificate is True; encryption='require' suffices",
+      "tags": ["runtime", "connection", "sqlserver"],
+      "related_bugs": ["bug-006"],
+      "occurrences": 1,
+      "last_seen": "2026-07-25T00:00:00Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-07-25T00:00:00Z",
+      "error_message": "Login failed for user 'sa' when connecting to SQL Server",
+      "file": "app/models/connection_profile.py",
+      "root_cause": "Used 'host' parameter instead of 'server' for pymssql.connect(); pymssql ignores 'host' and uses default server value",
+      "fix": "Changed 'host' to 'server' in _get_sqlserver_kwargs()",
+      "tags": ["runtime", "connection", "sqlserver", "pymssql"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-07-25T00:00:00Z"
     }
   ]
 }

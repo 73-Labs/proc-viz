@@ -1,3 +1,7 @@
+CREATE DATABASE DummyDB;
+
+USE DummyDB;
+
 -- Database: DummyDB
 -- Exported: 2026-07-21 20:15:41
 

@@ -84,7 +84,7 @@ class ConnectionProfile:
     def _get_sqlserver_kwargs(self, password: Optional[str] = None) -> dict:
         """Build pymssql-style kwargs for SQL Server."""
         kwargs = {
-            "host": self.server,
+            "server": self.server,
             "port": self.port,
             "database": self.database,
         }
@@ -96,8 +96,6 @@ class ConnectionProfile:
 
         if self.encrypt:
             kwargs["encryption"] = "require"
-            if self.trust_certificate:
-                kwargs["cafile"] = None
 
         return kwargs
 

@@ -2,19 +2,19 @@
   "version": 1,
   "created_at": "2026-07-17T01:35:09.756Z",
   "lifetime": {
-    "total_tokens_estimated": 85064,
-    "total_reads": 25,
+    "total_tokens_estimated": 197196,
+    "total_reads": 84,
     "total_writes": 0,
-    "total_sessions": 6,
-    "anatomy_hits": 25,
+    "total_sessions": 9,
+    "anatomy_hits": 84,
     "anatomy_misses": 0,
-    "repeated_reads_blocked": 11,
-    "estimated_savings_vs_bare_cli": 92868,
-    "real_input_tokens": 1900,
-    "real_output_tokens": 84195,
-    "real_cache_read_tokens": 12179052,
-    "real_cache_creation_tokens": 358673,
-    "real_api_calls": 232
+    "repeated_reads_blocked": 46,
+    "estimated_savings_vs_bare_cli": 157084,
+    "real_input_tokens": 4674,
+    "real_output_tokens": 182048,
+    "real_cache_read_tokens": 26893562,
+    "real_cache_creation_tokens": 880495,
+    "real_api_calls": 574
   },
   "sessions": [
     {
@@ -381,6 +381,648 @@
         "cache_read_input_tokens": 828303,
         "cache_creation_input_tokens": 37553,
         "api_calls": 20
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:01:16.098Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7251,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 3
+      },
+      "real_usage": {
+        "input_tokens": 129,
+        "output_tokens": 4256,
+        "cache_read_input_tokens": 568180,
+        "cache_creation_input_tokens": 29906,
+        "api_calls": 16
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:05:03.617Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7251,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 3
+      },
+      "real_usage": {
+        "input_tokens": 139,
+        "output_tokens": 4694,
+        "cache_read_input_tokens": 613521,
+        "cache_creation_input_tokens": 30425,
+        "api_calls": 17
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:07:37.466Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7460,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 4
+      },
+      "real_usage": {
+        "input_tokens": 165,
+        "output_tokens": 5169,
+        "cache_read_input_tokens": 752705,
+        "cache_creation_input_tokens": 31781,
+        "api_calls": 20
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:43:23.223Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7460,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 4
+      },
+      "real_usage": {
+        "input_tokens": 183,
+        "output_tokens": 5772,
+        "cache_read_input_tokens": 847409,
+        "cache_creation_input_tokens": 32878,
+        "api_calls": 22
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:45:30.509Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7460,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 4
+      },
+      "real_usage": {
+        "input_tokens": 193,
+        "output_tokens": 6265,
+        "cache_read_input_tokens": 895722,
+        "cache_creation_input_tokens": 33495,
+        "api_calls": 23
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:47:07.689Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7717,
+        "output_tokens_estimated": 0,
+        "reads_count": 5,
+        "writes_count": 0,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 5
+      },
+      "real_usage": {
+        "input_tokens": 219,
+        "output_tokens": 7506,
+        "cache_read_input_tokens": 1045480,
+        "cache_creation_input_tokens": 35965,
+        "api_calls": 26
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:47:54.172Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7717,
+        "output_tokens_estimated": 0,
+        "reads_count": 5,
+        "writes_count": 0,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 5
+      },
+      "real_usage": {
+        "input_tokens": 229,
+        "output_tokens": 7622,
+        "cache_read_input_tokens": 1096880,
+        "cache_creation_input_tokens": 36926,
+        "api_calls": 27
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:48:03.188Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7717,
+        "output_tokens_estimated": 0,
+        "reads_count": 5,
+        "writes_count": 0,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 5
+      },
+      "real_usage": {
+        "input_tokens": 229,
+        "output_tokens": 7622,
+        "cache_read_input_tokens": 1096880,
+        "cache_creation_input_tokens": 36926,
+        "api_calls": 27
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:52:05.765Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7717,
+        "output_tokens_estimated": 0,
+        "reads_count": 5,
+        "writes_count": 0,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 5
+      },
+      "real_usage": {
+        "input_tokens": 249,
+        "output_tokens": 8053,
+        "cache_read_input_tokens": 1201786,
+        "cache_creation_input_tokens": 37412,
+        "api_calls": 29
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:53:59.967Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/main_window.py",
+          "tokens_estimated": 3651,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/dialogs/connection_dialog.py",
+          "tokens_estimated": 3426,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 14794,
+        "output_tokens_estimated": 0,
+        "reads_count": 7,
+        "writes_count": 0,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 315,
+        "output_tokens": 10639,
+        "cache_read_input_tokens": 1642534,
+        "cache_creation_input_tokens": 42794,
+        "api_calls": 37
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T13:55:19.498Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/main_window.py",
+          "tokens_estimated": 3651,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/dialogs/connection_dialog.py",
+          "tokens_estimated": 3426,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 14794,
+        "output_tokens_estimated": 0,
+        "reads_count": 7,
+        "writes_count": 0,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 341,
+        "output_tokens": 11333,
+        "cache_read_input_tokens": 1819149,
+        "cache_creation_input_tokens": 44342,
+        "api_calls": 40
+      }
+    },
+    {
+      "id": "session-2026-07-25-0958",
+      "agent": "claude",
+      "started": "2026-07-25T12:58:15.731Z",
+      "ended": "2026-07-25T14:00:50.689Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/models/connection_profile.py",
+          "tokens_estimated": 1566,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py",
+          "tokens_estimated": 768,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/main_window.py",
+          "tokens_estimated": 3651,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/dialogs/connection_dialog.py",
+          "tokens_estimated": 3426,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 14794,
+        "output_tokens_estimated": 0,
+        "reads_count": 7,
+        "writes_count": 0,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 383,
+        "output_tokens": 18922,
+        "cache_read_input_tokens": 3134264,
+        "cache_creation_input_tokens": 128972,
+        "api_calls": 58
       }
     }
   ],

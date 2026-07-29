@@ -2,7 +2,8 @@
 
 import pymssql
 import re
-from typing import List, Optional
+import time
+from typing import List, Optional, Dict, Any
 from app.drivers.database_driver import (
     DatabaseDriver,
     Database,
@@ -12,6 +13,8 @@ from app.drivers.database_driver import (
     Table,
     ObjectDependency,
     Parameter,
+    ExecutionRequest,
+    ExecutionResult,
 )
 
 
@@ -430,6 +433,166 @@ class SQLServerDriver(DatabaseDriver):
                 params.append(param)
 
             return params
+        finally:
+            cursor.close()
+
+    def execute_procedure(self, request: ExecutionRequest) -> ExecutionResult:
+        """Execute a stored procedure or function with given parameters."""
+        start_time = time.time()
+        cursor = self.conn.cursor()
+        try:
+            # Check for cancellation before starting
+            if request.cancel_flag and request.cancel_flag.is_set():
+                return ExecutionResult(
+                    success=False,
+                    error_message="Execution cancelled"
+                )
+
+            # Select database
+            cursor.execute(f"USE [{request.database}]")
+
+            # Get parameter metadata
+            if request.object_type == "PROCEDURE":
+                params = self.get_procedure_parameters(request.database, request.schema, request.routine_name)
+            else:
+                params = self.get_function_parameters(request.database, request.schema, request.routine_name)
+
+            # Build parameter list for EXEC statement
+            param_list = []
+            param_values = []
+            output_param_names = []
+
+            for param in params:
+                if request.cancel_flag and request.cancel_flag.is_set():
+                    return ExecutionResult(
+                        success=False,
+                        error_message="Execution cancelled"
+                    )
+
+                param_name = param.name
+                if not param_name.startswith("@"):
+                    param_name = "@" + param_name
+
+                if param.direction in ("IN", "INOUT"):
+                    # Input parameter
+                    if param.name in request.parameters:
+                        value = request.parameters[param.name]
+                        param_list.append(f"{param_name}=%s")
+                        param_values.append(value)
+                    elif param.has_default:
+                        # Skip parameters with defaults if not provided
+                        continue
+                    else:
+                        return ExecutionResult(
+                            success=False,
+                            error_message=f"Required parameter '{param.name}' not provided"
+                        )
+
+                if param.direction in ("OUT", "INOUT"):
+                    # Output parameter
+                    output_param_names.append(param_name)
+                    if param.direction == "OUT":
+                        # OUT parameters need to be initialized, but not passed a value
+                        param_list.append(f"{param_name}=NULL OUTPUT")
+                    else:
+                        # INOUT parameters use the input value if provided
+                        if param.name in request.parameters:
+                            value = request.parameters[param.name]
+                            param_list.append(f"{param_name}=%s OUTPUT")
+                            param_values.append(value)
+                        elif param.has_default:
+                            param_list.append(f"{param_name}=NULL OUTPUT")
+                        else:
+                            return ExecutionResult(
+                                success=False,
+                                error_message=f"Required parameter '{param.name}' not provided"
+                            )
+
+            # Build EXEC statement
+            qualified_name = f"[{request.schema}].[{request.routine_name}]"
+            if param_list:
+                exec_stmt = f"EXEC {qualified_name} {', '.join(param_list)}"
+            else:
+                exec_stmt = f"EXEC {qualified_name}"
+
+            # Execute the procedure
+            cursor.execute(exec_stmt, tuple(param_values))
+
+            # Capture result sets and affected rows
+            result_sets = []
+            total_affected_rows = 0
+
+            # Process all result sets
+            # Note: need to iterate through all result sets even if first is empty
+            for iteration in range(100):  # Safety limit to prevent infinite loops
+                if request.cancel_flag and request.cancel_flag.is_set():
+                    return ExecutionResult(
+                        success=False,
+                        error_message="Execution cancelled"
+                    )
+
+                # Try to fetch rows from current result set
+                try:
+                    rows = cursor.fetchall()
+                    if rows:
+                        # Got rows - convert to list of dicts if we have column info
+                        if cursor.description:
+                            col_names = [desc[0] for desc in cursor.description]
+                            result_set = [dict(zip(col_names, row)) for row in rows]
+                        else:
+                            # No column info, convert to list as dicts with generic keys
+                            result_set = [{f"col_{i}": v for i, v in enumerate(row)}
+                                        if isinstance(row, (list, tuple)) else {"col": row}
+                                        for row in rows]
+                        result_sets.append(result_set)
+                        total_affected_rows = len(rows)
+                except Exception:
+                    # fetchall() failed or no result set
+                    pass
+
+                # Check rowcount for affected rows (INSERT/UPDATE/DELETE)
+                if not result_sets and cursor.rowcount and cursor.rowcount > 0:
+                    total_affected_rows = cursor.rowcount
+
+                # Move to next result set - if False, no more result sets
+                if not cursor.nextset():
+                    break
+
+            # Capture output parameters
+            # Note: pymssql doesn't easily expose output parameters after execution
+            # For now, output parameters are not captured
+            output_parameters = {}
+
+            duration_ms = (time.time() - start_time) * 1000
+
+            return ExecutionResult(
+                success=True,
+                result_sets=result_sets,
+                output_parameters=output_parameters,
+                affected_rows=total_affected_rows,
+                duration_ms=duration_ms
+            )
+
+        except Exception as e:
+            duration_ms = (time.time() - start_time) * 1000
+            error_msg = str(e)
+            # Try to extract meaningful error from pymssql
+            error_details = None
+            if "ProgrammingError" in str(type(e)):
+                error_details = error_msg
+                # Extract first line for main message
+                error_msg = error_msg.split('\n')[0] if '\n' in error_msg else error_msg
+
+            # Add debug info for execution errors
+            if not error_details and error_msg:
+                error_details = f"Exception type: {type(e).__name__}\nFull error: {str(e)}"
+
+            return ExecutionResult(
+                success=False,
+                error_message=error_msg,
+                error_details=error_details,
+                duration_ms=duration_ms
+            )
         finally:
             cursor.close()
 

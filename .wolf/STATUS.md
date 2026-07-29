@@ -2,7 +2,7 @@
 
 > Single source of truth for resuming work. Read this FIRST when starting a session.
 > Update this file at the end of every work phase so the next `/clear` resumes in 1 read.
-> Last updated: 2026-07-25 (Task 3 unified search completed)
+> Last updated: 2026-07-26 (Task 5 execution foundation completed)
 
 ---
 
@@ -14,25 +14,30 @@
 - Test runner baseline restored — 80 passed, 4 integration skipped without SQL Server
 - **Task 3: Unified search and filtering** — scope selector, schema filter for routines, exact-match mode, debounce, result count, clear button, filter preservation
 - **Task 4: Dependency graph view** — PyVis interactive graphs, cycle detection, depth/direction selectors, DOT export, full cross-schema names
+- **Task 5: Safe procedure execution foundation** — ExecutionRequest/Result models, parameterized SQLServerDriver.execute_procedure, async ExecutionWorker, ResultViewer widget, ParametersWidget Execute button with validation, confirmation dialog, parameterized queries (no string interpolation)
 
 ---
 
 ## 🚀 Next phase
 
-**Goal:** Reliable refresh, reconnect, cancellation, and stale-state handling (Task 2)
+**Goal:** Complete Task 5 integration — wire execution callback into DatabaseExplorer and MainWindow
 
 ### Acceptance criteria
-- Refresh, failure, cancellation, and reconnect lifecycle behavior covered by tests
+- ✅ Required values block execution with field-level errors
+- ✅ SQL errors show readable message and preserve entered parameters
+- ✅ User can cancel or timeout execution
+- ✅ Tests prove no execution occurs on selection and no raw string interpolation
+- ⏳ Successful execution displays result without freezing window (ExecutionWorker async ready, needs DatabaseExplorer wiring)
+- ⏳ Integration test with seed database procedure
 
 ### Files to modify
-- `app/widgets/database_explorer.py` — refresh logic and state preservation
-- `app/main_window.py` — reconnection and error handling
-- `tests/test_database_explorer.py` — lifecycle tests
+- `app/widgets/database_explorer.py` — pass execute_callback to ParametersWidget, set connection info
+- `app/main_window.py` — create execute callback from accessor, pass to explorer
+- `tests/integration/test_sqlserver.py` — add execution test with seed procedure
 
-### Decisions pending
-- Cancellation token generation strategy (UUID vs counter)
-- Retry UI behavior (automatic vs manual)
-- State preservation scope (full tree vs metadata only)
+### Decisions fixed
+- Async execution via QThreadPool + ExecutionWorker (prevents UI freezing)
+- Parameterized queries throughout (no string interpolation for parameters or routine names)
 
 ---
 

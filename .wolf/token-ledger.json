@@ -2,19 +2,19 @@
   "version": 1,
   "created_at": "2026-07-17T01:35:09.756Z",
   "lifetime": {
-    "total_tokens_estimated": 238829,
-    "total_reads": 103,
+    "total_tokens_estimated": 383739,
+    "total_reads": 247,
     "total_writes": 0,
-    "total_sessions": 12,
-    "anatomy_hits": 100,
-    "anatomy_misses": 3,
-    "repeated_reads_blocked": 61,
-    "estimated_savings_vs_bare_cli": 262530,
-    "real_input_tokens": 5771,
-    "real_output_tokens": 248795,
-    "real_cache_read_tokens": 36548186,
-    "real_cache_creation_tokens": 1111670,
-    "real_api_calls": 710
+    "total_sessions": 23,
+    "anatomy_hits": 186,
+    "anatomy_misses": 61,
+    "repeated_reads_blocked": 174,
+    "estimated_savings_vs_bare_cli": 651589,
+    "real_input_tokens": 18682,
+    "real_output_tokens": 781392,
+    "real_cache_read_tokens": 131430236,
+    "real_cache_creation_tokens": 3351819,
+    "real_api_calls": 2254
   },
   "sessions": [
     {
@@ -1209,6 +1209,2022 @@
         "cache_read_input_tokens": 3782102,
         "cache_creation_input_tokens": 82001,
         "api_calls": 49
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T13:57:46.145Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 1,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 17,
+        "output_tokens": 731,
+        "cache_read_input_tokens": 45829,
+        "cache_creation_input_tokens": 22186,
+        "api_calls": 2
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T13:58:41.525Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 1,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 25,
+        "output_tokens": 1105,
+        "cache_read_input_tokens": 83626,
+        "cache_creation_input_tokens": 27371,
+        "api_calls": 3
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T14:07:41.205Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/database_driver.py",
+          "tokens_estimated": 1102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/parameters_widget.py",
+          "tokens_estimated": 3944,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/__init__.py",
+          "tokens_estimated": 36,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_db_accessor.py",
+          "tokens_estimated": 1556,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 12624,
+        "output_tokens_estimated": 0,
+        "reads_count": 7,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 6
+      },
+      "real_usage": {
+        "input_tokens": 469,
+        "output_tokens": 28602,
+        "cache_read_input_tokens": 4043123,
+        "cache_creation_input_tokens": 79525,
+        "api_calls": 58
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T14:11:08.571Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/database_driver.py",
+          "tokens_estimated": 1102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/parameters_widget.py",
+          "tokens_estimated": 3944,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/__init__.py",
+          "tokens_estimated": 36,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_db_accessor.py",
+          "tokens_estimated": 1556,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 20612,
+        "output_tokens_estimated": 0,
+        "reads_count": 8,
+        "writes_count": 0,
+        "repeated_reads_blocked": 8,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 671,
+        "output_tokens": 34588,
+        "cache_read_input_tokens": 6660892,
+        "cache_creation_input_tokens": 93833,
+        "api_calls": 83
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T14:13:45.776Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/database_driver.py",
+          "tokens_estimated": 1102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/parameters_widget.py",
+          "tokens_estimated": 3944,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/__init__.py",
+          "tokens_estimated": 36,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_db_accessor.py",
+          "tokens_estimated": 1556,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 20612,
+        "output_tokens_estimated": 0,
+        "reads_count": 8,
+        "writes_count": 0,
+        "repeated_reads_blocked": 11,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 793,
+        "output_tokens": 37595,
+        "cache_read_input_tokens": 8374720,
+        "cache_creation_input_tokens": 100145,
+        "api_calls": 98
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T14:21:33.222Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/database_driver.py",
+          "tokens_estimated": 1102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/parameters_widget.py",
+          "tokens_estimated": 3944,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/__init__.py",
+          "tokens_estimated": 36,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_db_accessor.py",
+          "tokens_estimated": 1556,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 20612,
+        "output_tokens_estimated": 0,
+        "reads_count": 8,
+        "writes_count": 0,
+        "repeated_reads_blocked": 12,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 851,
+        "output_tokens": 39914,
+        "cache_read_input_tokens": 9214137,
+        "cache_creation_input_tokens": 104534,
+        "api_calls": 105
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T14:24:26.845Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/database_driver.py",
+          "tokens_estimated": 1102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/parameters_widget.py",
+          "tokens_estimated": 3944,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/__init__.py",
+          "tokens_estimated": 36,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_db_accessor.py",
+          "tokens_estimated": 1556,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 20612,
+        "output_tokens_estimated": 0,
+        "reads_count": 9,
+        "writes_count": 0,
+        "repeated_reads_blocked": 13,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 909,
+        "output_tokens": 43177,
+        "cache_read_input_tokens": 10087428,
+        "cache_creation_input_tokens": 109608,
+        "api_calls": 112
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T14:30:21.109Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/database_driver.py",
+          "tokens_estimated": 1102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/parameters_widget.py",
+          "tokens_estimated": 3944,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/__init__.py",
+          "tokens_estimated": 36,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_db_accessor.py",
+          "tokens_estimated": 1556,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 20612,
+        "output_tokens_estimated": 0,
+        "reads_count": 9,
+        "writes_count": 0,
+        "repeated_reads_blocked": 13,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 983,
+        "output_tokens": 48427,
+        "cache_read_input_tokens": 11263246,
+        "cache_creation_input_tokens": 116505,
+        "api_calls": 121
+      }
+    },
+    {
+      "id": "session-2026-07-25-1945",
+      "agent": "claude",
+      "started": "2026-07-25T22:45:17.923Z",
+      "ended": "2026-07-26T14:35:25.262Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/NEXT_FEATURES.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/database_driver.py",
+          "tokens_estimated": 1102,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/parameters_widget.py",
+          "tokens_estimated": 3944,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/__init__.py",
+          "tokens_estimated": 36,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/tests/test_db_accessor.py",
+          "tokens_estimated": 1556,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 20612,
+        "output_tokens_estimated": 0,
+        "reads_count": 9,
+        "writes_count": 0,
+        "repeated_reads_blocked": 14,
+        "anatomy_lookups": 7
+      },
+      "real_usage": {
+        "input_tokens": 1057,
+        "output_tokens": 52219,
+        "cache_read_input_tokens": 12494967,
+        "cache_creation_input_tokens": 121702,
+        "api_calls": 130
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:46:14.923Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 93,
+        "output_tokens": 3981,
+        "cache_read_input_tokens": 363047,
+        "cache_creation_input_tokens": 23446,
+        "api_calls": 11
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:49:06.384Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 101,
+        "output_tokens": 4316,
+        "cache_read_input_tokens": 402104,
+        "cache_creation_input_tokens": 24024,
+        "api_calls": 12
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:49:21.382Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 111,
+        "output_tokens": 4595,
+        "cache_read_input_tokens": 442079,
+        "cache_creation_input_tokens": 24121,
+        "api_calls": 13
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:51:18.477Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 121,
+        "output_tokens": 4749,
+        "cache_read_input_tokens": 482151,
+        "cache_creation_input_tokens": 24503,
+        "api_calls": 14
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:52:08.127Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 131,
+        "output_tokens": 5057,
+        "cache_read_input_tokens": 522766,
+        "cache_creation_input_tokens": 24606,
+        "api_calls": 15
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:52:29.779Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 150,
+        "output_tokens": 6008,
+        "cache_read_input_tokens": 605294,
+        "cache_creation_input_tokens": 25578,
+        "api_calls": 17
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:55:05.190Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 158,
+        "output_tokens": 6096,
+        "cache_read_input_tokens": 647293,
+        "cache_creation_input_tokens": 26338,
+        "api_calls": 18
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:58:39.309Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 178,
+        "output_tokens": 6570,
+        "cache_read_input_tokens": 733297,
+        "cache_creation_input_tokens": 26541,
+        "api_calls": 20
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T16:59:41.777Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 186,
+        "output_tokens": 6674,
+        "cache_read_input_tokens": 776556,
+        "cache_creation_input_tokens": 26930,
+        "api_calls": 21
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T17:00:17.920Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 205,
+        "output_tokens": 7205,
+        "cache_read_input_tokens": 865122,
+        "cache_creation_input_tokens": 27715,
+        "api_calls": 23
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T17:02:19.245Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 213,
+        "output_tokens": 7273,
+        "cache_read_input_tokens": 910019,
+        "cache_creation_input_tokens": 27990,
+        "api_calls": 24
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T17:03:23.785Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 233,
+        "output_tokens": 8981,
+        "cache_read_input_tokens": 1000889,
+        "cache_creation_input_tokens": 36152,
+        "api_calls": 26
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T17:04:21.097Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 241,
+        "output_tokens": 9096,
+        "cache_read_input_tokens": 1054580,
+        "cache_creation_input_tokens": 37674,
+        "api_calls": 27
+      }
+    },
+    {
+      "id": "session-2026-07-26-1340",
+      "agent": "claude",
+      "started": "2026-07-26T16:40:04.450Z",
+      "ended": "2026-07-26T23:33:57.924Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/init-db.sql",
+          "tokens_estimated": 257,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 466,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 260,
+        "output_tokens": 10068,
+        "cache_read_input_tokens": 1125524,
+        "cache_creation_input_tokens": 80395,
+        "api_calls": 29
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T13:53:11.956Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 9,
+        "output_tokens": 508,
+        "cache_read_input_tokens": 15611,
+        "cache_creation_input_tokens": 13954,
+        "api_calls": 1
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T13:54:30.270Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 17,
+        "output_tokens": 476,
+        "cache_read_input_tokens": 45238,
+        "cache_creation_input_tokens": 15969,
+        "api_calls": 2
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T13:57:03.250Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 43,
+        "output_tokens": 2009,
+        "cache_read_input_tokens": 142899,
+        "cache_creation_input_tokens": 18460,
+        "api_calls": 5
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T14:00:54.532Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 51,
+        "output_tokens": 2211,
+        "cache_read_input_tokens": 176977,
+        "cache_creation_input_tokens": 18815,
+        "api_calls": 6
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T14:02:14.226Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 71,
+        "output_tokens": 3461,
+        "cache_read_input_tokens": 246337,
+        "cache_creation_input_tokens": 20228,
+        "api_calls": 8
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T14:06:15.079Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 79,
+        "output_tokens": 3621,
+        "cache_read_input_tokens": 282183,
+        "cache_creation_input_tokens": 20836,
+        "api_calls": 9
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T14:09:29.106Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 107,
+        "output_tokens": 4729,
+        "cache_read_input_tokens": 392627,
+        "cache_creation_input_tokens": 22020,
+        "api_calls": 12
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T14:24:21.114Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 115,
+        "output_tokens": 4814,
+        "cache_read_input_tokens": 430265,
+        "cache_creation_input_tokens": 22373,
+        "api_calls": 13
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T14:27:38.261Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 143,
+        "output_tokens": 5882,
+        "cache_read_input_tokens": 545111,
+        "cache_creation_input_tokens": 23775,
+        "api_calls": 16
+      }
+    },
+    {
+      "id": "session-2026-07-29-1051",
+      "agent": "claude",
+      "started": "2026-07-29T13:51:46.636Z",
+      "ended": "2026-07-29T14:33:40.256Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/start.sh",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/docker-compose.yml",
+          "tokens_estimated": 209,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 209,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 3,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 151,
+        "output_tokens": 6024,
+        "cache_read_input_tokens": 584504,
+        "cache_creation_input_tokens": 24367,
+        "api_calls": 17
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T15:46:31.844Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 1,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 97,
+        "output_tokens": 2520,
+        "cache_read_input_tokens": 372484,
+        "cache_creation_input_tokens": 19331,
+        "api_calls": 12
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T15:54:38.095Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 171,
+        "output_tokens": 5315,
+        "cache_read_input_tokens": 757404,
+        "cache_creation_input_tokens": 24575,
+        "api_calls": 21
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T15:55:01.379Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 179,
+        "output_tokens": 5559,
+        "cache_read_input_tokens": 803226,
+        "cache_creation_input_tokens": 24901,
+        "api_calls": 22
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:09:02.504Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 189,
+        "output_tokens": 5862,
+        "cache_read_input_tokens": 849623,
+        "cache_creation_input_tokens": 24993,
+        "api_calls": 23
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:15:37.142Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 199,
+        "output_tokens": 6364,
+        "cache_read_input_tokens": 865234,
+        "cache_creation_input_tokens": 59391,
+        "api_calls": 24
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:21:20.987Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 209,
+        "output_tokens": 6696,
+        "cache_read_input_tokens": 915243,
+        "cache_creation_input_tokens": 60009,
+        "api_calls": 25
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:22:18.146Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 218,
+        "output_tokens": 6875,
+        "cache_read_input_tokens": 965870,
+        "cache_creation_input_tokens": 61731,
+        "api_calls": 26
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:26:30.239Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 228,
+        "output_tokens": 7061,
+        "cache_read_input_tokens": 1018404,
+        "cache_creation_input_tokens": 61908,
+        "api_calls": 27
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:27:34.597Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/sqlserver-nerdctl/init.sql",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 255,
+        "output_tokens": 8025,
+        "cache_read_input_tokens": 1178420,
+        "cache_creation_input_tokens": 62649,
+        "api_calls": 30
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:34:21.591Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/sqlserver-nerdctl/init.sql",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 263,
+        "output_tokens": 8177,
+        "cache_read_input_tokens": 1232535,
+        "cache_creation_input_tokens": 63038,
+        "api_calls": 31
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:35:03.496Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/sqlserver-nerdctl/init.sql",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 346,
+        "output_tokens": 10566,
+        "cache_read_input_tokens": 1824188,
+        "cache_creation_input_tokens": 70605,
+        "api_calls": 41
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:43:21.650Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/sqlserver-nerdctl/init.sql",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 354,
+        "output_tokens": 10712,
+        "cache_read_input_tokens": 1886497,
+        "cache_creation_input_tokens": 70909,
+        "api_calls": 42
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:48:10.552Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/sqlserver-nerdctl/init.sql",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 389,
+        "output_tokens": 11464,
+        "cache_read_input_tokens": 2142101,
+        "cache_creation_input_tokens": 72823,
+        "api_calls": 46
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:50:02.380Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/sqlserver-nerdctl/init.sql",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 415,
+        "output_tokens": 12757,
+        "cache_read_input_tokens": 2337313,
+        "cache_creation_input_tokens": 74324,
+        "api_calls": 49
+      }
+    },
+    {
+      "id": "session-2026-07-29-1242",
+      "agent": "claude",
+      "started": "2026-07-29T15:42:40.141Z",
+      "ended": "2026-07-29T20:50:55.731Z",
+      "reads": [
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/ba3bifsrm.output",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/tmp/claude-1000/-home-larrosa-dev-73Labs-proc-viz/4d75cf16-83cb-4f0c-a3a5-77d35de3d2b7/tasks/bx6sr40if.output",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/sqlserver-nerdctl/init.sql",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 0
+      },
+      "real_usage": {
+        "input_tokens": 457,
+        "output_tokens": 13882,
+        "cache_read_input_tokens": 2673067,
+        "cache_creation_input_tokens": 76743,
+        "api_calls": 54
       }
     }
   ],

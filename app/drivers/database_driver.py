@@ -1,8 +1,10 @@
 """Abstract database driver interface for extensible multi-database support."""
 
 from abc import ABC, abstractmethod
-from typing import List, Dict, Optional, Any
-from dataclasses import dataclass
+from typing import List, Dict, Optional, Any, Tuple
+from dataclasses import dataclass, field
+from threading import Event
+import time
 
 
 @dataclass
@@ -65,6 +67,30 @@ class Parameter:
     default_value: Optional[str] = None
     ordinal_position: int = 0
     description: Optional[str] = None
+
+
+@dataclass
+class ExecutionRequest:
+    """Request to execute a stored procedure or function."""
+    routine_name: str
+    schema: str
+    database: str
+    object_type: str  # PROCEDURE or FUNCTION
+    parameters: Dict[str, Any]
+    timeout_seconds: int = 30
+    cancel_flag: Optional[Event] = None
+
+
+@dataclass
+class ExecutionResult:
+    """Result of executing a stored procedure or function."""
+    success: bool
+    result_sets: List[List[Dict[str, Any]]] = field(default_factory=list)
+    output_parameters: Dict[str, Any] = field(default_factory=dict)
+    affected_rows: int = 0
+    duration_ms: float = 0.0
+    error_message: Optional[str] = None
+    error_details: Optional[str] = None
 
 
 class DatabaseDriver(ABC):
@@ -133,6 +159,11 @@ class DatabaseDriver(ABC):
     @abstractmethod
     def get_function_parameters(self, database: str, schema: str, function: str) -> List['Parameter']:
         """Get parameters for function."""
+        pass
+
+    @abstractmethod
+    def execute_procedure(self, request: ExecutionRequest) -> ExecutionResult:
+        """Execute a stored procedure or function with given parameters."""
         pass
 
     @abstractmethod

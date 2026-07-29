@@ -10,6 +10,8 @@ from app.drivers.database_driver import (
     Table,
     ObjectDependency,
     Parameter,
+    ExecutionRequest,
+    ExecutionResult,
 )
 
 
@@ -79,6 +81,10 @@ class DatabaseAccessor:
     def get_function_parameters(self, database: str, schema: str, function: str) -> List[Parameter]:
         """Get parameters for function."""
         return self.driver.get_function_parameters(database, schema, function)
+
+    def execute_procedure(self, request: ExecutionRequest) -> ExecutionResult:
+        """Execute a stored procedure or function."""
+        return self.driver.execute_procedure(request)
 
     def close(self) -> None:
         """Close database connection."""

@@ -198,7 +198,8 @@ class DatabaseExplorer(QWidget):
         self.set_zoom_level(self.zoom_level)
         self.tabs.addTab(self.source_text, "Source")
 
-        self.parameters_widget = ParametersWidget()
+        self.parameters_widget = ParametersWidget(execute_callback=self.execute_procedure)
+        self.parameters_widget.set_connection_info(self.profile.server, self.current_database)
         self.tabs.addTab(self.parameters_widget, "Parameters")
 
         self.details_text = QTextEdit()
@@ -648,7 +649,7 @@ class DatabaseExplorer(QWidget):
 
             # Load parameters
             parameters = self.accessor.get_procedure_parameters(database, schema, procedure)
-            self.parameters_widget.load_parameters(database, schema, procedure, parameters)
+            self.parameters_widget.load_parameters(database, schema, procedure, parameters, "PROCEDURE")
 
             self.details_text.setText(f"Schema: {schema}\nType: Stored Procedure\nDatabase: {database}")
 
@@ -670,7 +671,7 @@ class DatabaseExplorer(QWidget):
 
             # Load parameters
             parameters = self.accessor.get_function_parameters(database, schema, function)
-            self.parameters_widget.load_parameters(database, schema, function, parameters)
+            self.parameters_widget.load_parameters(database, schema, function, parameters, "FUNCTION")
 
             self.details_text.setText(f"Schema: {schema}\nType: Function\nDatabase: {database}")
 
@@ -699,6 +700,10 @@ class DatabaseExplorer(QWidget):
 
         except Exception as e:
             self.source_text.setText(f"Error loading details:\n{str(e)}")
+
+    def execute_procedure(self, request):
+        """Execute stored procedure asynchronously."""
+        return self.accessor.execute_procedure(request)
 
     def clear_details(self):
         """Clear details panel."""

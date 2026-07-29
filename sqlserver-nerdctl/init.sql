@@ -1,6 +1,8 @@
 CREATE DATABASE DummyDB;
+GO
 
 USE DummyDB;
+GO
 
 -- Database: DummyDB
 -- Exported: 2026-07-21 20:15:41
@@ -73,6 +75,7 @@ VALUES
     (N'Alice Manager', N'Engineering', 120000.00, NULL),
     (N'Bob Developer', N'Engineering', 90000.00, 1),
     (N'Carol Analyst', N'Finance', 80000.00, NULL);
+GO
 
 -- Procedures in dbo
 CREATE PROCEDURE sp_GetDepartmentStats
@@ -109,6 +112,7 @@ BEGIN
     PRINT '=================================';
     PRINT '';
 END;
+GO
 
 CREATE PROCEDURE sp_GetEmployeeInfo
     @EmployeeID INT
@@ -146,7 +150,7 @@ BEGIN
     
     PRINT '===================================';
 END;
-
+GO
 
 CREATE PROCEDURE sp_GetManagerInfo
     @ManagerID INT
@@ -199,7 +203,7 @@ BEGIN
     
     PRINT '===================================';
 END;
-
+GO
 
 -- ============================================
 -- Schema: FunctionSchema
@@ -218,6 +222,7 @@ BEGIN
     
     RETURN ISNULL(@AvgSalary, 0);
 END;
+GO
 
 CREATE FUNCTION FunctionSchema.fn_GetDepartmentDetails(@Department NVARCHAR(50))
 RETURNS TABLE
@@ -240,6 +245,7 @@ RETURN
     FROM Employees E
     WHERE E.Department = @Department
 );
+GO
 
 -- =====================================================
 CREATE FUNCTION FunctionSchema.fn_GetEmployeeSalary(@EmployeeID INT)
@@ -266,6 +272,7 @@ BEGIN
     
     RETURN ISNULL(@Salary, 0);
 END;
+GO
 
 CREATE FUNCTION FunctionSchema.fn_GetManagerBonus(@ManagerID INT)
 RETURNS DECIMAL(10, 2)
@@ -302,7 +309,7 @@ BEGIN
     
     RETURN ISNULL(@Bonus, 0);
 END;
-
+GO
 
 -- ============================================
 -- Schema: guest

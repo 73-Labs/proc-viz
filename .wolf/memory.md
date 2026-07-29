@@ -75,3 +75,66 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-07-25 19:35
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-25 19:40
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-25 19:45
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-26 15:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:30 | Task 5 execution foundation: added ExecutionRequest/Result models, parameterized SQLServerDriver.execute_procedure with validation/cancellation/error handling | app/drivers/database_driver.py, app/drivers/sqlserver_driver.py, app/db_accessor.py | Execution layer complete; 11 new tests all pass | ~2000 |
+| 15:45 | Task 5 UI layer: ResultViewer widget for result sets/messages/errors, ExecutionWorker for async QThreadPool execution, ParametersWidget Execute button with validation/confirmation | app/widgets/result_viewer.py (new), app/widgets/execution_worker.py (new), app/widgets/parameters_widget.py | UI layer complete; async execution ready; 109 passed, 4 skipped | ~1500 |
+| 16:00 | Updated anatomy.md (new files, token estimates), STATUS.md (Task 5 foundation done, next: integration), memory.md | .wolf/anatomy.md, .wolf/STATUS.md, .wolf/memory.md | Foundation phase complete; awaiting DatabaseExplorer wiring | ~600 |
+
+## Session: 2026-07-26 13:40
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-29 10:39
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-29 10:44
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-29 10:51
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-29 10:51
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-29 12:37
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-29 12:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-07-29 12:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

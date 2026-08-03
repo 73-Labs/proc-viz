@@ -31,7 +31,7 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          pyinstaller --onefile --windowed --name procedures-visualizer --add-data="app;app" main.py
+          pyinstaller --onefile --windowed --name procedures-visualizer --add-data="app;app" --collect-all pyvis main.py
 
       - name: Build executable (macOS)
         if: runner.os == 'macOS'
@@ -41,6 +41,7 @@ jobs:
             --windowed \
             --name procedures-visualizer \
             --add-data app:app \
+            --collect-all pyvis \
             main.py
 
       - name: Build executable (Linux)
@@ -52,6 +53,7 @@ jobs:
             --windowed \
             --name procedures-visualizer \
             --add-data app:app \
+            --collect-all pyvis \
             main.py
 
       - name: Install Qt xcb dependencies for AppImage bundling (Linux)

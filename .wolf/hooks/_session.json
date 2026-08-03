@@ -16,13 +16,18 @@
       "count": 1,
       "tokens": 182,
       "first_read": "2026-08-03T12:10:33.968Z"
+    },
+    "/home/larrosa/dev/73Labs/proc-viz/.github/workflows/build-release.yml": {
+      "count": 1,
+      "tokens": 1796,
+      "first_read": "2026-08-03T12:21:43.522Z"
     }
   },
   "files_written": [],
   "edit_counts": {},
-  "anatomy_hits": 2,
+  "anatomy_hits": 3,
   "anatomy_misses": 1,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 2
+  "stop_count": 3
 }

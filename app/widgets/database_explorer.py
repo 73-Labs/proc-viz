@@ -645,6 +645,8 @@ class DatabaseExplorer(QWidget):
             self.procedure_label.setText(f"{schema}.{procedure}")
 
             source = self.accessor.get_procedure_source(database, schema, procedure)
+            if source:
+                source = source.encode('utf-8', errors='replace').decode('utf-8')
             self.source_text.setText(source or f"No source found for {procedure}")
 
             # Load parameters
@@ -659,7 +661,8 @@ class DatabaseExplorer(QWidget):
             self.tabs.setCurrentIndex(0)
 
         except Exception as e:
-            self.source_text.setText(f"Error loading details:\n{str(e)}")
+            error_msg = str(e).encode('utf-8', errors='replace').decode('utf-8')
+            self.source_text.setText(f"Error loading details:\n{error_msg}")
 
     def load_function_details(self, database: str, schema: str, function: str):
         """Load function details."""
@@ -667,6 +670,8 @@ class DatabaseExplorer(QWidget):
             self.procedure_label.setText(f"{schema}.{function}")
 
             source = self.accessor.get_function_source(database, schema, function)
+            if source:
+                source = source.encode('utf-8', errors='replace').decode('utf-8')
             self.source_text.setText(source or f"No source found for {function}")
 
             # Load parameters
@@ -681,7 +686,8 @@ class DatabaseExplorer(QWidget):
             self.tabs.setCurrentIndex(0)
 
         except Exception as e:
-            self.source_text.setText(f"Error loading details:\n{str(e)}")
+            error_msg = str(e).encode('utf-8', errors='replace').decode('utf-8')
+            self.source_text.setText(f"Error loading details:\n{error_msg}")
 
     def load_view_details(self, database: str, schema: str, view: str):
         """Load view details."""
@@ -689,6 +695,8 @@ class DatabaseExplorer(QWidget):
             self.procedure_label.setText(f"{schema}.{view}")
 
             source = self.accessor.get_function_source(database, schema, view)
+            if source:
+                source = source.encode('utf-8', errors='replace').decode('utf-8')
             self.source_text.setText(source or f"No source found for {view}")
 
             # Views have no parameters
@@ -699,7 +707,8 @@ class DatabaseExplorer(QWidget):
             self.tabs.setCurrentIndex(0)
 
         except Exception as e:
-            self.source_text.setText(f"Error loading details:\n{str(e)}")
+            error_msg = str(e).encode('utf-8', errors='replace').decode('utf-8')
+            self.source_text.setText(f"Error loading details:\n{error_msg}")
 
     def execute_procedure(self, request):
         """Execute stored procedure asynchronously."""

@@ -21,13 +21,28 @@
       "count": 1,
       "tokens": 1796,
       "first_read": "2026-08-03T12:21:43.522Z"
+    },
+    "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py": {
+      "count": 2,
+      "tokens": 4917,
+      "first_read": "2026-08-03T12:37:47.839Z"
+    },
+    "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py": {
+      "count": 1,
+      "tokens": 768,
+      "first_read": "2026-08-03T12:38:02.792Z"
+    },
+    "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py": {
+      "count": 5,
+      "tokens": 7988,
+      "first_read": "2026-08-03T12:38:08.596Z"
     }
   },
   "files_written": [],
   "edit_counts": {},
-  "anatomy_hits": 3,
+  "anatomy_hits": 6,
   "anatomy_misses": 1,
-  "repeated_reads_warned": 0,
+  "repeated_reads_warned": 5,
   "cerebrum_warnings": 0,
-  "stop_count": 3
+  "stop_count": 6
 }

@@ -120,6 +120,18 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-07-25T00:00:00Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-08-03T00:00:00Z",
+      "error_message": "'charmap' codec can't encode characters in position 263607-263621: character maps to <undefined>",
+      "file": "app/widgets/database_explorer.py",
+      "root_cause": "SQL Server procedure/function/view source code contains Unicode characters; Windows charmap encoding cannot represent them when displaying in Qt text widget",
+      "fix": "Added .encode('utf-8', errors='replace').decode('utf-8') on source text and exception messages in load_procedure_details, load_function_details, and load_view_details methods",
+      "tags": ["runtime", "encoding", "windows", "ui", "sqlserver"],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-08-03T00:00:00Z"
     }
   ]
 }

@@ -2,19 +2,19 @@
   "version": 1,
   "created_at": "2026-07-17T01:35:09.756Z",
   "lifetime": {
-    "total_tokens_estimated": 383739,
-    "total_reads": 247,
+    "total_tokens_estimated": 384143,
+    "total_reads": 253,
     "total_writes": 0,
-    "total_sessions": 24,
-    "anatomy_hits": 186,
-    "anatomy_misses": 61,
+    "total_sessions": 26,
+    "anatomy_hits": 190,
+    "anatomy_misses": 63,
     "repeated_reads_blocked": 174,
-    "estimated_savings_vs_bare_cli": 651589,
-    "real_input_tokens": 18682,
-    "real_output_tokens": 781392,
-    "real_cache_read_tokens": 131430236,
-    "real_cache_creation_tokens": 3351819,
-    "real_api_calls": 2254
+    "estimated_savings_vs_bare_cli": 652389,
+    "real_input_tokens": 18756,
+    "real_output_tokens": 784153,
+    "real_cache_read_tokens": 131691122,
+    "real_cache_creation_tokens": 3390257,
+    "real_api_calls": 2263
   },
   "sessions": [
     {
@@ -3225,6 +3225,90 @@
         "cache_read_input_tokens": 2673067,
         "cache_creation_input_tokens": 76743,
         "api_calls": 54
+      }
+    },
+    {
+      "id": "session-2026-08-03-0909",
+      "agent": "claude",
+      "started": "2026-08-03T12:09:08.425Z",
+      "ended": "2026-08-03T12:10:42.781Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/requirements.txt",
+          "tokens_estimated": 20,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/pyproject.toml",
+          "tokens_estimated": 182,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 202,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 33,
+        "output_tokens": 1328,
+        "cache_read_input_tokens": 113152,
+        "cache_creation_input_tokens": 18964,
+        "api_calls": 4
+      }
+    },
+    {
+      "id": "session-2026-08-03-0909",
+      "agent": "claude",
+      "started": "2026-08-03T12:09:08.425Z",
+      "ended": "2026-08-03T12:11:38.763Z",
+      "reads": [
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/requirements.txt",
+          "tokens_estimated": 20,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/home/larrosa/dev/73Labs/proc-viz/pyproject.toml",
+          "tokens_estimated": 182,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 202,
+        "output_tokens_estimated": 0,
+        "reads_count": 3,
+        "writes_count": 0,
+        "repeated_reads_blocked": 0,
+        "anatomy_lookups": 2
+      },
+      "real_usage": {
+        "input_tokens": 41,
+        "output_tokens": 1433,
+        "cache_read_input_tokens": 147734,
+        "cache_creation_input_tokens": 19474,
+        "api_calls": 5
       }
     }
   ],

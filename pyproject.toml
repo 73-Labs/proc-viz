@@ -13,6 +13,7 @@ dependencies = [
     "PySide6>=6.7.0",
     "pymssql>=2.2.0",
     "keyring>=24.1.0",
+    "pyvis>=0.3.0",
 ]
 
 [tool.setuptools]

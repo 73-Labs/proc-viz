@@ -1,48 +1,38 @@
 {
-  "session_id": "session-2026-08-03-0909",
-  "started": "2026-08-03T12:09:08.425Z",
+  "session_id": "session-2026-08-04-1952",
+  "started": "2026-08-04T22:52:28.797Z",
   "files_read": {
-    "/home/larrosa/dev/73Labs/proc-viz": {
+    "c:/dev/73Labs/proc-viz/app/widgets/database_explorer.py": {
+      "count": 2,
+      "tokens": 7988,
+      "first_read": "2026-08-04T22:53:31.169Z"
+    },
+    "c:/dev/73Labs/proc-viz/app/widgets/result_viewer.py": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-08-03T12:10:27.053Z"
+      "first_read": "2026-08-04T22:53:50.885Z"
     },
-    "/home/larrosa/dev/73Labs/proc-viz/requirements.txt": {
+    "c:/dev/73Labs/proc-viz/app/db_accessor.py": {
       "count": 1,
-      "tokens": 20,
-      "first_read": "2026-08-03T12:10:33.844Z"
+      "tokens": 1069,
+      "first_read": "2026-08-04T22:57:13.358Z"
     },
-    "/home/larrosa/dev/73Labs/proc-viz/pyproject.toml": {
-      "count": 1,
-      "tokens": 182,
-      "first_read": "2026-08-03T12:10:33.968Z"
-    },
-    "/home/larrosa/dev/73Labs/proc-viz/.github/workflows/build-release.yml": {
-      "count": 1,
-      "tokens": 1796,
-      "first_read": "2026-08-03T12:21:43.522Z"
-    },
-    "/home/larrosa/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py": {
-      "count": 2,
+    "c:/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py": {
+      "count": 4,
       "tokens": 4917,
-      "first_read": "2026-08-03T12:37:47.839Z"
+      "first_read": "2026-08-04T22:57:32.808Z"
     },
-    "/home/larrosa/dev/73Labs/proc-viz/app/drivers/connection_manager.py": {
+    "c:/dev/73Labs/proc-viz/app/widgets/dependency_graph.py": {
       "count": 1,
-      "tokens": 768,
-      "first_read": "2026-08-03T12:38:02.792Z"
-    },
-    "/home/larrosa/dev/73Labs/proc-viz/app/widgets/database_explorer.py": {
-      "count": 5,
-      "tokens": 7988,
-      "first_read": "2026-08-03T12:38:08.596Z"
+      "tokens": 0,
+      "first_read": "2026-08-04T23:04:07.660Z"
     }
   },
   "files_written": [],
   "edit_counts": {},
-  "anatomy_hits": 6,
-  "anatomy_misses": 1,
-  "repeated_reads_warned": 5,
+  "anatomy_hits": 3,
+  "anatomy_misses": 2,
+  "repeated_reads_warned": 4,
   "cerebrum_warnings": 0,
   "stop_count": 6
 }

@@ -107,7 +107,9 @@ class SQLServerDriver(DatabaseDriver):
                 WHERE object_id = OBJECT_ID(N'[{database}].[{schema}].[{procedure}]')
             """)
             result = cursor.fetchone()
-            return result[0] if result else None
+            if result and result[0]:
+                return result[0].encode('utf-8', errors='replace').decode('utf-8')
+            return None
         finally:
             cursor.close()
 
@@ -120,7 +122,9 @@ class SQLServerDriver(DatabaseDriver):
                 WHERE object_id = OBJECT_ID(N'[{database}].[{schema}].[{function}]')
             """)
             result = cursor.fetchone()
-            return result[0] if result else None
+            if result and result[0]:
+                return result[0].encode('utf-8', errors='replace').decode('utf-8')
+            return None
         finally:
             cursor.close()
 
@@ -575,7 +579,7 @@ class SQLServerDriver(DatabaseDriver):
 
         except Exception as e:
             duration_ms = (time.time() - start_time) * 1000
-            error_msg = str(e)
+            error_msg = str(e).encode('utf-8', errors='replace').decode('utf-8')
             # Try to extract meaningful error from pymssql
             error_details = None
             if "ProgrammingError" in str(type(e)):
@@ -585,7 +589,7 @@ class SQLServerDriver(DatabaseDriver):
 
             # Add debug info for execution errors
             if not error_details and error_msg:
-                error_details = f"Exception type: {type(e).__name__}\nFull error: {str(e)}"
+                error_details = f"Exception type: {type(e).__name__}\nFull error: {error_msg}"
 
             return ExecutionResult(
                 success=False,

@@ -2,19 +2,19 @@
   "version": 1,
   "created_at": "2026-07-17T01:35:09.756Z",
   "lifetime": {
-    "total_tokens_estimated": 419481,
-    "total_reads": 275,
+    "total_tokens_estimated": 497339,
+    "total_reads": 298,
     "total_writes": 0,
-    "total_sessions": 26,
-    "anatomy_hits": 208,
-    "anatomy_misses": 67,
-    "repeated_reads_blocked": 184,
-    "estimated_savings_vs_bare_cli": 729727,
-    "real_input_tokens": 19568,
-    "real_output_tokens": 812139,
-    "real_cache_read_tokens": 135646971,
-    "real_cache_creation_tokens": 3518757,
-    "real_api_calls": 2361
+    "total_sessions": 44,
+    "anatomy_hits": 224,
+    "anatomy_misses": 74,
+    "repeated_reads_blocked": 205,
+    "estimated_savings_vs_bare_cli": 854610,
+    "real_input_tokens": 20914,
+    "real_output_tokens": 879427,
+    "real_cache_read_tokens": 143753643,
+    "real_cache_creation_tokens": 3787576,
+    "real_api_calls": 2520
   },
   "sessions": [
     {
@@ -3537,6 +3537,288 @@
         "cache_read_input_tokens": 1623291,
         "cache_creation_input_tokens": 40678,
         "api_calls": 38
+      }
+    },
+    {
+      "id": "session-2026-08-04-1952",
+      "agent": "claude",
+      "started": "2026-08-04T22:52:28.797Z",
+      "ended": "2026-08-04T22:54:11.642Z",
+      "reads": [
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 7988,
+        "output_tokens_estimated": 0,
+        "reads_count": 2,
+        "writes_count": 0,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 1
+      },
+      "real_usage": {
+        "input_tokens": 80,
+        "output_tokens": 3599,
+        "cache_read_input_tokens": 366926,
+        "cache_creation_input_tokens": 29108,
+        "api_calls": 9
+      }
+    },
+    {
+      "id": "session-2026-08-04-1952",
+      "agent": "claude",
+      "started": "2026-08-04T22:52:28.797Z",
+      "ended": "2026-08-04T22:59:24.468Z",
+      "reads": [
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 13974,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 3
+      },
+      "real_usage": {
+        "input_tokens": 226,
+        "output_tokens": 10926,
+        "cache_read_input_tokens": 1339032,
+        "cache_creation_input_tokens": 40703,
+        "api_calls": 27
+      }
+    },
+    {
+      "id": "session-2026-08-04-1952",
+      "agent": "claude",
+      "started": "2026-08-04T22:52:28.797Z",
+      "ended": "2026-08-04T23:00:50.396Z",
+      "reads": [
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 13974,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 3
+      },
+      "real_usage": {
+        "input_tokens": 226,
+        "output_tokens": 10926,
+        "cache_read_input_tokens": 1339032,
+        "cache_creation_input_tokens": 40703,
+        "api_calls": 27
+      }
+    },
+    {
+      "id": "session-2026-08-04-1952",
+      "agent": "claude",
+      "started": "2026-08-04T22:52:28.797Z",
+      "ended": "2026-08-04T23:02:09.172Z",
+      "reads": [
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 13974,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 3
+      },
+      "real_usage": {
+        "input_tokens": 236,
+        "output_tokens": 12192,
+        "cache_read_input_tokens": 1399254,
+        "cache_creation_input_tokens": 40999,
+        "api_calls": 28
+      }
+    },
+    {
+      "id": "session-2026-08-04-1952",
+      "agent": "claude",
+      "started": "2026-08-04T22:52:28.797Z",
+      "ended": "2026-08-04T23:03:26.659Z",
+      "reads": [
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 13974,
+        "output_tokens_estimated": 0,
+        "reads_count": 4,
+        "writes_count": 0,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 3
+      },
+      "real_usage": {
+        "input_tokens": 264,
+        "output_tokens": 13787,
+        "cache_read_input_tokens": 1597727,
+        "cache_creation_input_tokens": 56941,
+        "api_calls": 31
+      }
+    },
+    {
+      "id": "session-2026-08-04-1952",
+      "agent": "claude",
+      "started": "2026-08-04T22:52:28.797Z",
+      "ended": "2026-08-04T23:04:37.769Z",
+      "reads": [
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/database_explorer.py",
+          "tokens_estimated": 7988,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/result_viewer.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/db_accessor.py",
+          "tokens_estimated": 1069,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/drivers/sqlserver_driver.py",
+          "tokens_estimated": 4917,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/dev/73Labs/proc-viz/app/widgets/dependency_graph.py",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [],
+      "totals": {
+        "input_tokens_estimated": 13974,
+        "output_tokens_estimated": 0,
+        "reads_count": 5,
+        "writes_count": 0,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 3
+      },
+      "real_usage": {
+        "input_tokens": 314,
+        "output_tokens": 15858,
+        "cache_read_input_tokens": 2064701,
+        "cache_creation_input_tokens": 60365,
+        "api_calls": 37
       }
     }
   ],

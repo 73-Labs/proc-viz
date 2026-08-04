@@ -312,7 +312,8 @@ class DependencyGraphWidget(QWidget):
         net.show_buttons(filter_=['physics'])
 
         self.temp_html_path = os.path.join(tempfile.gettempdir(), f"proc_viz_graph_{id(self)}.html")
-        net.write_html(self.temp_html_path)
+        with open(self.temp_html_path, 'w', encoding='utf-8') as f:
+            f.write(net.html)
 
         self.web_view.load(f"file://{self.temp_html_path}")
 
